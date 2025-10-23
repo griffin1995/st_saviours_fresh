@@ -1,0 +1,419 @@
+/**
+ * TAILWIND CSS V4 CONFIGURATION
+ * St Saviour's Catholic Church
+ *
+ * Official Tailwind v4 uses CSS-first configuration with @import and @theme
+ * Source: https://tailwindcss.com/docs/theme
+ */
+
+@import "tailwindcss";
+
+/**
+ * THEME CONFIGURATION
+ * Custom design tokens for St Saviour's branding
+ * All theme variables become both CSS variables and utility classes
+ */
+@theme {
+  /* Church Brand Colors - Primary (Navy Blue) */
+  --color-primary-50: #f8f9fc;
+  --color-primary-100: #f1f3f8;
+  --color-primary-200: #e3e7f0;
+  --color-primary-300: #c6d0e8;
+  --color-primary-400: #8fa2d4;
+  --color-primary-500: #5b6bb3;
+  --color-primary-600: #4a5a97;
+  --color-primary-700: #3f4a7e;
+  --color-primary-800: #2f3960;
+  --color-primary-900: #252a4d;
+  --color-primary-950: #1a1e3a;
+
+  /* Church Brand Colors - Gold (Accent) */
+  --color-gold-50: #fefcf7;
+  --color-gold-100: #fdf8eb;
+  --color-gold-200: #faf0d2;
+  --color-gold-300: #f5e4a9;
+  --color-gold-400: #eed480;
+  --color-gold-500: #e5c457;
+  --color-gold-600: #ca9e5b;
+  --color-gold-700: #a67234;
+  --color-gold-800: #8a5e2a;
+  --color-gold-900: #6d4a21;
+  --color-gold-950: #4a3318;
+
+  /* Accent Color Alias (same as gold) */
+  --color-accent-50: #fefcf7;
+  --color-accent-100: #fdf8eb;
+  --color-accent-200: #faf0d2;
+  --color-accent-300: #f5e4a9;
+  --color-accent-400: #eed480;
+  --color-accent-500: #e5c457;
+  --color-accent-600: #ca9e5b;
+  --color-accent-700: #a67234;
+  --color-accent-800: #8a5e2a;
+  --color-accent-900: #6d4a21;
+  --color-accent-950: #4a3318;
+
+  /* Semantic Colors - Dark Sections */
+  --color-dark-section: #1e293b;
+  --color-darker-section: #0f172a;
+
+  /* Semantic Colors - Text on Dark Backgrounds */
+  --color-text-on-dark: #e5e7eb;
+  --color-text-on-dark-muted: #d1d5db;
+  --color-text-on-dark-subtle: #9ca3af;
+
+  /* Font Families - Next.js optimized fonts */
+  --font-heading: var(--font-noto-serif), Georgia, serif;
+  --font-body: var(--font-source-serif-4), Georgia, serif;
+  --font-technical: var(--font-jetbrains-mono), Consolas, monospace;
+
+  /* Custom Animations */
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-gradient-x: gradient-x 3s ease infinite;
+
+  /* Float Animation Keyframes */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-20px);
+    }
+  }
+
+  /* Gradient X Animation Keyframes */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+}
+
+/**
+ * LEGACY CSS VARIABLES
+ * For backwards compatibility with existing styles
+ */
+:root {
+  /* Church Brand Colors - Legacy Variables */
+  --color-primary: #3f4a7e;
+  --color-primary-light: #5b6bb3;
+  --color-primary-dark: #2d3456;
+
+  --color-accent: #ca9e5b;
+  --color-accent-dark: #a67234;
+  --color-accent-light: #e5c457;
+
+  /* Typography - Legacy Variables */
+  --font-family-heading: 'Noto Serif', Georgia, serif;
+  --font-family-body: 'Source Serif 4', Georgia, serif;
+  --font-family-technical: 'JetBrains Mono', Consolas, monospace;
+
+  /* Semantic Colors */
+  --background: #ffffff;
+  --foreground: #1e293b;
+  --muted: #f8f9fc;
+  --muted-foreground: #737373;
+  --border: #e3e7f0;
+  --ring: #ca9e5b;
+
+  /* Legacy - Dark Section Colors */
+  --dark-section: #1e293b;
+  --darker-section: #0f172a;
+
+  /* Legacy - Text on Dark */
+  --text-on-dark: #e5e7eb;
+  --text-on-dark-muted: #d1d5db;
+  --text-on-dark-subtle: #9ca3af;
+}
+
+/**
+ * GLOBAL HTML AND BODY STYLES
+ */
+html {
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable;
+  scroll-padding-top: 112px;
+}
+
+@media (min-width: 1024px) {
+  html {
+    scroll-padding-top: 128px;
+  }
+}
+
+@media (min-width: 1280px) {
+  html {
+    scroll-padding-top: 144px;
+  }
+}
+
+body {
+  color: var(--foreground);
+  background: #ffffff !important;
+  font-synthesis-weight: none;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+/* Fallback for browsers without scrollbar-gutter support */
+@supports not (scrollbar-gutter: stable) {
+  html {
+    padding-right: 0;
+  }
+
+  body {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+}
+
+/**
+ * COMPONENT LAYER
+ * Reusable component patterns
+ */
+@layer components {
+  /* Typography Component Classes */
+  .typography-h1 {
+    font-family: var(--font-family-heading);
+    font-size: 2.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.05em;
+  }
+
+  @media (min-width: 1024px) {
+    .typography-h1 {
+      font-size: 3rem;
+    }
+  }
+
+  .typography-h2 {
+    font-family: var(--font-family-heading);
+    font-size: 1.875rem;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 1024px) {
+    .typography-h2 {
+      font-size: 2.25rem;
+    }
+  }
+
+  .typography-h3 {
+    font-family: var(--font-family-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    line-height: 1.4;
+    letter-spacing: -0.025em;
+  }
+
+  @media (min-width: 1024px) {
+    .typography-h3 {
+      font-size: 1.875rem;
+    }
+  }
+
+  .typography-h4 {
+    font-family: var(--font-family-heading);
+    font-size: 1.25rem;
+    font-weight: 500;
+    line-height: 1.4;
+  }
+
+  @media (min-width: 1024px) {
+    .typography-h4 {
+      font-size: 1.5rem;
+    }
+  }
+
+  .typography-body-large {
+    font-family: var(--font-family-body);
+    font-size: 1.125rem;
+    line-height: 1.6;
+  }
+
+  .typography-body {
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .typography-body-small {
+    font-family: var(--font-family-body);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    letter-spacing: 0.025em;
+  }
+}
+
+/**
+ * BASE LAYER
+ * Semantic HTML element defaults
+ */
+@layer base {
+  /* Headings - Primary brand colour */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-noto-serif), Georgia, serif;
+    font-weight: 700;
+    line-height: 1.2;
+    color: var(--color-primary);
+    letter-spacing: -0.025em;
+  }
+
+  h1 {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 900;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 {
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 800;
+    margin-bottom: 1.25rem;
+  }
+
+  h3 {
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+
+  h4 {
+    font-weight: 500;
+    margin-bottom: 0.75rem;
+  }
+
+  h5, h6 {
+    font-weight: 500;
+    line-height: 1.5;
+  }
+
+  /* Body Text */
+  p {
+    color: #1f2937;
+    font-family: var(--font-family-body);
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+
+  /* Lists */
+  ul, ol {
+    color: #1f2937;
+    font-family: var(--font-family-body);
+    margin-bottom: 1rem;
+  }
+
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  /* Emphasis elements */
+  strong, b {
+    font-weight: 600;
+    color: #2d3456;
+  }
+
+  em, i {
+    font-style: italic;
+  }
+
+  /* Blockquotes */
+  blockquote {
+    border-left-width: 4px;
+    border-left-color: var(--color-accent);
+    padding-left: 1rem;
+    font-style: italic;
+    color: #4b5563;
+  }
+
+  /* Links - Accent colour with hover transition */
+  a {
+    color: var(--color-accent);
+    text-decoration-line: none;
+    transition-property: color;
+    transition-duration: 200ms;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  a:hover {
+    color: var(--color-accent-dark);
+    text-decoration-line: underline;
+  }
+
+  /* Navigation links - Override global link styles */
+  nav a,
+  [data-navigation] a,
+  button a,
+  .btn {
+    color: inherit;
+    text-decoration-line: none;
+  }
+
+  nav a:hover,
+  [data-navigation] a:hover {
+    text-decoration-line: none;
+  }
+
+  /* White text on dark backgrounds */
+  [data-dark-bg] h1,
+  [data-dark-bg] h2,
+  [data-dark-bg] h3,
+  [data-dark-bg] h4,
+  [data-dark-bg] h5,
+  [data-dark-bg] h6,
+  [data-dark-bg] p,
+  [data-dark-bg] span,
+  [data-dark-bg] div,
+  [data-dark-bg] li,
+  [data-dark-bg] a,
+  [data-dark-bg] strong,
+  [data-dark-bg] b,
+  [data-dark-bg] em,
+  [data-dark-bg] i {
+    color: white;
+  }
+
+  [data-dark-bg] a:hover {
+    color: #e5e7eb;
+  }
+
+  /* Focus States for Accessibility */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+}
+
+/**
+ * MOTION PREFERENCES AND ACCESSIBILITY
+ * Respect user's motion preferences for WCAG compliance
+ */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .animate-float,
+  .animate-gradient-x {
+    animation: none !important;
+  }
+}
