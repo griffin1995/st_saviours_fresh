@@ -1,0 +1,220 @@
+  ---
+  📁 Essential Boilerplate Files from Vercel Examples
+
+  1. Root Configuration Files
+
+  Source: ~/Documents/examples/framework-boilerplates/nextjs/
+  ~/Documents/examples/framework-boilerplates/nextjs/next.config.ts
+  ~/Documents/examples/framework-boilerplates/nextjs/tsconfig.json
+  ~/Documents/examples/framework-boilerplates/nextjs/tailwind.config.ts
+  ~/Documents/examples/framework-boilerplates/nextjs/postcss.config.mjs
+  ~/Documents/examples/framework-boilerplates/nextjs/eslint.config.mjs
+  ~/Documents/examples/framework-boilerplates/nextjs/package.json
+
+  ---
+  2. Core App Router Files
+
+  Source: ~/Documents/examples/solutions/blog/app/
+  ~/Documents/examples/solutions/blog/app/layout.tsx          # Root layout
+  ~/Documents/examples/solutions/blog/app/page.tsx            # Homepage
+  ~/Documents/examples/solutions/blog/app/not-found.tsx       # 404 page
+  ~/Documents/examples/solutions/blog/app/global.css          # Global styles
+  ~/Documents/examples/solutions/blog/app/robots.ts           # SEO robots.txt
+  ~/Documents/examples/solutions/blog/app/sitemap.ts          # SEO sitemap
+
+  ---
+  3. API Routes
+
+  Source: ~/Documents/examples/solutions/blog/app/
+  ~/Documents/examples/solutions/blog/app/rss/route.ts        # RSS feed API
+  ~/Documents/examples/solutions/blog/app/og/route.tsx        # Open Graph images
+
+  More API Examples:
+  ~/Documents/examples/solutions/aws-s3-image-upload/app/api/upload/route.ts
+  ~/Documents/examples/edge-middleware/redirects-bloom-filter/app/api/redirects/route.ts
+
+  ---
+  4. Component Structure
+
+  Source: ~/Documents/examples/solutions/blog/app/components/
+  ~/Documents/examples/solutions/blog/app/components/nav.tsx
+  ~/Documents/examples/solutions/blog/app/components/footer.tsx
+  ~/Documents/examples/solutions/blog/app/components/posts.tsx
+  ~/Documents/examples/solutions/blog/app/components/mdx.tsx
+
+  Advanced Components from SaaS Dashboard:
+  Source: ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/app/components/dash
+  board-header.tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/app/components/dash
+  board-layout.tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/app/components/dash
+  board-nav.tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/ui/butto
+  n.tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/ui/card.
+  tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/ui/input
+  .tsx
+
+  ---
+  5. Middleware
+
+  Source: ~/Documents/examples/edge-middleware/
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/middleware.ts
+  ~/Documents/examples/edge-middleware/add-header/middleware.ts
+  ~/Documents/examples/edge-middleware/i18n/middleware.ts
+  ~/Documents/examples/edge-middleware/maintenance-page/middleware.ts
+
+  ---
+  6. Utility & Lib Files
+
+  Source: ~/Documents/examples/solutions/
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/lib/utils.ts
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/lib/fetch-api.ts
+  ~/Documents/examples/solutions/blog/app/blog/utils.ts
+
+  ---
+  7. Dynamic Routes & Nested Layouts
+
+  Source: ~/Documents/examples/solutions/blog/app/blog/
+  ~/Documents/examples/solutions/blog/app/blog/page.tsx
+  ~/Documents/examples/solutions/blog/app/blog/[slug]/page.tsx
+
+  Source: ~/Documents/examples/app-directory/share-state/app/demo/
+  ~/Documents/examples/app-directory/share-state/app/demo/layout.tsx
+  ~/Documents/examples/app-directory/share-state/app/demo/page.tsx
+  ~/Documents/examples/app-directory/share-state/app/demo/nested/page.tsx
+  ~/Documents/examples/app-directory/share-state/app/demo/providers.tsx
+
+  ---
+  8. CSS & Styling Examples
+
+  Source: ~/Documents/examples/app-directory/css-in-js/app/demo/
+  ~/Documents/examples/app-directory/css-in-js/app/demo/layout.tsx
+  ~/Documents/examples/app-directory/css-in-js/app/demo/providers.tsx
+  ~/Documents/examples/app-directory/css-in-js/app/demo/showcase.tsx
+
+  ---
+  9. Theme & Providers
+
+  Source: ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/theme-pr
+  ovider.tsx
+  ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/theme-to
+  ggle.tsx
+
+  ---
+  🎯 Recommended Files for St Saviour's Migration (Priority Order)
+
+  Phase 1: Core Setup
+
+  1. ~/Documents/examples/framework-boilerplates/nextjs/app/layout.tsx
+  2. ~/Documents/examples/framework-boilerplates/nextjs/app/page.tsx
+  3. ~/Documents/examples/solutions/blog/app/not-found.tsx
+
+  Phase 2: Components
+
+  4. ~/Documents/examples/solutions/blog/app/components/nav.tsx
+  5. ~/Documents/examples/solutions/blog/app/components/footer.tsx
+  6. ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/ui/bu
+  tton.tsx
+  7. ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/components/ui/ca
+  rd.tsx
+
+  Phase 3: Dynamic Routes
+
+  8. ~/Documents/examples/solutions/blog/app/blog/[slug]/page.tsx
+  9. ~/Documents/examples/app-directory/share-state/app/demo/layout.tsx
+
+  Phase 4: API Routes
+
+  10. ~/Documents/examples/solutions/blog/app/rss/route.ts
+  11. ~/Documents/examples/solutions/aws-s3-image-upload/app/api/upload/route.ts
+
+  Phase 5: Middleware & Utils
+
+  12. ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/middleware.ts
+  13. ~/Documents/examples/solutions/saas-microservices/apps/dashboard/src/lib/utils.ts
+
+  Phase 6: SEO & Metadata
+
+  14. ~/Documents/examples/solutions/blog/app/robots.ts
+  15. ~/Documents/examples/solutions/blog/app/sitemap.ts
+
+  ---
+  📋 Summary Table
+
+  | Category       | Count | Best Source                   |
+  |----------------|-------|-------------------------------|
+  | Config Files   | 6     | framework-boilerplates/nextjs |
+  | Core App Files | 6     | solutions/blog                |
+  | Components     | 10+   | solutions/saas-microservices  |
+  | API Routes     | 5+    | solutions/*                   |
+  | Middleware     | 4+    | edge-middleware/*             |
+  | Utils/Lib      | 3     | solutions/saas-microservices  |
+
+
+ What I Will Do:
+
+  1. Page Structure
+
+  - Create /src/app/page.tsx using optimal Next.js 15 App Router patterns from boilerplate
+   examples
+  - This will be a MASSIVE single file with all content and styling hardcoded inline
+  - Use the existing Navigation and Footer components only
+  - Everything else (welcome section, cards, news blocks, events, groups) will be JSX 
+  hardcoded directly in page.tsx
+
+  2. Content Approach
+
+  - NO separate components (except Navigation/Footer)
+  - NO data files (lib/data.ts - delete this)
+  - NO CMS functions (lib/cms-content.ts, lib/cms-images.ts - don't create these)
+  - NO state management (no Zustand, no Context - at least not for now)
+  - NO reduced motion detection (skip all animation variants that check
+  prefersReducedMotion)
+  - All text, images, links hardcoded directly in the page
+
+  3. Visual Match
+
+  - Copy EXACT styling from old site's homepage
+  (/home/jack/Documents/st_saviours_lewisham/src/pages/index.tsx)
+  - Match colors, spacing, layouts, fonts exactly (1:1 visual replica)
+  - Use same section order:
+    a. Hero section
+    b. Welcome section (with today's services sidebar)
+    c. Three pillar cards
+    d. Podcast section
+    e. Initiatives section
+    f. Community section (50/50 layouts)
+    g. Live stream section
+    h. Community news blocks
+    i. Church groups blocks
+    j. Coming up events blocks
+
+  4. Technical Approach
+
+  - Check boilerplate examples for optimal Next.js 15 patterns
+  - Use Server Components by default (unless animations require "use client")
+  - Framer Motion 11.15.0 for animations (simplified, no reduced motion checks)
+  - Keep all the gold (#CA9E5B) and navy (#3F4A7E) church colors
+  - Preserve all Tailwind classes from old site
+
+  5. What I Will NOT Do
+
+  - Create any new components
+  - Create data/lib files
+  - Add state management
+  - Add reduced motion detection
+  - Optimize or refactor - just get exact visual match with clean code
+
+  6. Outcome
+
+  A single page.tsx file (probably 1000+ lines) that:
+  - Renders exactly like the old homepage visually
+  - Uses optimal App Router patterns from boilerplates
+  - Has all content hardcoded inline
+  - Only imports Navigation and Footer components
+  - Is clean, readable, and follows Next.js 15 best practices
+
