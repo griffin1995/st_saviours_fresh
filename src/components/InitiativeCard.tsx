@@ -35,6 +35,8 @@ interface InitiativeCardProps {
   linkHref: string;
   /** Image position - 'left' or 'right' */
   imagePosition?: 'left' | 'right';
+  /** Color for background and link - defaults to 'gold-600' */
+  color?: 'gold-600' | 'blue-800' | 'green-600' | 'purple-600' | 'red-600';
 }
 
 export default function InitiativeCard({
@@ -44,10 +46,23 @@ export default function InitiativeCard({
   description,
   linkText,
   linkHref,
-  imagePosition = 'left'
+  imagePosition = 'left',
+  color = 'gold-600'
 }: InitiativeCardProps) {
+  // Color mapping to ensure Tailwind classes are included
+  const colorVariants = {
+    'gold-600': 'bg-gold-600 text-gold-600',
+    'blue-800': 'bg-blue-800 text-blue-800',
+    'green-600': 'bg-green-600 text-green-600',
+    'purple-600': 'bg-purple-600 text-purple-600',
+    'red-600': 'bg-red-600 text-red-600',
+  };
+
+  const bgClass = colorVariants[color as keyof typeof colorVariants]?.split(' ')[0] || 'bg-gold-600';
+  const textClass = colorVariants[color as keyof typeof colorVariants]?.split(' ')[1] || 'text-gold-600';
+
   return (
-    <div className="bg-gold-600 px-6 py-10 lg:px-8 lg:py-14 shadow-lg">
+    <div className={`${bgClass} px-6 py-10 lg:px-8 lg:py-14 shadow-lg`}>
       <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-0 items-center">
         {/* Image */}
         <div className={`relative ${imagePosition === 'right' ? 'lg:order-3' : 'lg:order-1'}`}>
@@ -80,7 +95,7 @@ export default function InitiativeCard({
           </p>
           <Link
             href={linkHref}
-            className="inline-flex items-center self-start px-6 py-3 bg-white text-gold-600 hover:bg-gold-50 font-semibold rounded"
+            className={`inline-flex items-center self-start px-6 py-3 bg-white ${textClass} hover:bg-gold-50 font-semibold`}
           >
             {linkText}
             <ArrowRight className="ml-2 h-5 w-5" />

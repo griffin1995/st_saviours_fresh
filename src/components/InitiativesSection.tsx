@@ -21,6 +21,7 @@ interface InitiativeData {
   linkText: string;
   linkHref: string;
   imagePosition?: 'left' | 'right';
+  color?: 'gold-600' | 'blue-800' | 'green-600' | 'purple-600' | 'red-600';
 }
 
 interface InitiativesSectionProps {
@@ -90,7 +91,8 @@ export default function InitiativesSection({
               description={initiative.description}
               linkText={initiative.linkText}
               linkHref={initiative.linkHref}
-              imagePosition={initiative.imagePosition}
+              imagePosition={initiative.imagePosition || "left"}
+              color={initiative.color || "gold-600"}
             />
           ))}
         </div>

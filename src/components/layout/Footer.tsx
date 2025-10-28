@@ -108,12 +108,12 @@ export default function Footer() {
             {/* Column 2: Visit Us (2/9) */}
             <div className="col-span-2">
               <h3 className="font-semibold mb-4 text-lg flex items-center gap-2 text-white">
-                {footerSections[0].title}
+                {footerSections[0]?.title}
                 <Separator.Root className="flex-1 bg-white h-px" orientation="horizontal" />
               </h3>
               <nav aria-label="Visit Us navigation">
                 <ul className="space-y-3">
-                  {footerSections[0].links.map((link) => (
+                  {footerSections[0]?.links.map((link) => (
                     <li key={link.name}>
                       <Link
                         href={link.href}
@@ -130,12 +130,12 @@ export default function Footer() {
             {/* Column 3: Parish Life (2/9) */}
             <div className="col-span-2">
               <h3 className="font-semibold mb-4 text-lg flex items-center gap-2 text-white">
-                {footerSections[1].title}
+                {footerSections[1]?.title}
                 <Separator.Root className="flex-1 bg-white h-px" orientation="horizontal" />
               </h3>
               <nav aria-label="Parish Life navigation">
                 <ul className="space-y-3">
-                  {footerSections[1].links.map((link) => (
+                  {footerSections[1]?.links.map((link) => (
                     <li key={link.name}>
                       <Link
                         href={link.href}
@@ -152,12 +152,12 @@ export default function Footer() {
             {/* Column 4: Support Us (2/9) */}
             <div className="col-span-2">
               <h3 className="font-semibold mb-4 text-lg flex items-center gap-2 text-white">
-                {footerSections[2].title}
+                {footerSections[2]?.title}
                 <Separator.Root className="flex-1 bg-white h-px" orientation="horizontal" />
               </h3>
               <nav aria-label="Support Us navigation">
                 <ul className="space-y-3">
-                  {footerSections[2].links.map((link) => (
+                  {footerSections[2]?.links.map((link) => (
                     <li key={link.name}>
                       <Link
                         href={link.href}

@@ -20,8 +20,6 @@ import {
   Plus,
   Sparkles,
   Phone,
-  Mail,
-  MapPin,
   Hand,
   GraduationCap,
   Shield

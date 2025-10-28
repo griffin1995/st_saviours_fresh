@@ -65,7 +65,7 @@ export default async function SacramentPage(props: {
         description={sacrament.hero.description}
         backgroundImage={sacrament.hero.backgroundImage}
         primaryButton={sacrament.hero.primaryButton}
-        secondaryButton={sacrament.hero.secondaryButton}
+        {...(sacrament.hero.secondaryButton && { secondaryButton: sacrament.hero.secondaryButton })}
       />
 
       <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />

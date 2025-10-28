@@ -40,7 +40,10 @@ export default function AboutUsPage() {
         }}
       />
 
-      <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />
+      <Separator.Root
+        decorative
+        className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
+      />
 
       {/* OUR STORY SECTION - 2/3 content + 1/3 stats sidebar */}
       <section id="our-story" className="py-24 bg-white">
@@ -55,13 +58,13 @@ export default function AboutUsPage() {
                   <div className="space-y-4">
                     <div className="flex items-center space-x-3">
                       <div className="w-2 h-2 bg-gold-500" />
-                      <span className="text-black font-semibold text-sm uppercase tracking-wider">
+                      <span className="text-slate-900 font-semibold text-sm uppercase tracking-wider">
                         Our Story
                       </span>
                     </div>
-                    <h2 className="text-4xl lg:text-5xl font-serif font-light text-black">
+                    <h2 className="text-4xl lg:text-5xl font-light text-slate-900">
                       <span className="block">A Living Legacy of</span>
-                      <span className="block text-3xl lg:text-4xl text-black font-medium">
+                      <span className="block text-3xl lg:text-4xl text-slate-900 font-medium">
                         Faith, Hope & Love
                       </span>
                     </h2>
@@ -69,21 +72,21 @@ export default function AboutUsPage() {
                 </div>
 
                 {/* Content */}
-                <div className="prose prose-xl text-black space-y-8 leading-relaxed">
-                  <p className="text-xl lg:text-2xl font-light text-black leading-relaxed">
+                <div className="prose prose-xl text-slate-900 space-y-8 leading-relaxed">
+                  <p className="text-xl lg:text-2xl font-light text-slate-900 leading-relaxed">
                     <strong className="font-semibold">Since 1894</strong>, St Saviour&apos;s Catholic Church has stood as a spiritual home
                     in the heart of Lewisham, serving generations of faithful families and welcoming newcomers to our
                     vibrant parish community.
                   </p>
 
-                  <p className="text-lg leading-relaxed text-black">
+                  <p className="text-lg leading-relaxed text-slate-900">
                     Our beautiful <strong className="font-semibold">Victorian church building</strong>, opened in 1909, houses a diverse
                     and multicultural congregation that reflects the rich tapestry of our South East London community.
                     We celebrate <strong className="font-semibold">Mass in multiple languages</strong>, offer comprehensive sacramental
                     preparation, and provide pastoral care that meets the needs of all ages and backgrounds.
                   </p>
 
-                  <p className="text-lg leading-relaxed text-black">
+                  <p className="text-lg leading-relaxed text-slate-900">
                     From our historic <strong className="font-semibold">Campanile topped by Christ the King</strong> to our modern
                     ministries and outreach programs, St Saviour&apos;s bridges tradition and innovation. We are
                     committed to being <strong className="font-semibold">a beacon of hope</strong> in Lewisham, living out Christ&apos;s
@@ -100,7 +103,7 @@ export default function AboutUsPage() {
                 <div className="bg-slate-900 rounded-xl overflow-hidden shadow-lg">
                   {/* Header */}
                   <div className="p-6 border-b border-slate-700 bg-slate-800">
-                    <h3 className="text-xl font-serif font-semibold text-white">
+                    <h3 className="text-xl font-semibold text-white">
                       Parish by the Numbers
                     </h3>
                     <p className="text-sm text-white mt-1">
@@ -187,7 +190,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />
+      <Separator.Root
+        decorative
+        className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
+      />
 
       {/* MISSION & VALUES SECTION - 4 value cards in 2x2 grid */}
       <section id="mission" className="py-16 bg-white">
@@ -197,13 +203,13 @@ export default function AboutUsPage() {
             <div className="space-y-4 text-center">
               <div className="flex items-center justify-center space-x-3">
                 <div className="w-2 h-2 bg-gold-500" />
-                <span className="text-black font-semibold text-sm uppercase tracking-wider">
+                <span className="text-slate-900 font-semibold text-sm uppercase tracking-wider">
                   Our Mission & Values
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-serif font-light text-black">
+              <h2 className="text-4xl lg:text-5xl font-light text-slate-900">
                 <span className="block">Living Christ&apos;s Love</span>
-                <span className="block text-3xl lg:text-4xl text-black font-medium">
+                <span className="block text-3xl lg:text-4xl text-slate-900 font-medium">
                   In Our Community
                 </span>
               </h2>
@@ -327,7 +333,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />
+      <Separator.Root
+        decorative
+        className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
+      />
 
       {/* HISTORY TIMELINE SECTION - 5 milestone cards */}
       <section id="history" className="py-16 bg-slate-50">
@@ -337,13 +346,13 @@ export default function AboutUsPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-3">
                 <div className="w-2 h-2 bg-gold-500" />
-                <span className="text-black font-semibold text-sm uppercase tracking-wider">
+                <span className="text-slate-900 font-semibold text-sm uppercase tracking-wider">
                   Our History
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-serif font-light text-black">
+              <h2 className="text-4xl lg:text-5xl font-light text-slate-900">
                 <span className="block">A Journey Through</span>
-                <span className="block text-3xl lg:text-4xl text-black font-medium">
+                <span className="block text-3xl lg:text-4xl text-slate-900 font-medium">
                   Centuries of Faith
                 </span>
               </h2>
@@ -508,7 +517,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />
+      <Separator.Root
+        decorative
+        className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
+      />
 
       {/* LEADERSHIP SECTION - 3 priest cards */}
       <section id="leadership" className="py-16 bg-white">
@@ -518,13 +530,13 @@ export default function AboutUsPage() {
             <div className="space-y-4">
               <div className="flex items-center justify-center space-x-3">
                 <div className="w-2 h-2 bg-gold-500" />
-                <span className="text-black font-semibold text-sm uppercase tracking-wider">
+                <span className="text-slate-900 font-semibold text-sm uppercase tracking-wider">
                   Leadership
                 </span>
               </div>
-              <h2 className="text-4xl lg:text-5xl font-serif font-light text-black">
+              <h2 className="text-4xl lg:text-5xl font-light text-slate-900">
                 <span className="block">Meet Our</span>
-                <span className="block text-3xl lg:text-4xl text-black font-medium">
+                <span className="block text-3xl lg:text-4xl text-slate-900 font-medium">
                   Spiritual Shepherds
                 </span>
               </h2>
@@ -623,7 +635,10 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <Separator.Root decorative className="my-8 h-px w-full bg-gray-200" />
+      <Separator.Root
+        decorative
+        className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
+      />
 
       {/* CONTACT CTA SECTION - 2-column layout with CTA + map */}
       <section id="contact" className="py-16 bg-slate-900">

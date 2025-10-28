@@ -1,0 +1,342 @@
+{
+  "prayers": [
+    {
+      "id": "our-father",
+      "slug": "our-father",
+      "title": "The Our Father",
+      "subtitle": "The Lord's Prayer",
+      "text": "Our Father, who art in heaven,\nhallowed be thy name.\nThy kingdom come,\nthy will be done,\non earth as it is in heaven.\nGive us this day our daily bread,\nand forgive us our trespasses,\nas we forgive those who trespass against us.\nAnd lead us not into temptation,\nbut deliver us from evil.\nAmen.",
+      "categoryId": "daily-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Gospel of Matthew 6:9-13, Gospel of Luke 11:2-4",
+      "attribution": "Jesus Christ",
+      "occasions": ["Mass", "Daily Prayer", "Personal Devotion"],
+      "tags": ["foundational", "jesus", "gospel", "essential"],
+      "difficulty": "simple",
+      "estimatedTime": "1 minute",
+      "featured": true,
+      "relatedPrayers": ["hail-mary", "glory-be"],
+      "learningHubConnections": ["creed-explained"],
+      "scriptureReferences": [
+        {
+          "book": "Matthew",
+          "chapter": 6,
+          "verse": "9-13",
+          "text": "Our Father in heaven, hallowed be your name..."
+        }
+      ],
+      "instructions": "Pray slowly and meditatively, considering each petition.",
+      "reflectionPrompts": [
+        "What does it mean to call God 'Father'?",
+        "How do we forgive those who have hurt us?",
+        "What does 'thy will be done' mean in daily life?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "hail-mary",
+      "slug": "hail-mary", 
+      "title": "The Hail Mary",
+      "subtitle": "Prayer to Our Lady",
+      "text": "Hail Mary, full of grace,\nthe Lord is with thee.\nBlessed art thou amongst women,\nand blessed is the fruit of thy womb, Jesus.\nHoly Mary, Mother of God,\npray for us sinners,\nnow and at the hour of our death.\nAmen.",
+      "categoryId": "marian-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Gospel of Luke 1:28, 1:42",
+      "attribution": "Traditional Catholic Prayer",
+      "occasions": ["Rosary", "Daily Prayer", "Marian Devotions"],
+      "tags": ["mary", "intercession", "rosary", "traditional"],
+      "difficulty": "simple",
+      "estimatedTime": "30 seconds",
+      "featured": true,
+      "relatedPrayers": ["our-father", "rosary-mysteries"],
+      "scriptureReferences": [
+        {
+          "book": "Luke",
+          "chapter": 1,
+          "verse": "28",
+          "text": "Hail, full of grace, the Lord is with you!"
+        }
+      ],
+      "instructions": "Often prayed as part of the Rosary. Meditate on Mary's role in salvation.",
+      "reflectionPrompts": [
+        "How does Mary's 'yes' to God inspire our own faithfulness?",
+        "What does it mean to ask for Mary's intercession?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "glory-be",
+      "slug": "glory-be",
+      "title": "Glory Be to the Father",
+      "subtitle": "Doxology",
+      "text": "Glory be to the Father,\nand to the Son,\nand to the Holy Spirit.\nAs it was in the beginning,\nis now, and ever shall be,\nworld without end.\nAmen.",
+      "categoryId": "daily-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Ancient Christian tradition",
+      "attribution": "Early Christian Church",
+      "occasions": ["Rosary", "Daily Prayer", "Liturgy of Hours"],
+      "tags": ["trinity", "praise", "traditional", "doxology"],
+      "difficulty": "simple",
+      "estimatedTime": "15 seconds",
+      "featured": true,
+      "relatedPrayers": ["our-father", "hail-mary"],
+      "instructions": "A prayer of praise to the Trinity, often used to conclude other prayers.",
+      "reflectionPrompts": [
+        "How does this prayer honor each Person of the Trinity?",
+        "What does 'world without end' mean to you?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "morning-offering",
+      "slug": "morning-offering",
+      "title": "Morning Offering",
+      "subtitle": "Offering the Day to God",
+      "text": "O Jesus, through the Immaculate Heart of Mary,\nI offer You my prayers, works, joys and sufferings\nof this day in union with the Holy Sacrifice of the Mass\nthroughout the world.\nI offer them for all the intentions\nof Your Sacred Heart:\nthe salvation of souls,\nreparation for sin,\nthe reunion of all Christians.\nI offer them for the intentions\nof our bishops and of all Apostles of Prayer,\nand in particular for those recommended\nby our Holy Father this month.\nAmen.",
+      "categoryId": "daily-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Apostleship of Prayer",
+      "attribution": "Apostleship of Prayer",
+      "occasions": ["Morning Prayer", "Daily Offering"],
+      "tags": ["morning", "offering", "sacred-heart", "daily"],
+      "difficulty": "moderate",
+      "estimatedTime": "1-2 minutes",
+      "featured": false,
+      "instructions": "Pray upon waking to offer your entire day to God.",
+      "intentions": [
+        "Salvation of souls",
+        "Reparation for sin", 
+        "Unity of Christians",
+        "Pope's monthly intentions"
+      ],
+      "reflectionPrompts": [
+        "How can I offer my work today to God?",
+        "What sufferings can I unite to Christ's passion?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "angel-of-god",
+      "slug": "angel-of-god",
+      "title": "Angel of God",
+      "subtitle": "Prayer to Guardian Angel",
+      "text": "Angel of God,\nmy guardian dear,\nto whom God's love\ncommits me here,\never this day\nbe at my side,\nto light and guard,\nto rule and guide.\nAmen.",
+      "categoryId": "daily-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Traditional Catholic prayer",
+      "attribution": "Traditional",
+      "occasions": ["Daily Prayer", "Children's Prayer", "Protection"],
+      "tags": ["angel", "guardian", "protection", "children"],
+      "difficulty": "simple",
+      "estimatedTime": "30 seconds",
+      "featured": false,
+      "instructions": "A prayer asking for the protection and guidance of your guardian angel.",
+      "reflectionPrompts": [
+        "How does your guardian angel guide you?",
+        "When have you felt angelic protection in your life?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "act-of-contrition",
+      "slug": "act-of-contrition",
+      "title": "Act of Contrition",
+      "subtitle": "Prayer of Repentance",
+      "text": "My God,\nI am sorry for my sins with all my heart.\nIn choosing to do wrong\nand failing to do good,\nI have sinned against you\nwhom I should love above all things.\nI firmly intend, with your help,\nto do penance,\nto sin no more,\nand to avoid whatever leads me to sin.\nOur Savior Jesus Christ\nsuffered and died for us.\nIn his name, my God, have mercy.\nAmen.",
+      "categoryId": "sacramental-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Rite of Penance",
+      "attribution": "Catholic Church",
+      "occasions": ["Confession", "Daily Prayer", "Examination of Conscience"],
+      "tags": ["contrition", "repentance", "confession", "mercy"],
+      "difficulty": "moderate",
+      "estimatedTime": "1 minute",
+      "featured": true,
+      "instructions": "Pray with sincere sorrow for sins, especially before or after Confession.",
+      "reflectionPrompts": [
+        "What sins weigh most heavily on my heart?",
+        "How can I avoid occasions of sin in the future?",
+        "How does God's mercy transform my heart?"
+      ],
+      "status": "published"
+    },
+    {
+      "id": "come-holy-spirit",
+      "slug": "come-holy-spirit",
+      "title": "Come, Holy Spirit",
+      "subtitle": "Invocation of the Holy Spirit",
+      "text": "Come, Holy Spirit,\nfill the hearts of your faithful\nand kindle in them the fire of your love.\nSend forth your Spirit\nand they shall be created.\nAnd You shall renew\nthe face of the earth.\n\nO, God, who by the light of the Holy Spirit,\ndid instruct the hearts of the faithful,\ngrant that by the same Holy Spirit\nwe may be truly wise\nand ever enjoy His consolations.\nThrough Christ Our Lord.\nAmen.",
+      "categoryId": "sacramental-prayers",
+      "type": "traditional",
+      "language": "en",
+      "source": "Traditional Catholic prayer",
+      "attribution": "Catholic tradition",
+      "occasions": ["Confirmation", "Pentecost", "Before Important Decisions"],
+      "tags": ["holy-spirit", "confirmation", "pentecost", "wisdom"],
+      "difficulty": "moderate",
+      "estimatedTime": "1-2 minutes",
+      "featured": true,
+      "instructions": "Pray when seeking the Holy Spirit's guidance and strength.",
+      "reflectionPrompts": [
+        "How does the Holy Spirit guide my decisions?",
+        "What gifts of the Spirit do I need most?",
+        "How can I be more open to the Spirit's promptings?"
+      ],
+      "status": "published"
+    }
+  ],
+  "prayerCategories": [
+    {
+      "id": "mass-prayers",
+      "slug": "mass-prayers",
+      "title": "Mass Prayers",
+      "description": "Essential prayers of the Holy Sacrifice of the Mass",
+      "icon": "BookOpen",
+      "color": "from-red-600 to-red-500",
+      "liturgicalContext": "liturgical",
+      "order": 1
+    },
+    {
+      "id": "daily-prayers",
+      "slug": "daily-prayers", 
+      "title": "Daily Prayers",
+      "description": "Morning, evening, and meal prayers for everyday life",
+      "icon": "Sun",
+      "color": "from-blue-600 to-blue-500",
+      "liturgicalContext": "personal",
+      "order": 2
+    },
+    {
+      "id": "marian-prayers",
+      "slug": "marian-prayers",
+      "title": "Marian Devotions",
+      "description": "Prayers to Our Lady, including the Rosary and other Marian devotions",
+      "icon": "Heart",
+      "color": "from-indigo-600 to-indigo-500",
+      "liturgicalContext": "devotional",
+      "order": 3
+    },
+    {
+      "id": "seasonal-prayers",
+      "slug": "seasonal-prayers",
+      "title": "Seasonal Prayers",
+      "description": "Prayers for Advent, Christmas, Lent, Easter, and liturgical seasons",
+      "icon": "Calendar",
+      "color": "from-purple-600 to-purple-500",
+      "liturgicalContext": "seasonal",
+      "order": 4
+    },
+    {
+      "id": "sacramental-prayers",
+      "slug": "sacramental-prayers",
+      "title": "Sacramental Prayers",
+      "description": "Prayers for Baptism, Confirmation, Eucharist, and other sacraments",
+      "icon": "Cross",
+      "color": "from-green-600 to-green-500",
+      "liturgicalContext": "sacramental",
+      "order": 5
+    },
+    {
+      "id": "saints-prayers",
+      "slug": "saints-prayers",
+      "title": "Saints & Intercession",
+      "description": "Prayers to saints and for their intercession",
+      "icon": "Star",
+      "color": "from-yellow-600 to-yellow-500",
+      "liturgicalContext": "devotional",
+      "order": 6
+    }
+  ],
+  "prayerCollections": [
+    {
+      "id": "holy-rosary",
+      "slug": "holy-rosary",
+      "title": "The Holy Rosary",
+      "description": "Complete guide to praying the Rosary with all mysteries",
+      "prayers": ["our-father", "hail-mary", "glory-be"],
+      "category": "marian-prayers",
+      "type": "rosary",
+      "duration": "20-30 minutes",
+      "instructions": "Begin with the Sign of the Cross and Apostles' Creed. Pray while meditating on the mysteries.",
+      "featured": true
+    },
+    {
+      "id": "morning-prayers",
+      "slug": "morning-prayers",
+      "title": "Morning Prayer Collection",
+      "description": "Start your day with these essential morning prayers",
+      "prayers": ["morning-offering", "our-father", "hail-mary", "glory-be", "angel-of-god"],
+      "category": "daily-prayers",
+      "type": "themed",
+      "duration": "5-10 minutes",
+      "instructions": "Pray these prayers each morning to offer your day to God.",
+      "featured": true
+    }
+  ],
+  "prayerIntentions": [
+    {
+      "id": "universal-peace",
+      "title": "For Peace in the World",
+      "description": "That nations may work together for justice and peace",
+      "category": "peace",
+      "isUniversal": true,
+      "isParishSpecific": false
+    },
+    {
+      "id": "parish-families", 
+      "title": "For Our Parish Families",
+      "description": "That families in our parish may grow in faith and love",
+      "category": "family",
+      "isUniversal": false,
+      "isParishSpecific": true
+    },
+    {
+      "id": "vocations-response",
+      "title": "For Religious Vocations", 
+      "description": "That young people may respond generously to God's call",
+      "category": "vocations",
+      "isUniversal": true,
+      "isParishSpecific": false
+    },
+    {
+      "id": "healing-sick",
+      "title": "For the Sick of Our Parish",
+      "description": "That those who are ill may find healing and comfort",
+      "category": "healing",
+      "isUniversal": false,
+      "isParishSpecific": true
+    }
+  ],
+  "contentConnections": [
+    {
+      "prayerId": "our-father",
+      "learningContentId": "creed-explained",
+      "connectionType": "relates",
+      "description": "The Our Father connects to understanding our relationship with God as Father"
+    },
+    {
+      "prayerId": "hail-mary",
+      "learningContentId": "mary-mother-church",
+      "connectionType": "deepens", 
+      "description": "Learn about Mary's role in salvation to deepen your understanding of this prayer"
+    },
+    {
+      "prayerId": "come-holy-spirit",
+      "learningContentId": "holy-spirit-gifts",
+      "connectionType": "explains",
+      "description": "Understanding the gifts of the Holy Spirit enhances this prayer"
+    },
+    {
+      "prayerId": "act-of-contrition",
+      "learningContentId": "confession-sacrament",
+      "connectionType": "supports",
+      "description": "Learn about the Sacrament of Confession to understand this prayer better"
+    }
+  ]
+}
