@@ -1,6 +1,5 @@
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import * as Separator from '@radix-ui/react-separator';
-import React from "react";
 
 interface PillarCard {
   title: string;
@@ -14,7 +13,7 @@ interface ThreePillarCardsProps {
   className?: string;
 }
 
-const CardContent: React.FC<{ card: PillarCard }> = ({ card }) => {
+function CardContent({ card }: { card: PillarCard }) {
   return (
     <div
       className={`relative w-full h-full bg-cover bg-center bg-black/40 ${card.url ? 'group' : ''}`}
@@ -26,7 +25,7 @@ const CardContent: React.FC<{ card: PillarCard }> = ({ card }) => {
         <div className="flex flex-col items-center text-center w-full">
           {/* Fixed height title area - always same position */}
           <div className="h-48 flex items-end justify-center mb-4 w-full">
-            <h1 className="text-3xl font-bold text-white text-center group-hover:text-gold-300 transition-colors">{card.title}</h1>
+            <h1 className="text-3xl font-bold text-white text-center">{card.title}</h1>
           </div>
           
           <Separator.Root 
@@ -45,12 +44,12 @@ const CardContent: React.FC<{ card: PillarCard }> = ({ card }) => {
       </div>
     </div>
   );
-};
+}
 
-const ThreePillarCards: React.FC<ThreePillarCardsProps> = ({
+function ThreePillarCards({
   cards,
   className = ""
-}) => {
+}: ThreePillarCardsProps) {
   return (
     <section
       id="values"
@@ -78,6 +77,6 @@ const ThreePillarCards: React.FC<ThreePillarCardsProps> = ({
       </div>
     </section>
   );
-};
+}
 
 export default ThreePillarCards;

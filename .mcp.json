@@ -1,0 +1,21 @@
+{
+  "mcpServers": {
+    "gmail": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@smithery/cli@latest",
+        "run",
+        "@gongrzhe/server-gmail-autoauth-mcp"
+      ],
+      "description": "Gmail MCP server for email access and management",
+      "capabilities": [
+        "email-reading",
+        "email-sending",
+        "label-management",
+        "search",
+        "drafts"
+      ]
+    }
+  }
+}

@@ -39,3 +39,11 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temporary documentation
+docs-temp/
+
+# CMS cleanup backups
+src/lib/cms/*.backup
+cleanup-cms-content.py
+cleanup-report.txt

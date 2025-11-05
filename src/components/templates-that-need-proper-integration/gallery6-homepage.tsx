@@ -1,6 +1,6 @@
 "use client";
 
-import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
+import { ArrowLeft, ArrowRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
 import { Button } from '@/components/ui/Button';
@@ -20,14 +20,10 @@ interface GalleryItem {
 }
 
 interface Gallery6Props {
-  heading?: string;
-  demoUrl?: string;
   items?: GalleryItem[];
 }
 
 const Gallery6Homepage = ({
-  heading = "Church Groups",
-  demoUrl = "/parish-groups",
   items = [
     {
       id: "item-1",
@@ -81,66 +77,34 @@ const Gallery6Homepage = ({
     };
   }, [carouselApi]);
   return (
-    <section className="py-32">
-      <div className="container">
-        <div className="mb-8 flex flex-col justify-between md:mb-14 md:flex-row md:items-end lg:mb-16">
-          <div>
-            <h2
-              className="mb-3 text-3xl font-semibold md:mb-4 md:text-4xl lg:mb-6"
-              style={{
-                fontSize: "2.25rem",
-                fontWeight: "600",
-                color: "#0f172a",
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                letterSpacing: "-0.025em",
-                lineHeight: "2.5rem",
-                marginBottom: "1.5rem"
-              }}
-            >
-              {heading}
-            </h2>
-            <a
-              href={demoUrl}
-              className="group flex items-center gap-1 text-sm font-medium md:text-base lg:text-lg"
-              style={{
-                fontSize: "1rem",
-                fontWeight: "500",
-                color: "#0f172a",
-                fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                textDecoration: "none"
-              }}
-            >
-              View All Groups
-              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-1" />
-            </a>
-          </div>
-          <div className="mt-8 flex shrink-0 items-center justify-start gap-2">
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                carouselApi?.scrollPrev();
-              }}
-              disabled={!canScrollPrev}
-              className="disabled:pointer-events-auto"
-            >
-              <ArrowLeft className="size-5" />
-            </Button>
-            <Button
-              size="sm"
-              variant="outline"
-              onClick={() => {
-                carouselApi?.scrollNext();
-              }}
-              disabled={!canScrollNext}
-              className="disabled:pointer-events-auto"
-            >
-              <ArrowRight className="size-5" />
-            </Button>
-          </div>
+    <section className="bg-transparent">
+      <div className="bg-transparent">
+        <div className="mb-8 flex items-center justify-end gap-2">
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              carouselApi?.scrollPrev();
+            }}
+            disabled={!canScrollPrev}
+            className="disabled:pointer-events-auto"
+          >
+            <ArrowLeft className="size-5" />
+          </Button>
+          <Button
+            size="sm"
+            variant="outline"
+            onClick={() => {
+              carouselApi?.scrollNext();
+            }}
+            disabled={!canScrollNext}
+            className="disabled:pointer-events-auto"
+          >
+            <ArrowRight className="size-5" />
+          </Button>
         </div>
       </div>
-      <div className="container">
+      <div className="bg-transparent">
         <Carousel
           setApi={setCarouselApi}
           opts={{
@@ -160,7 +124,7 @@ const Gallery6Homepage = ({
                   className="group flex flex-col justify-between"
                 >
                   <div>
-                    <div className="aspect-3/2 flex overflow-clip rounded-xl">
+                    <div className="aspect-3/2 flex overflow-clip">
                       <div className="flex-1">
                         <div className="relative h-full w-full origin-bottom transition duration-300 group-hover:scale-105">
                           <img
@@ -173,42 +137,17 @@ const Gallery6Homepage = ({
                     </div>
                   </div>
                   <div
-                    className="mb-2 line-clamp-3 break-words pt-4 text-lg font-medium md:mb-3 md:pt-4 md:text-xl lg:pt-4 lg:text-2xl"
-                    style={{
-                      fontSize: "1.5rem",
-                      fontWeight: "500",
-                      color: "#0f172a",
-                      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                      lineHeight: "2rem",
-                      paddingTop: "1rem",
-                      marginBottom: "0.75rem"
-                    }}
+                    className="mb-2 line-clamp-3 break-words pt-4 text-lg font-medium text-primary-950 md:mb-3 md:pt-4 md:text-xl lg:pt-4 lg:text-2xl"
                   >
                     {item.title}
                   </div>
                   <div
-                    className="text-muted-foreground mb-8 line-clamp-2 text-sm md:mb-12 md:text-base lg:mb-9"
-                    style={{
-                      fontSize: "1rem",
-                      fontWeight: "400",
-                      color: "#64748b",
-                      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                      lineHeight: "1.5rem",
-                      marginBottom: "2rem"
-                    }}
+                    className="text-muted-foreground text-primary-400 mb-8 line-clamp-2 text-sm md:mb-12 md:text-base lg:mb-9"
                   >
                     {item.summary}
                   </div>
                   <div
-                    className="flex items-center text-sm"
-                    style={{
-                      fontSize: "0.875rem",
-                      fontWeight: "500",
-                      color: "#0f172a",
-                      fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
-                      display: "flex",
-                      alignItems: "center"
-                    }}
+                    className="flex items-center text-sm text-primary-700 font-medium hover:text-primary-600"
                   >
                     Learn more{" "}
                     <ArrowRight className="ml-2 size-5 transition-transform group-hover:translate-x-1" />

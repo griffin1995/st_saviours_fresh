@@ -36,7 +36,7 @@ interface InitiativeCardProps {
   /** Image position - 'left' or 'right' */
   imagePosition?: 'left' | 'right';
   /** Color for background and link - defaults to 'gold-600' */
-  color?: 'gold-600' | 'blue-800' | 'green-600' | 'purple-600' | 'red-600';
+  color?: 'gold-600' | 'primary-700';
 }
 
 export default function InitiativeCard({
@@ -52,10 +52,7 @@ export default function InitiativeCard({
   // Color mapping to ensure Tailwind classes are included
   const colorVariants = {
     'gold-600': 'bg-gold-600 text-gold-600',
-    'blue-800': 'bg-blue-800 text-blue-800',
-    'green-600': 'bg-green-600 text-green-600',
-    'purple-600': 'bg-purple-600 text-purple-600',
-    'red-600': 'bg-red-600 text-red-600',
+    'primary-700': 'bg-primary-700 text-primary-700',
   };
 
   const bgClass = colorVariants[color as keyof typeof colorVariants]?.split(' ')[0] || 'bg-gold-600';

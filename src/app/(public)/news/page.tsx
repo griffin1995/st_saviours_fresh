@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import Hero from '@/components/Hero';
-import * as Separator from '@radix-ui/react-separator';
 import {
   Calendar,
   Clock,
@@ -128,10 +127,10 @@ export default function NewsPage() {
         }}
       />
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* FEATURED NEWS SECTION */}
       <section id="latest-news" className="py-16 bg-white">
@@ -139,11 +138,11 @@ export default function NewsPage() {
           <div className="mb-12">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
+              <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 Featured Story
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
               Latest Parish News
             </h2>
             <p className="text-lg text-slate-700 max-w-3xl">
@@ -155,7 +154,7 @@ export default function NewsPage() {
           {/* Featured Article - Large Card */}
           {featuredNews[0] && (
           <div className="mb-16">
-            <article className="group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
+            <article className="group bg-white border border-gray-200  overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300">
               <div className="grid lg:grid-cols-2 gap-0">
                 <div className="relative h-96 lg:h-auto">
                   <Image
@@ -195,7 +194,7 @@ export default function NewsPage() {
                     </div>
                   </div>
 
-                  <h3 className="text-3xl font-bold text-slate-900 mb-4 group-hover:text-gold-600 transition-colors">
+                  <h3 className="text-3xl font-bold text-primary-900 mb-4 group-hover:text-gold-600 transition-colors">
                     {featuredNews[0].title}
                   </h3>
 
@@ -216,7 +215,7 @@ export default function NewsPage() {
 
                   <Link
                     href={`/news/${featuredNews[0].id}`}
-                    className="inline-flex items-center text-gold-600 hover:text-gold-700 font-bold transition-colors group/link"
+                    className="inline-flex items-center text-primary-700 hover:text-primary-600 font-bold transition-colors group/link"
                   >
                     <span>Read Full Article</span>
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
@@ -229,10 +228,10 @@ export default function NewsPage() {
         </div>
       </section>
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* FILTER & SEARCH SECTION */}
       <section className="py-8 bg-slate-50">
@@ -243,7 +242,7 @@ export default function NewsPage() {
               {categories.map((category, index) => (
                 <button
                   key={index}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  className={`px-4 py-2  text-sm font-medium transition-colors ${
                     index === 0
                       ? 'bg-gold-500 text-white'
                       : 'bg-white text-slate-600 hover:bg-slate-100 border border-gray-200'
@@ -260,7 +259,7 @@ export default function NewsPage() {
               <input
                 type="text"
                 placeholder="Search articles..."
-                className="pl-10 pr-4 py-2 bg-white border border-gray-200 rounded-lg text-slate-900 placeholder-gray-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"
+                className="pl-10 pr-4 py-2 bg-white border border-gray-200  text-slate-900 placeholder-gray-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"
               />
             </div>
           </div>
@@ -268,13 +267,13 @@ export default function NewsPage() {
       </section>
 
       {/* ALL NEWS GRID SECTION */}
-      <section className="py-16 bg-white">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
             {allNews.slice(1).map((article) => (
               <article
                 key={article.id}
-                className="group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                className="group bg-white border border-gray-200  overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative h-56 overflow-hidden">
                   <Image
@@ -309,7 +308,7 @@ export default function NewsPage() {
                     </div>
                   </div>
 
-                  <h3 className="text-xl font-bold text-slate-900 mb-3 line-clamp-2 group-hover:text-gold-600 transition-colors">
+                  <h3 className="text-xl font-bold text-primary-900 mb-3 line-clamp-2 group-hover:text-gold-600 transition-colors">
                     {article.title}
                   </h3>
 
@@ -335,7 +334,7 @@ export default function NewsPage() {
 
                   <Link
                     href={`/news/${article.id}`}
-                    className="inline-flex items-center text-gold-600 hover:text-gold-700 font-bold transition-colors group/link"
+                    className="inline-flex items-center text-primary-700 hover:text-primary-600 font-bold transition-colors group/link"
                   >
                     <span>Read More</span>
                     <ArrowRight className="ml-2 h-4 w-4 group-hover/link:translate-x-1 transition-transform" />
@@ -347,7 +346,7 @@ export default function NewsPage() {
 
           {/* Load More Button */}
           <div className="mt-12 text-center">
-            <button className="inline-flex items-center px-8 py-4 bg-slate-900 text-white hover:bg-slate-800 font-bold rounded-lg transition-colors duration-300 text-lg">
+            <button className="inline-flex items-center px-8 py-4 bg-primary-900 text-white hover:bg-primary-800 font-bold  transition-colors duration-300 text-lg">
               Load More Articles
               <ArrowRight className="ml-2 h-5 w-5" />
             </button>
@@ -355,10 +354,10 @@ export default function NewsPage() {
         </div>
       </section>
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* NEWSLETTER SIGNUP SECTION */}
       <section id="newsletter" className="py-16 bg-slate-900">
@@ -379,11 +378,11 @@ export default function NewsPage() {
             </p>
           </div>
 
-          <div className="bg-white rounded-lg p-8 shadow-xl">
+          <div className="bg-white  p-8 shadow-xl">
             <div className="flex items-center justify-center mb-6">
               <BookOpen className="h-12 w-12 text-gold-500" />
             </div>
-            <h3 className="text-2xl font-bold text-slate-900 mb-4">Parish Newsletter</h3>
+            <h3 className="text-2xl font-bold text-primary-900 mb-4">Parish Newsletter</h3>
             <p className="text-slate-700 mb-6">
               Receive weekly updates delivered straight to your inbox.
               No spam, just parish news and spiritual reflections.
@@ -393,9 +392,9 @@ export default function NewsPage() {
                 <input
                   type="email"
                   placeholder="Enter your email address"
-                  className="flex-1 px-4 py-3 border border-gray-200 rounded-lg text-slate-900 placeholder-gray-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"
+                  className="flex-1 px-4 py-3 border border-gray-200  text-slate-900 placeholder-gray-400 focus:outline-none focus:border-gold-500 focus:ring-1 focus:ring-gold-500"
                 />
-                <button className="px-6 py-3 bg-gold-500 text-white hover:bg-gold-600 font-semibold rounded-lg transition-colors duration-300">
+                <button className="px-6 py-3 bg-gold-500 text-white hover:bg-gold-600 font-semibold  transition-colors duration-300">
                   Subscribe
                 </button>
               </div>

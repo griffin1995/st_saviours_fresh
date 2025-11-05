@@ -50,7 +50,7 @@ const cardVariants = cva(
       // Border radius options
       radius: {
         none: 'rounded-none',
-        sm: 'rounded-lg',
+        sm: '',
         md: 'rounded-xl',
         lg: 'rounded-2xl',
         full: 'rounded-3xl'

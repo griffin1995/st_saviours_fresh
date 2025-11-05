@@ -12,12 +12,26 @@ import { m, AnimatePresence } from 'framer-motion'
 import Link from 'next/link'
 import React, { useState } from 'react'
 
-// CMS DATA SOURCE: Using cms-learning-hub.ts functions for navigation data
-import type { LearningHubContent } from '@/lib/cms/cms-learning-hub'
-import {
-  getContentHierarchy,
-  getContentByParent
-} from '@/lib/cms/cms-learning-hub'
+// CMS DATA SOURCE: Using unified-hub-cms.ts functions for navigation data
+import type { HubArticleWithMetadata, HubCategory } from '@/lib/cms/unified-hub-cms'
+
+// Type for content navigation (can be either article or category)
+type LearningHubContent = HubArticleWithMetadata | HubCategory
+
+// Helper functions for backward compatibility
+// Note: These are simplified versions as the unified CMS doesn't have the same hierarchical structure
+function getContentHierarchy(_contentId: string): Array<{ id: string; slug: string; title: string }> {
+  // In the unified CMS, we don't have parent-child IDs, so we return empty array
+  // This should be replaced with proper breadcrumb logic when needed
+  return []
+}
+
+// Note: getContentByParent is not yet used - will be used when hierarchical relationships are added to CMS
+// function getContentByParent(_parentId: string): LearningHubContent[] {
+//   // In the unified CMS, we don't have parent-child relationships yet
+//   // This should be replaced with proper category children logic when needed
+//   return []
+// }
 
 // Error boundary for navigation components
 
@@ -94,14 +108,17 @@ interface TreeNavigationProps {
 }
 
 // CMS DATA SOURCE: Tree navigation for hierarchical content browsing
-export function LearningHubTreeNavigation({ 
-  rootContent, 
-  currentPath = [], 
+export function LearningHubTreeNavigation({
+  rootContent,
+  currentPath = [],
   className = '',
   reducedMotion = false
 }: TreeNavigationProps) {
   const [expandedNodes, setExpandedNodes] = useState<Set<string>>(new Set(currentPath))
-  const childContent = getContentByParent(rootContent.id)
+
+  // Get children - either from category or empty array for articles
+  const childContent = 'children' in rootContent ? rootContent.children : []
+  const contentSlug = 'children' in rootContent ? rootContent.slug : rootContent.fullSlug
 
   const toggleNode = (nodeId: string) => {
     const newExpanded = new Set(expandedNodes)
@@ -113,22 +130,24 @@ export function LearningHubTreeNavigation({
     setExpandedNodes(newExpanded)
   }
 
-  const isExpanded = expandedNodes.has(rootContent.id)
+  const isExpanded = expandedNodes.has(contentSlug)
   const hasChildren = childContent.length > 0
-  const isCurrentPage = currentPath.includes(rootContent.id)
+  const isCurrentPage = currentPath.includes(contentSlug)
+
+  const title = 'metadata' in rootContent ? rootContent.metadata.title : rootContent.title
 
   return (
       <div className={`learning-tree-node ${className}`}>
-        <div 
-          className={`flex items-center py-2 px-3 rounded-lg transition-colors cursor-pointer ${
-            isCurrentPage 
-              ? 'bg-gold-500/20 text-gold-300 border-l-2 border-gold-500' 
+        <div
+          className={`flex items-center py-2 px-3  transition-colors cursor-pointer ${
+            isCurrentPage
+              ? 'bg-gold-500/20 text-gold-300 border-l-2 border-gold-500'
               : 'text-gray-300 hover:bg-white/5 hover:text-white'
           }`}
-          onClick={() => hasChildren ? toggleNode(rootContent.id) : null}
+          onClick={() => hasChildren ? toggleNode(contentSlug) : null}
           role={hasChildren ? "button" : undefined}
           aria-expanded={hasChildren ? isExpanded : undefined}
-          aria-label={hasChildren ? `${isExpanded ? 'Collapse' : 'Expand'} ${rootContent.title}` : undefined}
+          aria-label={hasChildren ? `${isExpanded ? 'Collapse' : 'Expand'} ${title}` : undefined}
         >
           {hasChildren && (
             <m.div
@@ -140,18 +159,18 @@ export function LearningHubTreeNavigation({
               <ChevronRightIcon className="h-4 w-4" />
             </m.div>
           )}
-          
+
           <Link
-            href={`/learning-hub/${rootContent.slug}`}
+            href={`/learning-hub/${contentSlug}`}
             className="flex-1 flex items-center"
             onClick={(e) => e.stopPropagation()}
           >
             <span className="text-sm font-medium truncate">
-              {rootContent.title}
+              {title}
             </span>
-            {rootContent.type === 'category' && (
+            {'children' in rootContent && (
               <span className="ml-2 px-2 py-1 bg-gray-700 text-xs rounded">
-                {rootContent.childIds.length}
+                {rootContent.children.length}
               </span>
             )}
           </Link>
@@ -167,14 +186,17 @@ export function LearningHubTreeNavigation({
               className="ml-6 overflow-hidden"
             >
               <div className="border-l border-gray-600 pl-4 space-y-1">
-                {childContent.map((child) => (
-                  <LearningHubTreeNavigation
-                    key={child.id}
-                    rootContent={child}
-                    currentPath={currentPath}
-                    reducedMotion={reducedMotion}
-                  />
-                ))}
+                {childContent.map((child) => {
+                  const childKey = 'children' in child ? child.slug : child.fullSlug
+                  return (
+                    <LearningHubTreeNavigation
+                      key={childKey}
+                      rootContent={child}
+                      currentPath={currentPath}
+                      reducedMotion={reducedMotion}
+                    />
+                  )
+                })}
               </div>
             </m.div>
           )}
@@ -190,29 +212,33 @@ interface QuickNavigationProps {
 
 // CMS DATA SOURCE: Quick navigation for content relationships
 export function LearningHubQuickNavigation({ currentContent, className = '' }: QuickNavigationProps) {
-  const siblings = currentContent.parentId 
-    ? getContentByParent(currentContent.parentId)
-    : []
-    
-  const currentIndex = siblings.findIndex(s => s.id === currentContent.id)
+  // In the unified CMS, we don't have parent-child relationships yet
+  // So we can't determine siblings. Return empty navigation for now.
+  const siblings: LearningHubContent[] = []
+  const currentSlug = 'children' in currentContent ? currentContent.slug : currentContent.fullSlug
+
+  const currentIndex = siblings.findIndex(s => {
+    const siblingSlug = 'children' in s ? s.slug : s.fullSlug
+    return siblingSlug === currentSlug
+  })
   const previousContent = currentIndex > 0 ? siblings[currentIndex - 1] : null
   const nextContent = currentIndex < siblings.length - 1 ? siblings[currentIndex + 1] : null
 
   return (
-      <nav 
+      <nav
         className={`flex justify-between items-center ${className}`}
         aria-label="Content navigation"
       >
         {previousContent ? (
-          <Link 
-            href={`/learning-hub/${previousContent.slug}`}
-            className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors group"
+          <Link
+            href={`/learning-hub/${'children' in previousContent ? previousContent.slug : previousContent.fullSlug}`}
+            className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20  transition-colors group"
           >
             <ChevronRightIcon className="h-4 w-4 mr-2 rotate-180 group-hover:-translate-x-1 transition-transform" />
             <div className="text-left">
               <div className="text-xs text-gray-400">Previous</div>
               <div className="text-sm font-medium text-white truncate">
-                {previousContent.title}
+                {'metadata' in previousContent ? previousContent.metadata.title : previousContent.title}
               </div>
             </div>
           </Link>
@@ -221,14 +247,14 @@ export function LearningHubQuickNavigation({ currentContent, className = '' }: Q
         )}
 
         {nextContent && (
-          <Link 
-            href={`/learning-hub/${nextContent.slug}`}
-            className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 rounded-lg transition-colors group text-right"
+          <Link
+            href={`/learning-hub/${'children' in nextContent ? nextContent.slug : nextContent.fullSlug}`}
+            className="flex items-center px-4 py-2 bg-white/10 hover:bg-white/20  transition-colors group text-right"
           >
             <div>
               <div className="text-xs text-gray-400">Next</div>
               <div className="text-sm font-medium text-white truncate">
-                {nextContent.title}
+                {'metadata' in nextContent ? nextContent.metadata.title : nextContent.title}
               </div>
             </div>
             <ChevronRightIcon className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
@@ -250,24 +276,31 @@ export function LearningHubProgressIndicator({ hierarchy, className = '' }: Prog
   const currentLevel = hierarchy[hierarchy.length - 1]
   const parentLevel = hierarchy[hierarchy.length - 2]
 
-  if (!parentLevel || !currentLevel || !currentLevel.parentId) {return null}
-  
-  const allSiblings = getContentByParent(currentLevel.parentId)
-  const currentIndex = allSiblings.findIndex(s => s.id === currentLevel.id)
-  const progress = ((currentIndex + 1) / allSiblings.length) * 100
+  if (!parentLevel || !currentLevel) {return null}
+
+  // In the unified CMS, we don't have parent-child relationships yet
+  const allSiblings: LearningHubContent[] = []
+  const currentSlug = 'children' in currentLevel ? currentLevel.slug : currentLevel.fullSlug
+  const currentIndex = allSiblings.findIndex(s => {
+    const siblingSlug = 'children' in s ? s.slug : s.fullSlug
+    return siblingSlug === currentSlug
+  })
+  const progress = allSiblings.length > 0 ? ((currentIndex + 1) / allSiblings.length) * 100 : 0
+
+  const parentTitle = 'metadata' in parentLevel ? parentLevel.metadata.title : parentLevel.title
 
   return (
       <div className={`progress-indicator ${className}`}>
         <div className="flex justify-between items-center mb-2 text-sm">
           <span className="text-gray-300">
-            Progress in {parentLevel.title}
+            Progress in {parentTitle}
           </span>
           <span className="text-white font-medium">
             {currentIndex + 1} of {allSiblings.length}
           </span>
         </div>
         <div className="w-full bg-gray-700 rounded-full h-2">
-          <div 
+          <div
             className="bg-gradient-to-r from-gold-500 to-gold-400 h-2 rounded-full transition-all duration-300"
             style={{ width: `${progress}%` }}
             role="progressbar"

@@ -12,6 +12,8 @@ import Footer from '@/components/layout/Footer';
  * - Public layout (app/(public)/layout.tsx) = Navigation + Footer
  * - Admin layout (app/(admin)/layout.tsx) = Different UI
  *
+ * Note: LiveStreamBanner is now homepage-only, not site-wide
+ *
  * Server Component - optimal Next.js 15 App Router pattern
  */
 

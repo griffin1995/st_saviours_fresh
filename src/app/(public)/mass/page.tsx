@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 import Hero from '@/components/Hero';
-import * as Separator from '@radix-ui/react-separator';
 import {
   Calendar,
   Clock,
@@ -114,10 +113,10 @@ export default function MassTimesPage() {
         }}
       />
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* WEEKLY MASS SCHEDULE SECTION */}
       <section id="mass-schedule" className="py-16 bg-white">
@@ -125,11 +124,11 @@ export default function MassTimesPage() {
           <div className="mb-12">
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
+              <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 Mass Times
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
               <span className="block">Weekly Mass</span>
               <span className="block text-3xl lg:text-4xl font-medium">Schedule</span>
             </h2>
@@ -139,58 +138,158 @@ export default function MassTimesPage() {
             </p>
           </div>
 
-          {/* Mass Schedule Grid */}
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {massSchedule.map((schedule, index) => (
-              <div
-                key={index}
-                className={`bg-white border-2 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ${
-                  schedule.day === currentDay
-                    ? 'border-gold-500'
-                    : 'border-gray-200'
-                }`}
-              >
-                {/* Day Header */}
-                <div className={`px-6 py-4 ${
-                  schedule.day === currentDay
-                    ? 'bg-gold-500'
-                    : 'bg-slate-900'
-                }`}>
-                  <div className="flex items-center justify-between">
-                    <h3 className="text-xl font-bold text-white">
-                      {schedule.day}
-                    </h3>
-                    {schedule.day === currentDay && (
-                      <span className="px-2 py-1 bg-white text-gold-600 rounded text-xs font-bold uppercase">
-                        Today
-                      </span>
-                    )}
-                  </div>
-                </div>
-
-                {/* Mass Times */}
-                <div className="p-6 space-y-4">
-                  {schedule.masses.map((mass, massIndex) => (
-                    <div key={massIndex} className="border-l-4 border-gold-500 pl-4 py-2">
-                      <div className="flex items-center text-gold-600 text-sm mb-1">
-                        <Clock className="mr-1 h-4 w-4" />
-                        {mass.time}
+          {/* Mass Schedule Grid - 4 Row Layout */}
+          <div className="space-y-6">
+            {/* Row 1: Current Day Only - Full Width */}
+            <div className="grid gap-6 grid-cols-1">
+              {massSchedule
+                .filter(schedule => schedule.day === currentDay)
+                .map((schedule, index) => (
+                  <div
+                    key={`current-${index}`}
+                    className="bg-white border-2 border-gold-600 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  >
+                    {/* Day Header */}
+                    <div className="px-6 py-4 bg-gold-600">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-bold text-white">
+                          {schedule.day}
+                        </h3>
+                        <span className="px-2 py-1 bg-white text-gold-600 rounded text-xs font-bold uppercase">
+                          Today
+                        </span>
                       </div>
-                      <div className="text-slate-900 font-semibold">{mass.type}</div>
-                      <div className="text-gray-600 text-sm">{mass.description}</div>
                     </div>
-                  ))}
-                </div>
-              </div>
-            ))}
+
+                    {/* Mass Times */}
+                    <div className="p-6 space-y-4">
+                      {schedule.masses.map((mass, massIndex) => (
+                        <div key={massIndex} className="border-l-4 pl-4 py-2" style={{ borderLeftColor: 'var(--color-primary-700)' }}>
+                          <div className="flex items-center text-primary-900 font-semibold mb-1">
+                            <Clock className="mr-1 h-4 w-4" />
+                            {mass.time}
+                          </div>
+                          <div className="text-primary-900 font-semibold">{mass.type}</div>
+                          <div className="text-gray-600 text-sm">{mass.description}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            {/* Row 2: Sunday Only - Full Width */}
+            <div className="grid gap-6 grid-cols-1">
+              {massSchedule
+                .filter(schedule => schedule.day === 'Sunday')
+                .map((schedule, index) => (
+                  <div
+                    key={`sunday-${index}`}
+                    className="bg-white border-2 border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  >
+                    {/* Day Header */}
+                    <div className="px-6 py-4 bg-primary-800">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-bold text-white">
+                          {schedule.day}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Mass Times */}
+                    <div className="p-6 space-y-4">
+                      {schedule.masses.map((mass, massIndex) => (
+                        <div key={massIndex} className="border-l-4 pl-4 py-2" style={{ borderLeftColor: 'var(--color-primary-700)' }}>
+                          <div className="flex items-center text-primary-900 font-semibold mb-1">
+                            <Clock className="mr-1 h-4 w-4" />
+                            {mass.time}
+                          </div>
+                          <div className="text-primary-900 font-semibold">{mass.type}</div>
+                          <div className="text-gray-600 text-sm">{mass.description}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            {/* Row 3: Monday, Tuesday, Wednesday - 3 Card Row */}
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {massSchedule
+                .filter(schedule => ['Monday', 'Tuesday', 'Wednesday'].includes(schedule.day))
+                .map((schedule, index) => (
+                  <div
+                    key={`mtw-${index}`}
+                    className="bg-white border-2 border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  >
+                    {/* Day Header */}
+                    <div className="px-6 py-4 bg-primary-800">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-bold text-white">
+                          {schedule.day}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Mass Times */}
+                    <div className="p-6 space-y-4">
+                      {schedule.masses.map((mass, massIndex) => (
+                        <div key={massIndex} className="border-l-4 pl-4 py-2" style={{ borderLeftColor: 'var(--color-primary-700)' }}>
+                          <div className="flex items-center text-primary-900 font-semibold mb-1">
+                            <Clock className="mr-1 h-4 w-4" />
+                            {mass.time}
+                          </div>
+                          <div className="text-primary-900 font-semibold">{mass.type}</div>
+                          <div className="text-gray-600 text-sm">{mass.description}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </div>
+
+            {/* Row 4: Thursday, Friday, Saturday - 3 Card Row */}
+            <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+              {massSchedule
+                .filter(schedule => ['Thursday', 'Friday', 'Saturday'].includes(schedule.day))
+                .map((schedule, index) => (
+                  <div
+                    key={`tfs-${index}`}
+                    className="bg-white border-2 border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300"
+                  >
+                    {/* Day Header */}
+                    <div className="px-6 py-4 bg-primary-800">
+                      <div className="flex items-center justify-between">
+                        <h3 className="text-xl font-bold text-white">
+                          {schedule.day}
+                        </h3>
+                      </div>
+                    </div>
+
+                    {/* Mass Times */}
+                    <div className="p-6 space-y-4">
+                      {schedule.masses.map((mass, massIndex) => (
+                        <div key={massIndex} className="border-l-4 pl-4 py-2" style={{ borderLeftColor: 'var(--color-primary-700)' }}>
+                          <div className="flex items-center text-primary-900 font-semibold mb-1">
+                            <Clock className="mr-1 h-4 w-4" />
+                            {mass.time}
+                          </div>
+                          <div className="text-primary-900 font-semibold">{mass.type}</div>
+                          <div className="text-gray-600 text-sm">{mass.description}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+            </div>
           </div>
         </div>
       </section>
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* ADDITIONAL SERVICES SECTION */}
       <section className="py-16 bg-slate-50">
@@ -198,11 +297,11 @@ export default function MassTimesPage() {
           <div className="mb-12 text-center">
             <div className="flex items-center justify-center space-x-3 mb-4">
               <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
+              <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 Additional Services
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-4">
+            <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
               <span className="block">Confession &</span>
               <span className="block text-3xl lg:text-4xl font-medium">Adoration Times</span>
             </h2>
@@ -214,14 +313,14 @@ export default function MassTimesPage() {
 
           <div className="grid md:grid-cols-2 gap-8">
             {/* Confession Card */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white  shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Header */}
               <div className="p-8 border-b border-gray-200">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-gold-500/10 rounded-lg flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gold-500/10  flex items-center justify-center">
                     <Heart className="h-8 w-8 text-gold-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">Confession</h3>
+                  <h3 className="text-2xl font-bold text-primary-900">Confession</h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
                   Sacrament of Reconciliation available for all seeking God's mercy and forgiveness.
@@ -231,29 +330,29 @@ export default function MassTimesPage() {
               {/* Times */}
               <div className="p-8">
                 <div className="space-y-4">
-                  <div className="p-4 bg-slate-50 rounded-lg border border-gray-200">
+                  <div className="p-4 bg-slate-50  border border-gray-200">
                     <div className="flex items-start gap-3">
                       <Clock className="h-5 w-5 text-gold-600 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-lg font-bold text-slate-900">Saturday 4:45 PM - 5:15 PM</p>
+                        <p className="text-lg font-bold text-primary-900">Saturday 4:45 PM - 5:15 PM</p>
                         <p className="text-gray-600 mt-1">Before Vigil Mass</p>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 rounded-lg border border-gray-200">
+                  <div className="p-4 bg-slate-50  border border-gray-200">
                     <div className="flex items-start gap-3">
                       <Clock className="h-5 w-5 text-gold-600 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-lg font-bold text-slate-900">Sunday 9:30 AM - 10:00 AM</p>
+                        <p className="text-lg font-bold text-primary-900">Sunday 9:30 AM - 10:00 AM</p>
                         <p className="text-gray-600 mt-1">Before Sunday Mass</p>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 rounded-lg border border-gray-200">
+                  <div className="p-4 bg-slate-50  border border-gray-200">
                     <div className="flex items-start gap-3">
                       <Calendar className="h-5 w-5 text-gold-600 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-lg font-bold text-slate-900">By Appointment</p>
+                        <p className="text-lg font-bold text-primary-900">By Appointment</p>
                         <p className="text-gray-600 mt-1">Contact the parish office to arrange</p>
                       </div>
                     </div>
@@ -263,14 +362,14 @@ export default function MassTimesPage() {
             </div>
 
             {/* Adoration Card */}
-            <div className="bg-white rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
+            <div className="bg-white  shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
               {/* Header */}
               <div className="p-8 border-b border-gray-200">
                 <div className="flex items-center gap-4 mb-4">
-                  <div className="w-16 h-16 bg-gold-500/10 rounded-lg flex items-center justify-center">
+                  <div className="w-16 h-16 bg-gold-500/10  flex items-center justify-center">
                     <Calendar className="h-8 w-8 text-gold-600" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">Adoration</h3>
+                  <h3 className="text-2xl font-bold text-primary-900">Adoration</h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
                   Eucharistic Adoration and quiet prayer time before the Blessed Sacrament.
@@ -280,25 +379,25 @@ export default function MassTimesPage() {
               {/* Times */}
               <div className="p-8">
                 <div className="space-y-4">
-                  <div className="p-4 bg-slate-50 rounded-lg border border-gray-200">
+                  <div className="p-4 bg-slate-50  border border-gray-200">
                     <div className="flex items-start gap-3">
                       <Clock className="h-5 w-5 text-gold-600 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-lg font-bold text-slate-900">First Friday 7:00 PM - 8:00 PM</p>
+                        <p className="text-lg font-bold text-primary-900">First Friday 7:00 PM - 8:00 PM</p>
                         <p className="text-gray-600 mt-1">Monthly Holy Hour</p>
                       </div>
                     </div>
                   </div>
-                  <div className="p-4 bg-slate-50 rounded-lg border border-gray-200">
+                  <div className="p-4 bg-slate-50  border border-gray-200">
                     <div className="flex items-start gap-3">
                       <Clock className="h-5 w-5 text-gold-600 mt-1 flex-shrink-0" />
                       <div>
-                        <p className="text-lg font-bold text-slate-900">Daily after 10:00 AM Mass</p>
+                        <p className="text-lg font-bold text-primary-900">Daily after 10:00 AM Mass</p>
                         <p className="text-gray-600 mt-1">Brief exposition for personal prayer</p>
                       </div>
                     </div>
                   </div>
-                  <div className="p-6 bg-slate-50 rounded-lg text-center border border-gray-200">
+                  <div className="p-6 bg-slate-50  text-center border border-gray-200">
                     <p className="text-gray-600 italic">
                       Special adoration times during Lent and Advent
                     </p>
@@ -310,10 +409,10 @@ export default function MassTimesPage() {
         </div>
       </section>
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* IMPORTANT INFORMATION SECTION */}
       <section className="py-16 bg-white">
@@ -324,11 +423,11 @@ export default function MassTimesPage() {
               <div className="mb-8">
                 <div className="flex items-center space-x-3 mb-4">
                   <div className="w-2 h-2 bg-gold-500" />
-                  <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
+                  <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                     Important Information
                   </span>
                 </div>
-                <h2 className="text-3xl lg:text-4xl font-light text-slate-900 mb-4">
+                <h2 className="text-3xl lg:text-4xl font-light text-primary-900 mb-4">
                   <span className="block text-2xl lg:text-3xl font-medium">Good to Know</span>
                 </h2>
               </div>
@@ -358,13 +457,13 @@ export default function MassTimesPage() {
                 ].map((item, index) => (
                   <div
                     key={index}
-                    className="flex gap-4 p-6 bg-slate-50 rounded-lg border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300"
+                    className="flex gap-4 p-6 bg-slate-50  border border-gray-200 shadow-sm hover:shadow-md transition-shadow duration-300"
                   >
-                    <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-gold-500/10  flex items-center justify-center flex-shrink-0">
                       <item.icon className="h-6 w-6 text-gold-600" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-slate-900 mb-2">{item.title}</h3>
+                      <h3 className="text-lg font-bold text-primary-900 mb-2">{item.title}</h3>
                       <p className="text-gray-700 leading-relaxed">{item.description}</p>
                     </div>
                   </div>
@@ -374,36 +473,36 @@ export default function MassTimesPage() {
 
             {/* Right Column - Contact Info */}
             <div>
-              <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-8 mb-8">
+              <div className="bg-white  border border-gray-200 shadow-lg p-8 mb-8">
                 <div className="flex items-center space-x-3 mb-6">
                   <div className="w-2 h-2 bg-gold-500" />
-                  <h3 className="text-xl font-bold text-slate-900">Contact Information</h3>
+                  <h3 className="text-xl font-bold text-primary-900">Contact Information</h3>
                 </div>
                 <div className="space-y-6">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-gold-500/10  flex items-center justify-center flex-shrink-0">
                       <Phone className="h-6 w-6 text-gold-600" />
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-slate-900">020 8852 3073</p>
+                      <p className="text-lg font-bold text-primary-900">020 8852 3073</p>
                       <p className="text-gray-600">Parish Office</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-gold-500/10  flex items-center justify-center flex-shrink-0">
                       <Mail className="h-6 w-6 text-gold-600" />
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-slate-900">lewisham@rcaos.org.uk</p>
+                      <p className="text-lg font-bold text-primary-900">lewisham@rcaos.org.uk</p>
                       <p className="text-gray-600">Email Us</p>
                     </div>
                   </div>
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gold-500/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                    <div className="w-12 h-12 bg-gold-500/10  flex items-center justify-center flex-shrink-0">
                       <MapPin className="h-6 w-6 text-gold-600" />
                     </div>
                     <div>
-                      <p className="text-lg font-bold text-slate-900">Lewisham High Street</p>
+                      <p className="text-lg font-bold text-primary-900">Lewisham High Street</p>
                       <p className="text-gray-600">SE13 6AA, London</p>
                     </div>
                   </div>
@@ -411,8 +510,8 @@ export default function MassTimesPage() {
               </div>
 
               {/* Map Placeholder */}
-              <div className="bg-white rounded-lg border border-gray-200 shadow-lg p-4">
-                <div className="relative h-96 w-full rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center">
+              <div className="bg-white  border border-gray-200 shadow-lg p-4">
+                <div className="relative h-96 w-full  overflow-hidden bg-slate-100 flex items-center justify-center">
                   <div className="text-center">
                     <MapPin className="h-16 w-16 text-slate-400 mx-auto mb-4" />
                     <p className="text-slate-700 font-medium">St Saviour's Catholic Church</p>
@@ -423,7 +522,7 @@ export default function MassTimesPage() {
                   <p className="text-sm text-gray-600 mb-3">Find us in the heart of Lewisham</p>
                   <Link
                     href="/contact-us"
-                    className="inline-flex items-center bg-gold-600 text-white px-6 py-2 rounded-lg text-sm font-semibold hover:bg-gold-700 transition-colors duration-300"
+                    className="inline-flex items-center bg-gold-600 text-white px-6 py-2  text-sm font-semibold hover:bg-gold-700 transition-colors duration-300"
                   >
                     Get Directions
                     <ArrowRight className="ml-2 h-4 w-4" />
@@ -435,10 +534,10 @@ export default function MassTimesPage() {
         </div>
       </section>
 
-      <Separator.Root
+      {/* <Separator.Root
         decorative
         className="my-8 h-px bg-slate-400 max-w-screen-xl mx-auto scale-x-[1.2] origin-center"
-      />
+      /> */}
 
       {/* CALL TO ACTION SECTION */}
       <section className="py-16 bg-slate-900">
@@ -461,7 +560,7 @@ export default function MassTimesPage() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-slate-900 hover:bg-gray-100 font-semibold rounded-lg transition-colors duration-300"
+              className="inline-flex items-center justify-center px-6 py-3 bg-white text-slate-900 hover:bg-gray-100 font-semibold  transition-colors duration-300"
             >
               <MapPin className="mr-2 h-5 w-5" />
               Get Directions
@@ -470,7 +569,7 @@ export default function MassTimesPage() {
 
             <Link
               href="/contact-us"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-lg transition-colors duration-300"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold  transition-colors duration-300"
             >
               <Phone className="mr-2 h-5 w-5" />
               Contact Us
@@ -478,7 +577,7 @@ export default function MassTimesPage() {
 
             <Link
               href="/"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold rounded-lg transition-colors duration-300"
+              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold  transition-colors duration-300"
             >
               <PlayCircle className="mr-2 h-5 w-5" />
               Live Stream

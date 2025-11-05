@@ -1,0 +1,456 @@
+{
+  "LEARNING HUB": {
+    "title": "Learning Hub",
+    "slug": "learning-hub",
+    "summary": "Central hub for all Church history, theology, and saints content.",
+    "body": "",
+    "tags": ["church", "history", "theology"],
+    "children": {
+      "Theology and Theologians": {
+        "title": "Theology and Theologians",
+        "slug": "theology-and-theologians",
+        "summary": "Study of theology and notable theologians throughout Church history.",
+        "body": "",
+        "tags": ["theology", "theologians"],
+        "children": {
+          "The Early Church (30 CE – 300 CE)": {
+            "title": "The Early Church (30 CE – 300 CE)",
+            "slug": "the-early-church-30-300",
+            "summary": "Overview of the origins of the Christian Church.",
+            "body": "",
+            "tags": ["early church", "history"],
+            "children": {}
+          },
+          "The Spread of Christianity (300 CE – 600 CE)": {
+            "title": "The Spread of Christianity (300 CE – 600 CE)",
+            "slug": "the-spread-of-christianity-300-600",
+            "summary": "Growth of Christianity across the Roman Empire and beyond.",
+            "body": "",
+            "tags": ["spread", "Christianity"],
+            "children": {
+              "Augustine of Hippo": {
+                "title": "Augustine of Hippo",
+                "slug": "augustine-of-hippo",
+                "summary": "Life and teachings of Augustine of Hippo.",
+                "body": "",
+                "tags": ["theologian", "saint"],
+                "children": {}
+              }
+            }
+          },
+          "Monasticism and Scholasticism (600 CE – 1100 CE)": {
+            "title": "Monasticism and Scholasticism (600 CE – 1100 CE)",
+            "slug": "monasticism-and-scholasticism-600-1100",
+            "summary": "Development of monastic life and scholastic theology.",
+            "body": "",
+            "tags": ["monasticism", "scholasticism"],
+            "children": {
+              "Bernard of Clairvaux": {
+                "title": "Bernard of Clairvaux",
+                "slug": "bernard-of-clairvaux",
+                "summary": "Life and influence of Bernard of Clairvaux.",
+                "body": "",
+                "tags": ["monk", "theologian"],
+                "children": {}
+              },
+              "Pope Gregory": {
+                "title": "Pope Gregory",
+                "slug": "pope-gregory",
+                "summary": "Life and papacy of Pope Gregory.",
+                "body": "",
+                "tags": ["pope", "church leader"],
+                "children": {}
+              },
+              "Peter Abelard": {
+                "title": "Peter Abelard",
+                "slug": "peter-abelard",
+                "summary": "Philosopher and theologian Peter Abelard.",
+                "body": "",
+                "tags": ["philosophy", "theology"],
+                "children": {}
+              }
+            }
+          },
+          "Mysticism and the Middle Ages (1100 CE – 1500 CE)": {
+            "title": "Mysticism and the Middle Ages (1100 CE – 1500 CE)",
+            "slug": "mysticism-and-the-middle-ages-1100-1500",
+            "summary": "Mystical movements and theological thought in the Middle Ages.",
+            "body": "",
+            "tags": ["mysticism", "Middle Ages"],
+            "children": {}
+          },
+          "Reformation to the Enlightenment (1500 CE – 1800 CE)": {
+            "title": "Reformation to the Enlightenment (1500 CE – 1800 CE)",
+            "slug": "reformation-to-enlightenment-1500-1800",
+            "summary": "Church history from the Reformation to the Enlightenment.",
+            "body": "",
+            "tags": ["Reformation", "Enlightenment"],
+            "children": {}
+          }
+        }
+      },
+      "Popes": {
+        "title": "Popes",
+        "slug": "popes",
+        "summary": "Study of popes throughout Church history.",
+        "body": "",
+        "tags": ["popes", "Church history"],
+        "children": {
+          "Early Church Fathers (30 CE – 300 CE)": {
+            "title": "Early Church Fathers (30 CE – 300 CE)",
+            "slug": "early-church-fathers-30-300",
+            "summary": "Foundational leaders of the early Church.",
+            "body": "",
+            "tags": ["Church Fathers", "Early Church"],
+            "children": {}
+          },
+          "Missions and Councils (300 CE – 600 CE)": {
+            "title": "Missions and Councils (300 CE – 600 CE)",
+            "slug": "missions-and-councils-300-600",
+            "summary": "Major Church missions and councils in the early centuries.",
+            "body": "",
+            "tags": ["councils", "missions"],
+            "children": {}
+          },
+          "Church Reform and the Crusades (600 CE – 1100 CE)": {
+            "title": "Church Reform and the Crusades (600 CE – 1100 CE)",
+            "slug": "church-reform-crusades-600-1100",
+            "summary": "Reforms and Crusades impacting Church structure and politics.",
+            "body": "",
+            "tags": ["Crusades", "Church reform"],
+            "children": {}
+          },
+          "Popes and Politics (1100 CE – 1500 CE)": {
+            "title": "Popes and Politics (1100 CE – 1500 CE)",
+            "slug": "popes-and-politics-1100-1500",
+            "summary": "Interaction between popes and secular powers.",
+            "body": "",
+            "tags": ["popes", "politics"],
+            "children": {
+              "The Avignon Popes": {
+                "title": "The Avignon Popes",
+                "slug": "avignon-popes",
+                "summary": "The period of the Avignon Papacy.",
+                "body": "",
+                "tags": ["popes", "Avignon"],
+                "children": {}
+              },
+              "The Western Schism": {
+                "title": "The Western Schism",
+                "slug": "western-schism",
+                "summary": "The division of the Catholic Church during the Western Schism.",
+                "body": "",
+                "tags": ["Schism", "Church history"],
+                "children": {}
+              }
+            }
+          },
+          "Renaissance, Reformation, and Enlightenment (1500 CE – 1800 CE)": {
+            "title": "Renaissance, Reformation, and Enlightenment (1500 CE – 1800 CE)",
+            "slug": "renaissance-reformation-enlightenment-1500-1800",
+            "summary": "Popes' role during Renaissance and Reformation periods.",
+            "body": "",
+            "tags": ["Renaissance", "Reformation", "Enlightenment"],
+            "children": {}
+          }
+        }
+      },
+      "Timelines of Church History (by Century)": {
+        "title": "Timelines of Church History (by Century)",
+        "slug": "timelines-of-church-history",
+        "summary": "Chronological overview of Church history by century.",
+        "body": "",
+        "tags": ["timeline", "history"],
+        "children": {
+          "The Early Church (30 CE – 300 CE)": {
+            "title": "The Early Church (30 CE – 300 CE)",
+            "slug": "early-church-30-300",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "The Spread of Christianity (300 CE – 600 CE)": {
+            "title": "The Spread of Christianity (300 CE – 600 CE)",
+            "slug": "spread-of-christianity-300-600",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Monasticism and the Crusades (600 CE – 1100 CE)": {
+            "title": "Monasticism and the Crusades (600 CE – 1100 CE)",
+            "slug": "monasticism-crusades-600-1100",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {
+              "The 9th Century": {
+                "title": "The 9th Century",
+                "slug": "9th-century",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {}
+              },
+              "The 10th Century": {
+                "title": "The 10th Century",
+                "slug": "10th-century",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {}
+              },
+              "The 11th Century": {
+                "title": "The 11th Century",
+                "slug": "11th-century",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {}
+              },
+              "The 12th Century": {
+                "title": "The 12th Century",
+                "slug": "12th-century",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {}
+              }
+            }
+          },
+          "Power Politics of the Western Church (1100 CE – 1500 CE)": {
+            "title": "Power Politics of the Western Church (1100 CE – 1500 CE)",
+            "slug": "power-politics-western-church-1100-1500",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Reformation to the Enlightenment (1500 CE – 1800 CE)": {
+            "title": "Reformation to the Enlightenment (1500 CE – 1800 CE)",
+            "slug": "reformation-enlightenment-1500-1800",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          }
+        }
+      },
+      "History of the Catholic Church": {
+        "title": "History of the Catholic Church",
+        "slug": "history-of-catholic-church",
+        "summary": "Overview of the Catholic Church's history from its origins to modern times.",
+        "body": "",
+        "tags": ["Church history", "Catholic"],
+        "children": {
+          "The Early Church (30 CE – 300 CE)": {
+            "title": "The Early Church (30 CE – 300 CE)",
+            "slug": "early-church-30-300",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "The Spread of Christianity (300 CE – 600 CE)": {
+            "title": "The Spread of Christianity (300 CE – 600 CE)",
+            "slug": "spread-of-christianity-300-600",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Monasticism and the Crusades (600 CE – 1100 CE)": {
+            "title": "Monasticism and the Crusades (600 CE – 1100 CE)",
+            "slug": "monasticism-crusades-600-1100",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Power Politics of the Western Church (1100 CE – 1500 CE)": {
+            "title": "Power Politics of the Western Church (1100 CE – 1500 CE)",
+            "slug": "power-politics-western-church-1100-1500",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Reformation to the Enlightenment (1500 CE – 1800 CE)": {
+            "title": "Reformation to the Enlightenment (1500 CE – 1800 CE)",
+            "slug": "reformation-enlightenment-1500-1800",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          }
+        }
+      },
+      "Directory of Terms, Definitions, and Church Leaders": {
+        "title": "Directory of Terms, Definitions, and Church Leaders",
+        "slug": "directory-of-terms-definitions-church-leaders",
+        "summary": "Glossary of Catholic terms, popes, and Church contacts.",
+        "body": "",
+        "tags": ["directory", "terms", "popes"],
+        "children": {
+          "The Gifts of the Holy Spirit": {
+            "title": "The Gifts of the Holy Spirit",
+            "slug": "gifts-of-holy-spirit",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "The Sacraments and Their Meaning": {
+            "title": "The Sacraments and Their Meaning",
+            "slug": "sacraments-and-meaning",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Directory of Terms in the Catholic Lexicon": {
+            "title": "Directory of Terms in the Catholic Lexicon",
+            "slug": "terms-catholic-lexicon",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Directory of Catholic Popes": {
+            "title": "Directory of Catholic Popes",
+            "slug": "directory-catholic-popes",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Southwark Diocese Contacts": {
+            "title": "Southwark Diocese Contacts",
+            "slug": "southwark-diocese-contacts",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          }
+        }
+      },
+      "The Lives of the Saints": {
+        "title": "The Lives of the Saints",
+        "slug": "the-lives-of-the-saints",
+        "summary": "Biographies of saints across Church history.",
+        "body": "",
+        "tags": ["saints", "biographies"],
+        "children": {
+          "Martyrs and Early Church Fathers (30 CE – 300 CE)": {
+            "title": "Martyrs and Early Church Fathers (30 CE – 300 CE)",
+            "slug": "martyrs-early-church-fathers-30-300",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {
+              "St Paul": {
+                "title": "St Paul",
+                "slug": "st-paul",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {}
+              },
+              "The Evangelists": {
+                "title": "The Evangelists",
+                "slug": "the-evangelists",
+                "summary": "",
+                "body": "",
+                "tags": [],
+                "children": {
+                  "St John": {
+                    "title": "St John",
+                    "slug": "st-john",
+                    "summary": "",
+                    "body": "",
+                    "tags": [],
+                    "children": {}
+                  },
+                  "St Mark": {
+                    "title": "St Mark",
+                    "slug": "st-mark",
+                    "summary": "",
+                    "body": "",
+                    "tags": [],
+                    "children": {}
+                  },
+                  "St Matthew": {
+                    "title": "St Matthew",
+                    "slug": "st-matthew",
+                    "summary": "",
+                    "body": "",
+                    "tags": [],
+                    "children": {}
+                  },
+                  "St Luke": {
+                    "title": "St Luke",
+                    "slug": "st-luke",
+                    "summary": "",
+                    "body": "",
+                    "tags": [],
+                    "children": {}
+                  }
+                }
+              }
+            }
+          },
+          "The Missionaries (300 CE – 600 CE)": {
+            "title": "The Missionaries (300 CE – 600 CE)",
+            "slug": "missionaries-300-600",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "The Rise of Monasticism (600 CE – 1100 CE)": {
+            "title": "The Rise of Monasticism (600 CE – 1100 CE)",
+            "slug": "rise-of-monasticism-600-1100",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Reformers and Mystics (1100 CE – 1500 CE)": {
+            "title": "Reformers and Mystics (1100 CE – 1500 CE)",
+            "slug": "reformers-and-mystics-1100-1500",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Martyrs and Missionaries of Change (1500 CE – 1800 CE)": {
+            "title": "Martyrs and Missionaries of Change (1500 CE – 1800 CE)",
+            "slug": "martyrs-missionaries-change-1500-1800",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          },
+          "Modern-Day Saints (1800 CE – Present)": {
+            "title": "Modern-Day Saints (1800 CE – Present)",
+            "slug": "modern-day-saints-1800-present",
+            "summary": "",
+            "body": "",
+            "tags": [],
+            "children": {}
+          }
+        }
+      }
+    }
+  },
+  "PRAYER HUB": {
+    "title": "Prayer Hub",
+    "slug": "prayer-hub",
+    "summary": "A hub for prayers and devotional content (to be developed).",
+    "body": "",
+    "tags": ["prayer", "devotional"],
+    "children": {}
+  }
+}
+

@@ -33,7 +33,7 @@ export default function LiveStreamBanner({
         </h2>
         <Link
           href={buttonHref}
-          className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold rounded hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
+          className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold  hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
         >
           {buttonText}
           <ArrowRight className="ml-2 h-5 w-5" />
@@ -56,7 +56,7 @@ export default function LiveStreamBanner({
         <div className="flex-1 flex justify-center">
           <Link
             href={buttonHref}
-            className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold rounded hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
+            className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold  hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
           >
             {buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />

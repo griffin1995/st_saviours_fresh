@@ -56,6 +56,7 @@ export interface BlogContent {
   author?: string;
   readingTime?: number;
   sources?: BlogSource[];
+  references?: BlogSource[];
   tableOfContents?: BlogTableOfContentsItem[];
   relatedItems?: BlogRelatedItem[];
   previousItem?: {

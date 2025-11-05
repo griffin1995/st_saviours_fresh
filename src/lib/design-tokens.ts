@@ -162,7 +162,7 @@ export const designTokens = {
     
     // Border radius values
     borderRadius: {
-      sm: 'rounded-lg',
+      sm: '',
       md: 'rounded-xl', 
       lg: 'rounded-2xl',
       full: 'rounded-full',

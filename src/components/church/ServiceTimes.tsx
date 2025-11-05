@@ -118,7 +118,7 @@ export default function ServiceTimes({
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: (index * 0.1) + (serviceIndex * 0.05) }}
                     viewport={{ once: true }}
-                    className="p-4 rounded-lg border transition-colors bg-white border-gray-200 hover:border-gold-400 hover:shadow-md"
+                    className="p-4  border transition-colors bg-white border-gray-200 hover:border-gold-400 hover:shadow-md"
                   >
                     <div className="flex items-start justify-between">
                       <div className="space-y-1">
@@ -159,7 +159,7 @@ export default function ServiceTimes({
                   </m.div>
                 ))
               ) : (
-                <div className="p-4 text-center bg-white rounded-lg border border-gray-200">
+                <div className="p-4 text-center bg-white  border border-gray-200">
                   <Text className="italic text-gray-600">
                     No services scheduled
                   </Text>

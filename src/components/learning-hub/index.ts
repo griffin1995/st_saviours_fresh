@@ -1,4 +1,4 @@
-// CMS DATA SOURCE: Learning Hub component exports using hierarchical content structure
+// CMS DATA SOURCE: Learning Hub component exports using unified CMS structure
 // Barrel exports for all Learning Hub components
 
 // Navigation components
@@ -17,6 +17,6 @@ export {
 
 // Type exports for consumers
 export type {
-  LearningHubContent,
-  LearningHubCategory
-} from '@/lib/cms/cms-learning-hub'
+  HubArticleWithMetadata,
+  HubCategory
+} from '@/lib/cms/unified-hub-cms'

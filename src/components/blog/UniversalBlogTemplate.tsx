@@ -1,7 +1,6 @@
 "use client";
 
 import { ChevronRightIcon, HeartIcon, EyeIcon, ShareIcon } from '@heroicons/react/24/outline';
-import { m, AnimatePresence } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import React, { type JSX } from 'react';
@@ -98,10 +97,7 @@ export default function UniversalBlogTemplate({
     <>
       <div className="min-h-screen" style={{ background: COLORS.background }}>
         {/* Hero Section */}
-        <section
-          className="relative w-full overflow-hidden"
-          style={{ minHeight: '598px', height: '31.15vw', maxHeight: '598px' }}
-        >
+        <section className="relative w-full overflow-hidden h-[598px] min-h-[400px] max-h-[598px] sm:h-[500px] md:h-[550px] lg:h-[598px]">
           {/* Background Image */}
           <div className="absolute inset-0">
             <Image
@@ -113,40 +109,29 @@ export default function UniversalBlogTemplate({
             />
           </div>
 
-          {/* Dark Overlay */}
-          <div
-            className="absolute inset-0 bg-black"
-            style={{ opacity: 0.5 }}
-          />
+          {/* Dark Overlay - Increased for better text visibility */}
+          <div className="absolute inset-0 bg-black/60" />
 
           {/* Hero Text Content */}
-          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4 px-4">
-            <m.h1
-              className="text-center font-bold leading-[150%] tracking-[-0.03em] text-white"
-              style={{
-                fontSize: 'clamp(48px, 6.67vw, 128px)',
-                textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-                WebkitTextStroke: '1px #000000',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
+          <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4 sm:gap-6 px-4 sm:px-6 md:px-8">
+            <h1
+              className="text-center font-bold leading-[150%] tracking-[-0.03em] text-white
+                         text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl
+                         [text-shadow:0_4px_12px_rgba(0,0,0,0.9),0_2px_6px_rgba(0,0,0,0.8),0_1px_3px_rgba(0,0,0,0.7)]
+                         drop-shadow-2xl"
+              style={{ color: COLORS.textWhite }}
             >
               {content.title}
-            </m.h1>
-            <m.h2
-              className="text-center font-bold leading-[150%] tracking-[-0.03em] text-white"
-              style={{
-                fontSize: 'clamp(32px, 3.33vw, 64px)',
-                textShadow: '0px 4px 4px rgba(0, 0, 0, 0.25)',
-                WebkitTextStroke: '1px #000000',
-              }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
+            </h1>
+            <h2
+              className="text-center font-normal leading-[150%] tracking-[-0.03em] text-white
+                         text-sm sm:text-base md:text-lg
+                         [text-shadow:0_2px_4px_rgba(0,0,0,0.8)]
+                         drop-shadow-lg"
+              style={{ color: COLORS.textWhite }}
             >
               {hero.subtitle}
-            </m.h2>
+            </h2>
           </div>
         </section>
 
@@ -159,17 +144,13 @@ export default function UniversalBlogTemplate({
         >
           <div className="flex flex-col lg:flex-row">
             {/* Left Column - Article Content (1238:1920 ratio) */}
-            <m.div
-              layout
+            <div
               className="flex w-full flex-col lg:flex-[1238]"
               style={{
                 minHeight: isExpanded ? 'auto' : 0,
                 maxHeight: isExpanded ? 'none' : 'calc(100vh - 6.25rem)',
                 overflow: isExpanded ? 'visible' : 'hidden',
                 borderRight: `1px solid ${COLORS.border}`,
-              }}
-              transition={{
-                layout: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
               }}
             >
               {/* Introduction Section */}
@@ -209,58 +190,34 @@ export default function UniversalBlogTemplate({
                 />
 
                 {/* Gradient Fade Overlay (only when collapsed) */}
-                <AnimatePresence>
-                  {!isExpanded && (
-                    <m.div
-                      className="absolute bottom-0 left-0 flex h-[215px] w-full flex-col items-center justify-center px-[10px] py-[80px] pb-[30px] pointer-events-none"
-                      style={{
-                        background: `linear-gradient(180deg, rgba(255, 252, 240, 0) -98.48%, ${COLORS.background} 55.11%)`,
-                      }}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
-                    />
-                  )}
-                </AnimatePresence>
+                {!isExpanded && (
+                  <div
+                    className="absolute bottom-0 left-0 flex h-[215px] w-full flex-col items-center justify-center px-[10px] py-[80px] pb-[30px] pointer-events-none"
+                    style={{
+                      background: `linear-gradient(180deg, rgba(255, 252, 240, 0) -98.48%, ${COLORS.background} 55.11%)`,
+                    }}
+                  />
+                )}
 
                 {/* Read More Button */}
-                <AnimatePresence>
-                  {!isExpanded && (
-                    <m.div
-                      className="absolute bottom-[30px] left-0 flex w-full justify-center"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.5, ease: [0.43, 0.13, 0.23, 0.96] }}
+                {!isExpanded && (
+                  <div className="absolute bottom-[30px] left-0 flex w-full justify-center">
+                    <button
+                      onClick={() => setIsExpanded(true)}
+                      className="flex flex-row items-center gap-[10px] px-[24px] py-[14px] bg-primary-800 hover:bg-primary-900 border border-primary-900 text-white transition-colors pointer-events-auto min-w-[180px]"
                     >
-                      <m.button
-                        onClick={() => setIsExpanded(true)}
-                        className="flex flex-row items-center gap-[10px] rounded-[12px] px-[24px] py-[14px]"
-                        style={{
-                          background: COLORS.buttonBg,
-                          border: `1px solid ${COLORS.border}`,
-                          color: COLORS.buttonText,
-                          minWidth: '180px',
-                          pointerEvents: 'auto',
-                        }}
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
-                          Read more...
-                        </span>
-                        <ChevronRightIcon className="h-6 w-6 text-white" />
-                      </m.button>
-                    </m.div>
-                  )}
-                </AnimatePresence>
+                      <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
+                        Read more...
+                      </span>
+                      <ChevronRightIcon className="h-6 w-6" />
+                    </button>
+                  </div>
+                )}
               </div>
-            </m.div>
+            </div>
 
             {/* Right Column - Sidebar (682:1920 ratio) */}
-            <m.div
-              layout
+            <div
               className="flex w-full flex-col lg:flex-[682] lg:self-start"
               style={{
                 height: 'calc(100vh - 6.25rem)',
@@ -270,9 +227,6 @@ export default function UniversalBlogTemplate({
                 transform: 'translateZ(0)',
                 position: isExpanded ? 'relative' : 'sticky',
                 top: isExpanded ? 'auto' : 'clamp(6.25rem, 6.25rem, 7rem)',
-              }}
-              transition={{
-                layout: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
               }}
             >
               {/* Social Sharing Pills */}
@@ -417,7 +371,7 @@ export default function UniversalBlogTemplate({
                         In This {contentType === 'article' ? 'Article' : 'Prayer'}
                       </h5>
                       <div
-                        className="flex flex-col gap-[12px] rounded-[12px] p-[16px]"
+                        className="flex flex-col gap-[12px] p-[16px]"
                         style={{ background: COLORS.tocBg }}
                       >
                         {content.tableOfContents.map((item) => (
@@ -440,7 +394,7 @@ export default function UniversalBlogTemplate({
                         Further Reading
                       </h5>
                       <div
-                        className="flex flex-col gap-[12px] rounded-[12px] p-[16px]"
+                        className="flex flex-col gap-[12px] p-[16px]"
                         style={{ border: `1px solid ${COLORS.border}` }}
                       >
                         {content.sources.map((source, index) => (
@@ -459,6 +413,32 @@ export default function UniversalBlogTemplate({
                     </div>
                   )}
 
+                  {/* References */}
+                  {content.references && content.references.length > 0 && (
+                    <div className="flex flex-1 flex-col gap-[12px]">
+                      <h5 className="text-[16px] font-normal leading-[150%] tracking-[-0.03em]">
+                        References
+                      </h5>
+                      <div
+                        className="flex flex-col gap-[12px] p-[16px]"
+                        style={{ border: `1px solid ${COLORS.border}` }}
+                      >
+                        {content.references.map((ref, index) => (
+                          <a
+                            key={index}
+                            href={ref.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[16px] font-normal leading-[150%] tracking-[-0.03em] hover:underline"
+                            style={{ color: COLORS.text }}
+                          >
+                            {ref.title}
+                          </a>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+
                   {/* Scripture References (for Prayer Hub) */}
                   {content.scriptureReferences && content.scriptureReferences.length > 0 && (
                     <div className="flex flex-1 flex-col gap-[12px]">
@@ -466,7 +446,7 @@ export default function UniversalBlogTemplate({
                         Scripture References
                       </h5>
                       <div
-                        className="flex flex-col gap-[12px] rounded-[12px] p-[16px]"
+                        className="flex flex-col gap-[12px] p-[16px]"
                         style={{ border: `1px solid ${COLORS.border}` }}
                       >
                         {content.scriptureReferences.map((ref, index) => (
@@ -490,22 +470,18 @@ export default function UniversalBlogTemplate({
                   )}
                 </div>
               </div>
-            </m.div>
+            </div>
           </div>
         </section>
 
         {/* Similar Articles/Prayers Section */}
         {similarItems.length > 0 && (
-          <m.section
-            layout
+          <section
             className="mx-auto w-full max-w-[1920px] py-[80px]"
             style={{
               paddingLeft: 'clamp(20px, 8.44vw, 162px)',
               paddingRight: 'clamp(20px, 8.44vw, 162px)',
               borderTop: `1px solid ${COLORS.border}`,
-            }}
-            transition={{
-              layout: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
             }}
           >
             <div className="flex flex-col gap-[60px]">
@@ -518,17 +494,11 @@ export default function UniversalBlogTemplate({
                   Similar {contentType === 'article' ? 'Articles' : 'Prayers'}
                 </h3>
                 <Link href={baseHref}>
-                  <button
-                    className="flex flex-row items-center gap-[10px] rounded-[12px] px-[24px] py-[18px]"
-                    style={{
-                      background: COLORS.buttonBg,
-                      border: `1px solid ${COLORS.border}`,
-                    }}
-                  >
-                    <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white">
+                  <button className="flex flex-row items-center gap-[10px] px-[24px] py-[18px] bg-primary-800 hover:bg-primary-900 border border-primary-900 text-white transition-colors">
+                    <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
                       View All {contentType === 'article' ? 'Articles' : 'Prayers'}
                     </span>
-                    <ChevronRightIcon className="h-6 w-6 text-white" />
+                    <ChevronRightIcon className="h-6 w-6" />
                   </button>
                 </Link>
               </div>
@@ -538,7 +508,7 @@ export default function UniversalBlogTemplate({
                 {similarItems.slice(0, 3).map((card) => (
                   <div key={card.id} className="flex flex-col gap-[20px]">
                     {/* Card Image */}
-                    <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: '590/222' }}>
+                    <div className="relative w-full overflow-hidden " style={{ aspectRatio: '590/222' }}>
                       <Image src={card.imageSrc} alt={card.imageAlt} fill className="object-cover" />
                     </div>
 
@@ -568,17 +538,8 @@ export default function UniversalBlogTemplate({
                         {(card.likes !== undefined || card.views !== undefined) && (
                           <div className="flex flex-row gap-[10px]">
                             {card.likes !== undefined && (
-                              <div
-                                className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px]"
-                                style={{
-                                  background: COLORS.buttonBg,
-                                  border: `1px solid ${COLORS.border}`,
-                                }}
-                              >
-                                <HeartIcon
-                                  className="h-6 w-6"
-                                  style={{ stroke: COLORS.textWhite, strokeWidth: 1.5 }}
-                                />
+                              <div className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px] bg-primary-800 border border-primary-900">
+                                <HeartIcon className="h-6 w-6 stroke-white" style={{ strokeWidth: 1.5 }} />
                                 <span
                                   className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white"
                                   style={{ fontFamily: 'Kumbh Sans' }}
@@ -588,17 +549,8 @@ export default function UniversalBlogTemplate({
                               </div>
                             )}
                             {card.views !== undefined && (
-                              <div
-                                className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px]"
-                                style={{
-                                  background: COLORS.buttonBg,
-                                  border: `1px solid ${COLORS.border}`,
-                                }}
-                              >
-                                <EyeIcon
-                                  className="h-6 w-6"
-                                  style={{ stroke: COLORS.textWhite, strokeWidth: 1.5 }}
-                                />
+                              <div className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px] bg-primary-800 border border-primary-900">
+                                <EyeIcon className="h-6 w-6 stroke-white" style={{ strokeWidth: 1.5 }} />
                                 <span
                                   className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white"
                                   style={{ fontFamily: 'Kumbh Sans' }}
@@ -612,17 +564,11 @@ export default function UniversalBlogTemplate({
 
                         {/* CTA Button */}
                         <Link href={`${baseHref}/${card.slug}`} className="flex-1">
-                          <button
-                            className="flex w-full flex-row items-center justify-center gap-[10px] rounded-[12px] px-[24px] py-[18px]"
-                            style={{
-                              background: COLORS.buttonBg,
-                              border: `1px solid ${COLORS.border}`,
-                            }}
-                          >
-                            <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white">
+                          <button className="flex w-full flex-row items-center justify-center gap-[10px] px-[24px] py-[18px] bg-primary-800 hover:bg-primary-900 border border-primary-900 text-white transition-colors">
+                            <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
                               Read more...
                             </span>
-                            <ChevronRightIcon className="h-6 w-6 text-white" />
+                            <ChevronRightIcon className="h-6 w-6" />
                           </button>
                         </Link>
                       </div>
@@ -631,21 +577,17 @@ export default function UniversalBlogTemplate({
                 ))}
               </div>
             </div>
-          </m.section>
+          </section>
         )}
 
         {/* Other Categories Section */}
         {otherCategoryItems.length > 0 && (
-          <m.section
-            layout
+          <section
             className="mx-auto w-full max-w-[1920px] py-[80px]"
             style={{
               paddingLeft: 'clamp(20px, 8.44vw, 162px)',
               paddingRight: 'clamp(20px, 8.44vw, 162px)',
               borderTop: `1px solid ${COLORS.border}`,
-            }}
-            transition={{
-              layout: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
             }}
           >
             <div className="flex flex-col gap-[60px]">
@@ -658,17 +600,11 @@ export default function UniversalBlogTemplate({
                   Other Categories
                 </h3>
                 <Link href={baseHref}>
-                  <button
-                    className="flex flex-row items-center gap-[10px] rounded-[12px] px-[24px] py-[18px]"
-                    style={{
-                      background: COLORS.buttonBg,
-                      border: `1px solid ${COLORS.border}`,
-                    }}
-                  >
-                    <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white">
+                  <button className="flex flex-row items-center gap-[10px] px-[24px] py-[18px] bg-primary-800 hover:bg-primary-900 border border-primary-900 text-white transition-colors">
+                    <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
                       Browse All Categories
                     </span>
-                    <ChevronRightIcon className="h-6 w-6 text-white" />
+                    <ChevronRightIcon className="h-6 w-6" />
                   </button>
                 </Link>
               </div>
@@ -678,7 +614,7 @@ export default function UniversalBlogTemplate({
                 {otherCategoryItems.slice(0, 3).map((card) => (
                   <div key={card.id} className="flex flex-col gap-[20px]">
                     {/* Card Image */}
-                    <div className="relative w-full overflow-hidden rounded-lg" style={{ aspectRatio: '590/222' }}>
+                    <div className="relative w-full overflow-hidden " style={{ aspectRatio: '590/222' }}>
                       <Image src={card.imageSrc} alt={card.imageAlt} fill className="object-cover" />
                     </div>
 
@@ -708,17 +644,8 @@ export default function UniversalBlogTemplate({
                         {(card.likes !== undefined || card.views !== undefined) && (
                           <div className="flex flex-row gap-[10px]">
                             {card.likes !== undefined && (
-                              <div
-                                className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px]"
-                                style={{
-                                  background: COLORS.buttonBg,
-                                  border: `1px solid ${COLORS.border}`,
-                                }}
-                              >
-                                <HeartIcon
-                                  className="h-6 w-6"
-                                  style={{ stroke: COLORS.textWhite, strokeWidth: 1.5 }}
-                                />
+                              <div className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px] bg-primary-800 border border-primary-900">
+                                <HeartIcon className="h-6 w-6 stroke-white" style={{ strokeWidth: 1.5 }} />
                                 <span
                                   className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white"
                                   style={{ fontFamily: 'Kumbh Sans' }}
@@ -728,17 +655,8 @@ export default function UniversalBlogTemplate({
                               </div>
                             )}
                             {card.views !== undefined && (
-                              <div
-                                className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px]"
-                                style={{
-                                  background: COLORS.buttonBg,
-                                  border: `1px solid ${COLORS.border}`,
-                                }}
-                              >
-                                <EyeIcon
-                                  className="h-6 w-6"
-                                  style={{ stroke: COLORS.textWhite, strokeWidth: 1.5 }}
-                                />
+                              <div className="flex flex-row items-center justify-center gap-[4px] rounded-[100px] px-[16px] py-[8px] bg-primary-800 border border-primary-900">
+                                <EyeIcon className="h-6 w-6 stroke-white" style={{ strokeWidth: 1.5 }} />
                                 <span
                                   className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white"
                                   style={{ fontFamily: 'Kumbh Sans' }}
@@ -752,17 +670,11 @@ export default function UniversalBlogTemplate({
 
                         {/* CTA Button */}
                         <Link href={`${baseHref}/${card.slug}`} className="flex-1">
-                          <button
-                            className="flex w-full flex-row items-center justify-center gap-[10px] rounded-[12px] px-[24px] py-[18px]"
-                            style={{
-                              background: COLORS.buttonBg,
-                              border: `1px solid ${COLORS.border}`,
-                            }}
-                          >
-                            <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em] text-white">
+                          <button className="flex w-full flex-row items-center justify-center gap-[10px] px-[24px] py-[18px] bg-primary-800 hover:bg-primary-900 border border-primary-900 text-white transition-colors">
+                            <span className="text-[18px] font-normal leading-[150%] tracking-[-0.03em]">
                               Read more...
                             </span>
-                            <ChevronRightIcon className="h-6 w-6 text-white" />
+                            <ChevronRightIcon className="h-6 w-6" />
                           </button>
                         </Link>
                       </div>
@@ -771,17 +683,12 @@ export default function UniversalBlogTemplate({
                 ))}
               </div>
             </div>
-          </m.section>
+          </section>
         )}
 
-        <m.div
-          layout
-          transition={{
-            layout: { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] },
-          }}
-        >
+        <div>
           <Footer />
-        </m.div>
+        </div>
       </div>
     </>
   );

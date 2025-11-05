@@ -3,15 +3,17 @@
 import Link from 'next/link';
 
 /**
- * HERO COMPONENT
+ * HERO COMPONENT - STANDARD VERSION
  * Full-screen cinematic hero
  *
  * Features:
- * - Full viewport height (h-screen)
+ * - Full viewport height (100vh)
  * - Multi-layer overlays (navy + gold + dot pattern)
  * - Advanced typography with text shadows
  * - Scroll indicator with smooth scroll
  * - Client Component (for scroll functionality)
+ *
+ * Note: For homepage with LiveStreamBanner, use Hero-Homepage.tsx (90vh)
  */
 
 interface HeroButton {
@@ -53,7 +55,7 @@ export default function Hero({
   };
 
   return (
-    <section className="relative h-screen w-screen overflow-hidden">
+    <section className="relative h-[100vh] w-screen overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <div
@@ -67,17 +69,22 @@ export default function Hero({
         />
       </div>
 
-      {/* Layer 1: Navy gradient for text contrast */}
+      {/* Layer 1: Top gradient for navigation visibility */}
+      <div
+        className="absolute top-0 inset-x-0 h-[25%] bg-gradient-to-b from-black/90 via-black/50 to-transparent pointer-events-none z-[5]"
+      />
+
+      {/* Layer 2: Navy gradient for text contrast */}
       <div
         className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"
       />
 
-      {/* Layer 2: Gold accent gradient for warmth */}
+      {/* Layer 3: Gold accent gradient for warmth */}
       <div
         className="absolute inset-0 bg-gradient-to-t from-gold-600/70 via-gold-600/20 to-transparent mix-blend-soft-light"
       />
 
-      {/* Layer 3: Dot pattern texture overlay */}
+      {/* Layer 4: Dot pattern texture overlay */}
       <div
         className="absolute inset-0"
         style={{

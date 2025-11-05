@@ -119,7 +119,7 @@ const Content = () => {
                 <div className="relative flex items-start pb-2">
                   <div className="bg-border/70 absolute top-[2.75rem] h-[calc(100%-2.75rem)] w-px"></div>
                   <div className="absolute ml-[-14px] py-2">
-                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center rounded-lg">
+                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center ">
                       <RefreshCcw className="h-3.5 w-3.5" />
                     </div>
                   </div>
@@ -154,7 +154,7 @@ const Content = () => {
                 <div className="relative flex items-start pb-2">
                   <div className="bg-border/70 absolute top-[2.75rem] h-[calc(100%-2.75rem)] w-px"></div>
                   <div className="absolute ml-[-14px] py-2">
-                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center rounded-lg">
+                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center ">
                       <GalleryVerticalEnd className="h-3.5 w-3.5" />
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const Content = () => {
                 <div className="relative flex items-start pb-2">
                   <div className="bg-border/70 absolute top-[2.75rem] h-[calc(100%-2.75rem)] w-px"></div>
                   <div className="absolute ml-[-14px] py-2">
-                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center rounded-lg">
+                    <div className="bg-muted flex size-7 shrink-0 items-center justify-center ">
                       <ListChecks className="h-3.5 w-3.5" />
                     </div>
                   </div>

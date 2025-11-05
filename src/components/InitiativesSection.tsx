@@ -21,7 +21,7 @@ interface InitiativeData {
   linkText: string;
   linkHref: string;
   imagePosition?: 'left' | 'right';
-  color?: 'gold-600' | 'blue-800' | 'green-600' | 'purple-600' | 'red-600';
+  color?: 'gold-600' | 'primary-700';
 }
 
 interface InitiativesSectionProps {
@@ -58,11 +58,11 @@ export default function InitiativesSection({
           <div className="space-y-4">
             <div className="flex items-center space-x-3">
               <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
+              <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 {badgeText}
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-slate-900">
+            <h2 className="text-4xl lg:text-5xl font-light text-primary-900">
               <span className="block">{titleLine1}</span>
               <span className="block text-3xl lg:text-4xl font-medium">{titleLine2}</span>
             </h2>
@@ -73,7 +73,7 @@ export default function InitiativesSection({
 
           <Link
             href={buttonHref}
-            className="inline-flex items-center px-6 py-3 bg-slate-900 text-white hover:bg-slate-800 font-semibold"
+            className="inline-flex items-center px-6 py-3 bg-primary-900 text-white hover:bg-primary-800 font-semibold"
           >
             {buttonText}
             <ArrowRight className="ml-2 h-5 w-5" />

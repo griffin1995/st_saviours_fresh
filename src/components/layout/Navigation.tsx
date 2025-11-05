@@ -8,6 +8,7 @@ import {
   HeartIcon
 } from '@heroicons/react/24/solid';
 import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 import { navigationMenu } from '@/lib/data';
 
 // Hardcoded church information
@@ -34,17 +35,27 @@ interface NavigationProps {
  * - Better TypeScript typing and accessibility
  * - Only one dropdown open at a time
  * - Fixed hydration by using CSS for scroll effects
+ * - Smart positioning: absolute (scrolls with page) on homepage initially,
+ *   then transitions to fixed (sticky) after scrolling past banner (10vh)
+ * - Dynamic scroll threshold based on banner height (10vh)
  */
 export default function Navigation({ className = '' }: NavigationProps) {
   // State management
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const pathname = usePathname();
+
+  // Check if we're on homepage
+  const isHomepage = pathname === '/';
 
   // Track scroll position - using mounted flag to avoid hydration mismatch
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      // Calculate banner height dynamically (10vh in pixels)
+      const bannerHeight = window.innerHeight * 0.1;
+      // Only set scrolled state when scrolled past the banner
+      setIsScrolled(window.scrollY > bannerHeight);
     };
 
     // Set initial scroll position after mount
@@ -112,7 +123,9 @@ export default function Navigation({ className = '' }: NavigationProps) {
     <>
       <nav
         data-navigation
-        className={`fixed top-0 left-0 right-0 w-full z-[9999] transition-all duration-200 ${
+        className={`${
+          isHomepage && !isScrolled ? 'absolute top-[10vh]' : 'fixed top-0'
+        } left-0 right-0 w-full z-[9999] ${
           isScrolled || activeDropdown !== null || mobileMenuOpen
             ? 'bg-slate-900/95 backdrop-blur-xl shadow-xl'
             : 'bg-transparent'
@@ -143,28 +156,44 @@ export default function Navigation({ className = '' }: NavigationProps) {
 
             {/* Desktop Navigation - True Center (70%) */}
             <div className="hidden lg:flex justify-center items-center space-x-2 h-full">
-              {navigationMenu.map((item) => (
-                <button
-                  key={item.name}
-                  onClick={() => handleDropdownToggle(item.name)}
-                  onKeyDown={(e) => handleKeyDown(e, item.name)}
-                  className={`flex items-center px-6 py-4 text-lg font-medium transition-all duration-200 h-16 ${
-                    activeDropdown === item.name
-                      ? 'bg-white/20 text-white shadow-lg'
-                      : 'text-white hover:text-white hover:bg-white/10'
-                  }`}
-                  aria-expanded={activeDropdown === item.name}
-                  aria-haspopup="true"
-                  aria-label={`${item.name} menu`}
-                >
-                  {item.name}
-                  <ChevronDownIcon
-                    className={`ml-2 h-5 w-5 transition-transform duration-200 ${
-                      activeDropdown === item.name ? 'rotate-180' : ''
+              {navigationMenu.map((item) => {
+                const hasDropdown = item.dropdown && item.dropdown.length > 0;
+
+                return hasDropdown ? (
+                  // Dropdown button - existing logic
+                  <button
+                    key={item.name}
+                    onClick={() => handleDropdownToggle(item.name)}
+                    onKeyDown={(e) => handleKeyDown(e, item.name)}
+                    className={`relative text-white hover:text-gold-400 transition-colors duration-300 text-base sm:text-lg lg:text-xl font-medium px-3 py-2 flex items-center ${
+                      activeDropdown === item.name ? 'bg-white/20 rounded' : ''
                     }`}
-                  />
-                </button>
-              ))}
+                    aria-expanded={activeDropdown === item.name}
+                    aria-haspopup="true"
+                    aria-label={`${item.name} menu`}
+                  >
+                    {item.name}
+                    <ChevronDownIcon
+                      className={`ml-2 h-5 w-5 transition-transform duration-300 ${
+                        activeDropdown === item.name ? 'rotate-180' : ''
+                      }`}
+                    />
+                  </button>
+                ) : (
+                  // Direct link - new logic
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    className="relative text-white hover:text-gold-400 transition-colors duration-300 text-base sm:text-lg lg:text-xl font-medium px-3 py-2"
+                    onClick={() => {
+                      setActiveDropdown(null);
+                      setMobileMenuOpen(false);
+                    }}
+                  >
+                    {item.name}
+                  </Link>
+                );
+              })}
             </div>
 
             {/* Right Section - Donate Button & Mobile Menu (15%) */}
@@ -200,37 +229,60 @@ export default function Navigation({ className = '' }: NavigationProps) {
         {mobileMenuOpen && (
           <div className="lg:hidden bg-slate-900/95 backdrop-blur-xl border-t border-slate-700/50 shadow-lg">
             <div className="px-4 py-6 space-y-2">
-              {navigationMenu.map((item) => (
-                <div key={item.name}>
-                  <button
-                    onClick={() => handleDropdownToggle(item.name)}
-                    className="w-full flex items-center justify-between px-4 py-3 text-white hover:bg-white/10 font-medium text-base transition-colors"
-                    aria-expanded={activeDropdown === item.name}
-                  >
-                    {item.name}
-                    <ChevronDownIcon
-                      className={`h-4 w-4 transition-transform duration-200 ${
-                        activeDropdown === item.name ? 'rotate-180' : ''
-                      }`}
-                    />
-                  </button>
+              {navigationMenu.map((item) => {
+                const hasDropdown = item.dropdown && item.dropdown.length > 0;
 
-                  {activeDropdown === item.name && (
-                    <div className="ml-4 mt-2 space-y-1">
-                      {item.dropdown.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          href={subItem.href}
-                          className="block px-4 py-2 text-white/90 hover:bg-white/10 transition-colors"
-                          onClick={handleLinkClick}
+                return (
+                  <div key={item.name}>
+                    {hasDropdown ? (
+                      // Dropdown button - existing logic
+                      <>
+                        <button
+                          onClick={() => handleDropdownToggle(item.name)}
+                          className="w-full flex items-center justify-between px-4 py-3 text-base sm:text-lg text-white hover:bg-white/10 transition-colors"
+                          aria-expanded={activeDropdown === item.name}
                         >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
-                  )}
-                </div>
-              ))}
+                          {item.name}
+                          <ChevronDownIcon
+                            className={`h-4 w-4 transition-transform duration-300 ${
+                              activeDropdown === item.name ? 'rotate-180' : ''
+                            }`}
+                          />
+                        </button>
+                        {activeDropdown === item.name && item.dropdown && (
+                          <div className="ml-4 mt-2 space-y-1">
+                            {item.dropdown.map((subItem) => (
+                              <Link
+                                key={subItem.name}
+                                href={subItem.href}
+                                className="block px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors rounded"
+                                onClick={() => {
+                                  setActiveDropdown(null);
+                                  setMobileMenuOpen(false);
+                                }}
+                              >
+                                {subItem.name}
+                              </Link>
+                            ))}
+                          </div>
+                        )}
+                      </>
+                    ) : (
+                      // Direct link - new logic
+                      <Link
+                        href={item.href}
+                        className="block px-4 py-3 text-base sm:text-lg text-white hover:bg-white/10 transition-colors"
+                        onClick={() => {
+                          setActiveDropdown(null);
+                          setMobileMenuOpen(false);
+                        }}
+                      >
+                        {item.name}
+                      </Link>
+                    )}
+                  </div>
+                );
+              })}
 
               {/* Mobile Donate Button */}
               <div className="pt-6 mt-6 border-t border-slate-700/50">
@@ -251,8 +303,11 @@ export default function Navigation({ className = '' }: NavigationProps) {
       {/* Desktop Dropdown Menu */}
       {activeDropdown && (
         <div
-          className="fixed left-0 right-0 bg-slate-900/95 backdrop-blur-xl shadow-xl border-b border-slate-700/50 z-[9998] dropdown-area"
-          style={{ top: '120px' }}
+          className={`${
+            isHomepage && !isScrolled ? 'absolute' : 'fixed'
+          } left-0 right-0 bg-slate-900/95 backdrop-blur-xl shadow-xl border-b border-slate-700/50 z-[9998] dropdown-area transition-all duration-300 ${
+            isHomepage && !isScrolled ? 'top-[calc(10vh+120px)]' : 'top-[120px]'
+          }`}
           data-navigation
           role="menu"
           aria-label={`${activeDropdown} menu`}
@@ -261,7 +316,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {navigationMenu
                 .find(item => item.name === activeDropdown)
-                ?.dropdown.map((subItem) => (
+                ?.dropdown?.map((subItem) => (
                   <Link
                     key={subItem.name}
                     href={subItem.href}
@@ -306,8 +361,13 @@ export default function Navigation({ className = '' }: NavigationProps) {
       {/* Backdrop Overlay */}
       {(activeDropdown !== null || mobileMenuOpen) && (
         <div
-          className="fixed inset-0 bg-black/20 backdrop-blur-sm z-[9997]"
-          style={{ top: activeDropdown !== null ? '360px' : '120px' }}
+          className={`${
+            isHomepage && !isScrolled ? 'absolute' : 'fixed'
+          } inset-0 bg-black/20 backdrop-blur-sm z-[9997] transition-all duration-300 ${
+            isHomepage && !isScrolled
+              ? (activeDropdown !== null ? 'top-[calc(10vh+360px)]' : 'top-[calc(10vh+120px)]')
+              : (activeDropdown !== null ? 'top-[360px]' : 'top-[120px]')
+          }`}
           onClick={() => {
             setActiveDropdown(null);
             setMobileMenuOpen(false);

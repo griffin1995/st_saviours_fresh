@@ -152,11 +152,15 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
 Badge.displayName = "Badge"
 
 // Additional utility components
-export const BadgeGroup: React.FC<{
+export function BadgeGroup({
+  children,
+  className,
+  gap = 'sm'
+}: {
   children: React.ReactNode
   className?: string
   gap?: 'xs' | 'sm' | 'md' | 'lg'
-}> = ({ children, className, gap = 'sm' }) => {
+}) {
   const gapClasses = {
     xs: 'gap-1',
     sm: 'gap-2', 
@@ -171,13 +175,19 @@ export const BadgeGroup: React.FC<{
   )
 }
 
-export const CountBadge: React.FC<{
+export function CountBadge({
+  count,
+  max = 99,
+  variant = 'primary',
+  size = 'sm',
+  className
+}: {
   count: number
   max?: number
   variant?: VariantProps<typeof badgeVariants>['variant']
   size?: VariantProps<typeof badgeVariants>['size']
   className?: string
-}> = ({ count, max = 99, variant = 'primary', size = 'sm', className }) => {
+}) {
   const displayCount = count > max ? `${max}+` : count.toString()
   
   return (
@@ -191,12 +201,17 @@ export const CountBadge: React.FC<{
   )
 }
 
-export const StatusBadge: React.FC<{
+export function StatusBadge({
+  status,
+  showText = false,
+  size = 'sm',
+  className
+}: {
   status: 'online' | 'offline' | 'busy' | 'away'
   showText?: boolean
   size?: VariantProps<typeof badgeVariants>['size']
   className?: string
-}> = ({ status, showText = false, size = 'sm', className }) => {
+}) {
   const statusConfig = {
     online: { variant: 'success' as const, text: 'Online' },
     offline: { variant: 'gray' as const, text: 'Offline' },

@@ -67,7 +67,7 @@ export default function TemplatesIndexPage() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {templates.map((template) => (
-            <div key={template.name} className="border rounded-lg p-6 hover:shadow-lg transition-shadow">
+            <div key={template.name} className="border  p-6 hover:shadow-lg transition-shadow">
               <h3 className="text-xl font-semibold mb-2">{template.name}</h3>
               <p className="mb-4 text-sm">{template.description}</p>
               <Link href={template.path}>

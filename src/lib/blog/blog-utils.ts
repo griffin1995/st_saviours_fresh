@@ -1,68 +1,54 @@
-import type { ContentItem, ArticleContent } from '@/lib/cms/learning-hub-content';
+import type { HubArticleWithMetadata } from '@/lib/cms/unified-hub-cms';
 
 /**
- * Converts Learning Hub article data to UniversalBlogTemplate props
+ * Converts Hub article data to UniversalBlogTemplate props
  * Simplified to directly return template-compatible props
  */
 export function convertLearningHubArticleToBlog(
-  article: ContentItem,
-  content: ArticleContent,
+  article: HubArticleWithMetadata,
   breadcrumbs: Array<{ title: string; slug: string }>,
-  relatedArticles?: ContentItem[]
+  relatedArticles?: HubArticleWithMetadata[]
 ) {
-  const readingMinutes = content.readingTime || 10;
+  const readingMinutes = article.metadata.readingTime || 10;
 
   return {
     hero: {
-      mainTitle: article.title,
-      subtitle: article.description,
-      imageSrc: article.imageUrl || '/images/learning-hub/default.jpg',
-      imageAlt: article.title,
+      mainTitle: article.metadata.title,
+      subtitle: article.metadata.description || article.metadata.intro,
+      imageSrc: article.metadata.imageUrl || '/images/learning-hub/default.jpg',
+      imageAlt: article.metadata.title,
     },
     metadata: {
-      publishedDate: content.publishedDate || new Date().toLocaleDateString('en-US', {
+      publishedDate: article.metadata.publishedDate || new Date().toLocaleDateString('en-US', {
         year: 'numeric',
         month: 'long',
         day: 'numeric',
       }),
-      category: content.category || (breadcrumbs && breadcrumbs.length >= 2 ? breadcrumbs[breadcrumbs.length - 2]?.title || 'Learning Hub' : 'Learning Hub'),
+      category: article.metadata.category || (breadcrumbs && breadcrumbs.length >= 2 ? breadcrumbs[breadcrumbs.length - 2]?.title || 'Learning Hub' : 'Learning Hub'),
       readTime: formatReadingTime(readingMinutes),
-      author: content.author || 'Parish Team',
-      socialStats: content.socialStats || {},
+      author: article.metadata.author || 'Parish Team',
+      socialStats: {},
     },
     content: {
-      hero: content.hero,
-      intro: content.intro,
-      title: content.title,
-      mainText: content.mainText,
-      author: content.author || 'Parish Team',
+      hero: undefined,
+      intro: article.metadata.intro,
+      title: article.metadata.title,
+      mainText: article.content,
+      author: article.metadata.author || 'Parish Team',
       readingTime: readingMinutes,
-      sources: content.sources || [],
+      sources: article.metadata.sources || [],
       scriptureReferences: [],
       relatedItems: relatedArticles?.map((related) => ({
-        id: related.id,
-        slug: related.slug,
-        title: related.title,
-        subtitle: related.description,
-        imageSrc: related.imageUrl || '/images/learning-hub/default.jpg',
-        imageAlt: related.title,
+        id: related.fullSlug,
+        slug: related.fullSlug,
+        title: related.metadata.title,
+        subtitle: related.metadata.description,
+        imageSrc: related.metadata.imageUrl || '/images/learning-hub/default.jpg',
+        imageAlt: related.metadata.title,
         type: 'article' as const,
         category: 'Learning Hub',
       })) || [],
-      ...(content.previousArticle && {
-        previousItem: {
-          slug: content.previousArticle.slug,
-          title: content.previousArticle.title,
-          type: 'article' as const,
-        }
-      }),
-      ...(content.nextArticle && {
-        nextItem: {
-          slug: content.nextArticle.slug,
-          title: content.nextArticle.title,
-          type: 'article' as const,
-        }
-      }),
+      // Previous/Next navigation would need to be calculated separately
     },
     breadcrumbs: (breadcrumbs || []).map((crumb) => ({
       title: crumb.title,

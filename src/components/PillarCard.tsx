@@ -1,6 +1,8 @@
 import Image from 'next/image';
+import Link from 'next/link';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import * as Separator from '@radix-ui/react-separator';
+import { ArrowRight } from 'lucide-react';
 
 /**
  * PILLAR CARD COMPONENT
@@ -25,37 +27,61 @@ interface PillarCardProps {
   title: React.ReactNode;
   /** Card description text */
   description: string;
+  /** Optional link href for card navigation - if not provided, card will be non-clickable */
+  href?: string;
 }
 
-export default function PillarCard({ image, alt, title, description }: PillarCardProps) {
-  return (
-    <div className="relative overflow-hidden">
-      <AspectRatio.Root ratio={2 / 3}>
-        <div className="relative w-full h-full">
-          <Image
-            src={image}
-            alt={alt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-          <div className="absolute bottom-0 left-0 right-0 p-6">
-            {/* Fixed height title area for alignment across cards */}
-            <div className="h-28 flex flex-col justify-end">
-              <h3 className="text-4xl font-bold m-0 text-text-on-dark leading-tight">{title}</h3>
-              <Separator.Root className="w-full h-px bg-text-on-dark mt-3" />
-            </div>
-
-            {/* Fixed height text area for alignment across cards */}
-            <div className="h-52 mt-4 overflow-hidden">
-              <p className="text-text-on-dark text-lg leading-relaxed">
-                {description}
-              </p>
-            </div>
+export default function PillarCard({ image, alt, title, description, href }: PillarCardProps) {
+  // Shared content that will be wrapped in either Link or div
+  const content = (
+    <AspectRatio.Root ratio={2 / 3}>
+      <div className="relative w-full h-full">
+        <Image
+          src={image}
+          alt={alt}
+          fill
+          className="object-cover transition-transform duration-500 group-hover:scale-110"
+          sizes="(max-width: 768px) 100vw, 33vw"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
+        <div className="absolute bottom-0 left-0 right-0 p-6">
+          {/* Fixed height title area for alignment across cards */}
+          <div className="h-28 flex flex-col justify-end">
+            <h3 className="text-4xl font-bold m-0 text-text-on-dark leading-tight">{title}</h3>
+            <Separator.Root className="w-full h-px bg-text-on-dark mt-3" />
           </div>
+
+          {/* Fixed height text area for alignment across cards */}
+          <div className="h-52 mt-4 overflow-hidden">
+            <p className="text-text-on-dark text-lg leading-relaxed">
+              {description}
+            </p>
+          </div>
+
+          {/* Call-to-action - only shown when card is clickable */}
+          {href && (
+            <div className="mt-6 flex items-center gap-2 text-white group-hover:text-gold-500 transition-colors duration-300 font-semibold text-sm">
+              <span>Discover More</span>
+              <ArrowRight className="w-4 h-4" />
+            </div>
+          )}
         </div>
-      </AspectRatio.Root>
+      </div>
+    </AspectRatio.Root>
+  );
+
+  // If href is provided, wrap in Link; otherwise use a div
+  if (href) {
+    return (
+      <Link href={href} className="block relative overflow-hidden group">
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <div className="block relative overflow-hidden group">
+      {content}
     </div>
   );
 }

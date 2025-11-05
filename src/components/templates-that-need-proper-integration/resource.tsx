@@ -8,7 +8,7 @@ const Resource = () => {
       <div className="container grid gap-12 md:grid-cols-12 md:gap-8">
         <div className="order-last md:order-none md:col-span-4 lg:col-span-3">
           <aside className="flex flex-col gap-2">
-            <div className="border-border bg-card mb-6 overflow-hidden rounded-lg border shadow-sm">
+            <div className="border-border bg-card mb-6 overflow-hidden  border shadow-sm">
               <div className="border-border bg-muted/50 border-b px-5 py-4">
                 <h3
                   className="flex items-center text-sm font-semibold"
@@ -32,7 +32,7 @@ const Resource = () => {
               </div>
             </div>
 
-            <div className="border-border bg-card mb-6 overflow-hidden rounded-lg border shadow-sm">
+            <div className="border-border bg-card mb-6 overflow-hidden  border shadow-sm">
               <div className="border-border bg-muted/50 border-b px-5 py-4">
                 <h3
                   className="flex items-center text-sm font-semibold"
@@ -77,7 +77,7 @@ const Resource = () => {
               </div>
             </div>
 
-            <div className="border-border bg-card mb-6 overflow-hidden rounded-lg border shadow-sm">
+            <div className="border-border bg-card mb-6 overflow-hidden  border shadow-sm">
               <div className="border-border bg-muted/50 border-b px-5 py-4">
                 <h3
                   className="flex items-center text-sm font-semibold"
