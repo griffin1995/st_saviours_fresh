@@ -15,28 +15,33 @@ interface ThreePillarCardsProps {
 
 function CardContent({ card }: { card: PillarCard }) {
   return (
-    <div
-      className={`relative w-full h-full bg-cover bg-center bg-black/40 ${card.url ? 'group' : ''}`}
-      style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('${card.imageUrl}')`
-      }}
-    >
-      <div className="absolute inset-0 flex flex-col items-center justify-end p-8 text-center">
+    <div className={`relative w-full h-full ${card.url ? 'group' : ''}`}>
+      {/* Background image layer */}
+      <div
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ backgroundImage: `url('${card.imageUrl}')` }}
+      />
+      {/* Overlay gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-black/30" />
+
+      <div className="absolute inset-0 flex flex-col items-center justify-end p-4 sm:p-6 md:p-8 text-center">
         <div className="flex flex-col items-center text-center w-full">
-          {/* Fixed height title area - always same position */}
-          <div className="h-48 flex items-end justify-center mb-4 w-full">
-            <h1 className="text-3xl font-bold text-white text-center">{card.title}</h1>
+          {/* Responsive height title area - always same position */}
+          <div className="h-32 sm:h-36 md:h-40 lg:h-44 flex items-end justify-center mb-3 sm:mb-4 w-full">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-white text-center leading-tight">
+              {card.title}
+            </h1>
           </div>
-          
-          <Separator.Root 
-            className="bg-white/50 h-px w-16 mb-4" 
+
+          <Separator.Root
+            className="bg-white/50 h-px w-12 sm:w-14 md:w-16 mb-3 sm:mb-4"
             orientation="horizontal"
             decorative
           />
-          
-          {/* Fixed height description area - consistent spacing */}
-          <div className="h-48 flex items-start justify-center w-full overflow-hidden">
-            <p className="leading-relaxed text-white text-center">
+
+          {/* Responsive height description area - consistent spacing */}
+          <div className="h-40 sm:h-44 md:h-48 lg:h-52 flex items-start justify-center w-full overflow-hidden">
+            <p className="leading-relaxed text-white text-center text-sm sm:text-base md:text-lg">
               {card.description}
             </p>
           </div>
@@ -56,13 +61,16 @@ function ThreePillarCards({
       tabIndex={-1}
       aria-labelledby="values-heading"
       aria-describedby="values-description"
-      className={`py-16 bg-slate-800 ${className}`}
+      className={`py-12 sm:py-14 md:py-16 bg-slate-800 ${className}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 md:gap-8">
           {cards.map((card, index) => (
             <div key={index}>
-              <AspectRatio.Root ratio={2 / 3} className={card.url !== undefined && card.url !== null && card.url !== '' ? 'cursor-pointer hover:scale-105 transition-transform duration-300' : ''}>
+              <AspectRatio.Root
+                ratio={2 / 3}
+                className={card.url !== undefined && card.url !== null && card.url !== '' ? 'cursor-pointer hover:scale-105 transition-transform duration-300 rounded-xl overflow-hidden' : 'rounded-xl overflow-hidden'}
+              >
                 {card.url !== undefined && card.url !== null && card.url !== '' ? (
                   <a href={card.url} className="block w-full h-full">
                     <CardContent card={card} />
