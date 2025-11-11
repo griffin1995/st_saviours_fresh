@@ -76,18 +76,19 @@ export default function ServiceTimes({
       >
         <Card
           className={cn(
-            'h-full transition-all duration-300 bg-slate-50 border border-gray-200 hover:border-gold-500 hover:shadow-lg p-6',
+            'h-full transition-all duration-300 bg-slate-50 border border-gray-200 hover:border-gold-500 hover:shadow-lg',
+            'p-4 sm:p-5 md:p-6',
             isToday && 'ring-2 ring-gold-500 border-gold-500 bg-white shadow-lg'
           )}
         >
-          <div className="space-y-4">
+          <div className="space-y-3 sm:space-y-4">
             {/* Day Header */}
             <div className="flex items-center justify-between">
               <Heading
                 level="h3"
                 className={cn(
                   "font-bold text-slate-900",
-                  isWeekend ? "text-2xl" : "text-lg"
+                  isWeekend ? "text-xl sm:text-2xl md:text-3xl" : "text-base sm:text-lg md:text-xl"
                 )}
               >
                 {dayData.day}
@@ -95,8 +96,8 @@ export default function ServiceTimes({
               {isToday && (
                 isWeekend ? (
                   // Full badge for weekend cards (larger)
-                  <div className="flex items-center gap-1 px-3 py-1 bg-gold-500/10 rounded-full text-sm font-semibold text-gold-700">
-                    <Calendar className="h-4 w-4" />
+                  <div className="flex items-center gap-1 px-2 py-1 sm:px-3 sm:py-1 bg-gold-500/10 rounded-full text-xs sm:text-sm font-semibold text-gold-700">
+                    <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                     Today
                   </div>
                 ) : (
@@ -109,7 +110,7 @@ export default function ServiceTimes({
             </div>
 
             {/* Services */}
-            <div className="space-y-3">
+            <div className="space-y-2 sm:space-y-3">
               {dayData.services.length > 0 ? (
                 dayData.services.map((service, serviceIndex) => (
                   <m.div
@@ -118,21 +119,21 @@ export default function ServiceTimes({
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.3, delay: (index * 0.1) + (serviceIndex * 0.05) }}
                     viewport={{ once: true }}
-                    className="p-4  border transition-colors bg-white border-gray-200 hover:border-gold-400 hover:shadow-md"
+                    className="p-3 sm:p-4 border transition-colors bg-white border-gray-200 hover:border-gold-400 hover:shadow-md rounded-lg"
                   >
                     <div className="flex items-start justify-between">
                       <div className="space-y-1">
                         <div className="flex items-center gap-2">
-                          <Clock className="h-5 w-5 text-gold-600" />
+                          <Clock className="h-4 w-4 sm:h-5 sm:w-5 text-gold-600" />
                           <Text
-                            className="text-xl font-bold text-slate-900"
+                            className="text-lg sm:text-xl md:text-2xl font-bold text-slate-900"
                           >
                             {service.time}
                           </Text>
                         </div>
 
                         <Text
-                          className="text-gray-700 text-base font-semibold"
+                          className="text-gray-700 text-sm sm:text-base md:text-lg font-semibold"
                         >
                           {service.type}
                         </Text>
@@ -148,7 +149,7 @@ export default function ServiceTimes({
 
                         {service.location && (
                           <div className="flex items-center gap-2">
-                            <MapPin className="h-4 w-4 text-gold-600" />
+                            <MapPin className="h-3 w-3 sm:h-4 sm:w-4 text-gold-600" />
                             <Text size="sm" className="text-gray-600">
                               {service.location}
                             </Text>
@@ -159,7 +160,7 @@ export default function ServiceTimes({
                   </m.div>
                 ))
               ) : (
-                <div className="p-4 text-center bg-white  border border-gray-200">
+                <div className="p-3 sm:p-4 text-center bg-white border border-gray-200 rounded-lg">
                   <Text className="italic text-gray-600">
                     No services scheduled
                   </Text>
@@ -175,19 +176,19 @@ export default function ServiceTimes({
   return (
     <div className={cn('w-full', className)}>
       {layout === 'grid' ? (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-5 md:space-y-6">
           {/* Weekend Row - Saturday & Sunday */}
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-4 sm:gap-6 md:gap-8">
             {weekendDays.map((dayData, index) => renderServiceCard(dayData, index, true))}
           </div>
 
           {/* Weekdays Row */}
-          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-5 gap-4 sm:gap-5 md:gap-6">
             {weekdayDays.map((dayData, index) => renderServiceCard(dayData, index + 2, false))}
           </div>
         </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-3 sm:space-y-4">
           {serviceTimes.map((dayData, index) => renderServiceCard(dayData, index, false))}
         </div>
       )}
@@ -207,9 +208,9 @@ export function TodaysServices({ serviceTimes, className }: Pick<ServiceTimesPro
 
   if (!todaysServices || todaysServices.services.length === 0) {
     return (
-      <Card className={cn(className, "bg-slate-50 border border-gray-200 p-6")}>
-        <div className="text-center space-y-4">
-          <Heading level="h3" className="text-xl text-slate-900">
+      <Card className={cn(className, "bg-slate-50 border border-gray-200 p-4 sm:p-5 md:p-6")}>
+        <div className="text-center space-y-3 sm:space-y-4">
+          <Heading level="h3" className="text-lg sm:text-xl md:text-2xl text-slate-900">
             {currentDay}'s Services
           </Heading>
           <Text className="text-gray-600">

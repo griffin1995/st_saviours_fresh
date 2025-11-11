@@ -140,14 +140,14 @@ export default function Navigation({ className = '' }: NavigationProps) {
                 className="flex items-center space-x-4 group h-full"
                 onClick={handleLinkClick}
               >
-                <div className="relative w-20 h-20 flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center">
-                  <span className="text-2xl font-bold text-white">LOGO</span>
+                <div className="relative w-16 h-16 sm:w-18 sm:h-18 md:w-20 md:h-20 flex-shrink-0 bg-white/10 rounded-full flex items-center justify-center">
+                  <span className="text-xl sm:text-2xl font-bold text-white">LOGO</span>
                 </div>
                 <div className="hidden sm:flex flex-col justify-center h-full">
-                  <span className="text-xl font-semibold text-white transition-colors duration-200 group-hover:text-gold-300">
+                  <span className="text-lg sm:text-xl md:text-2xl font-semibold text-white transition-colors duration-200 group-hover:text-gold-300">
                     {CHURCH_NAME}
                   </span>
-                  <span className="text-base text-white/90 -mt-1 transition-colors duration-200 group-hover:text-gold-200">
+                  <span className="text-sm sm:text-base md:text-lg text-white/90 -mt-1 transition-colors duration-200 group-hover:text-gold-200">
                     Catholic Church, {CHURCH_LOCATION}
                   </span>
                 </div>
@@ -165,7 +165,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
                     key={item.name}
                     onClick={() => handleDropdownToggle(item.name)}
                     onKeyDown={(e) => handleKeyDown(e, item.name)}
-                    className={`relative text-white hover:text-gold-400 transition-colors duration-300 text-base sm:text-lg lg:text-xl font-medium px-3 py-2 flex items-center ${
+                    className={`relative text-white hover:text-gold-400 transition-colors duration-300 text-sm sm:text-base md:text-lg lg:text-xl font-medium px-3 py-2 flex items-center ${
                       activeDropdown === item.name ? 'bg-white/20 rounded' : ''
                     }`}
                     aria-expanded={activeDropdown === item.name}
@@ -174,7 +174,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
                   >
                     {item.name}
                     <ChevronDownIcon
-                      className={`ml-2 h-5 w-5 transition-transform duration-300 ${
+                      className={`ml-2 h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 ${
                         activeDropdown === item.name ? 'rotate-180' : ''
                       }`}
                     />
@@ -184,7 +184,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
                   <Link
                     key={item.name}
                     href={item.href}
-                    className="relative text-white hover:text-gold-400 transition-colors duration-300 text-base sm:text-lg lg:text-xl font-medium px-3 py-2"
+                    className="relative text-white hover:text-gold-400 transition-colors duration-300 text-sm sm:text-base md:text-lg lg:text-xl font-medium px-3 py-2"
                     onClick={() => {
                       setActiveDropdown(null);
                       setMobileMenuOpen(false);
@@ -204,8 +204,8 @@ export default function Navigation({ className = '' }: NavigationProps) {
                 onClick={handleLinkClick}
                 className="hidden lg:inline-flex items-center gap-3 px-6 py-2 bg-white text-slate-900 hover:bg-gray-100 font-semibold transition-colors duration-200 shadow-lg"
               >
-                <HeartIcon className="h-5 w-5" />
-                <span className="hidden xl:inline text-lg">Donate</span>
+                <HeartIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                <span className="hidden xl:inline text-base sm:text-lg">Donate</span>
               </Link>
 
               {/* Mobile Menu Button */}
@@ -239,12 +239,12 @@ export default function Navigation({ className = '' }: NavigationProps) {
                       <>
                         <button
                           onClick={() => handleDropdownToggle(item.name)}
-                          className="w-full flex items-center justify-between px-4 py-3 text-base sm:text-lg text-white hover:bg-white/10 transition-colors"
+                          className="w-full flex items-center justify-between px-4 py-3 text-base sm:text-lg md:text-xl text-white hover:bg-white/10 transition-colors"
                           aria-expanded={activeDropdown === item.name}
                         >
                           {item.name}
                           <ChevronDownIcon
-                            className={`h-4 w-4 transition-transform duration-300 ${
+                            className={`h-4 w-4 sm:h-5 sm:w-5 transition-transform duration-300 ${
                               activeDropdown === item.name ? 'rotate-180' : ''
                             }`}
                           />
@@ -255,7 +255,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
                               <Link
                                 key={subItem.name}
                                 href={subItem.href}
-                                className="block px-4 py-2 text-sm text-white hover:bg-white/10 transition-colors rounded"
+                                className="block px-4 py-2 text-sm sm:text-base text-white hover:bg-white/10 transition-colors rounded"
                                 onClick={() => {
                                   setActiveDropdown(null);
                                   setMobileMenuOpen(false);
@@ -271,7 +271,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
                       // Direct link - new logic
                       <Link
                         href={item.href}
-                        className="block px-4 py-3 text-base sm:text-lg text-white hover:bg-white/10 transition-colors"
+                        className="block px-4 py-3 text-base sm:text-lg md:text-xl text-white hover:bg-white/10 transition-colors"
                         onClick={() => {
                           setActiveDropdown(null);
                           setMobileMenuOpen(false);
@@ -288,10 +288,10 @@ export default function Navigation({ className = '' }: NavigationProps) {
               <div className="pt-6 mt-6 border-t border-slate-700/50">
                 <Link
                   href="/donate"
-                  className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white text-slate-900 hover:bg-gray-100 font-semibold transition-colors"
+                  className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white text-slate-900 hover:bg-gray-100 font-semibold transition-colors text-base sm:text-lg"
                   onClick={handleLinkClick}
                 >
-                  <HeartIcon className="h-5 w-5" />
+                  <HeartIcon className="h-4 w-4 sm:h-5 sm:w-5" />
                   Donate
                 </Link>
               </div>
@@ -326,14 +326,14 @@ export default function Navigation({ className = '' }: NavigationProps) {
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex-1">
-                        <h3 className="text-lg font-semibold text-white group-hover:text-gold-300">
+                        <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white group-hover:text-gold-300">
                           {subItem.name}
                         </h3>
-                        <p className="text-sm text-white/70 mt-1 group-hover:text-white/90">
+                        <p className="text-sm sm:text-base text-white/70 mt-1 group-hover:text-white/90">
                           Learn more about {subItem.name.toLowerCase()}
                         </p>
                       </div>
-                      <ChevronDownIcon className="h-5 w-5 text-gold-300 -rotate-90 opacity-0 group-hover:opacity-100" />
+                      <ChevronDownIcon className="h-4 w-4 sm:h-5 sm:w-5 text-gold-300 -rotate-90 opacity-0 group-hover:opacity-100" />
                     </div>
                   </Link>
                 ))}
@@ -341,17 +341,17 @@ export default function Navigation({ className = '' }: NavigationProps) {
 
             {/* Call to Action */}
             <div className="mt-8 pt-6 border-t border-slate-700/50 text-center">
-              <h3 className="text-lg font-semibold text-white mb-2">Need Help?</h3>
-              <p className="text-white/70 mb-4">
+              <h3 className="text-base sm:text-lg md:text-xl font-semibold text-white mb-2">Need Help?</h3>
+              <p className="text-sm sm:text-base text-white/70 mb-4">
                 Our parish team is here to support you
               </p>
               <Link
                 href="/contact-us"
-                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white font-semibold shadow-lg hover:from-gold-700 hover:to-gold-800 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2"
+                className="inline-flex items-center gap-2 px-5 py-2.5 sm:px-6 sm:py-3 bg-gradient-to-r from-gold-600 to-gold-700 text-white font-semibold shadow-lg hover:from-gold-700 hover:to-gold-800 focus:outline-none focus:ring-2 focus:ring-gold-500 focus:ring-offset-2 text-sm sm:text-base"
                 onClick={handleLinkClick}
               >
                 Contact Us
-                <ChevronDownIcon className="h-4 w-4 -rotate-90" />
+                <ChevronDownIcon className="h-3 w-3 sm:h-4 sm:w-4 -rotate-90" />
               </Link>
             </div>
           </div>

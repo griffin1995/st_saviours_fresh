@@ -111,9 +111,9 @@ export default function PageHero({
 
   // Height classes
   const heightClasses = {
-    small: 'h-64 lg:h-80',
-    medium: 'h-80 lg:h-96', 
-    large: 'h-96 lg:h-[32rem]',
+    small: 'h-48 sm:h-56 md:h-64 lg:h-72 xl:h-80',
+    medium: 'h-64 sm:h-72 md:h-80 lg:h-88 xl:h-96',
+    large: 'h-80 sm:h-88 md:h-96 lg:h-[28rem] xl:h-[32rem]',
     full: 'h-screen'
   }
 
@@ -162,25 +162,25 @@ export default function PageHero({
           'max-w-5xl mx-auto px-4 sm:px-6 lg:px-8',
           alignmentClasses[textAlign]
         )}>
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-5 md:space-y-6">
             {/* Subtitle with gold accent lines */}
             {subtitle && (
-              <div className="inline-flex items-center space-x-3">
-                <div className="w-12 h-px bg-gold-500" />
-                <span className="text-gold-400 font-semibold text-sm uppercase tracking-wider">
+              <div className="inline-flex items-center space-x-2 sm:space-x-3">
+                <div className="w-8 sm:w-10 md:w-12 h-px bg-gold-500" />
+                <span className="text-gold-400 font-semibold text-xs sm:text-sm uppercase tracking-wider">
                   {subtitle}
                 </span>
-                <div className="w-12 h-px bg-gold-500" />
+                <div className="w-8 sm:w-10 md:w-12 h-px bg-gold-500" />
               </div>
             )}
 
-            {/* Main title */}
+            {/* Main title - uses Heading component which already has responsive breakpoints */}
             <div>
               <Heading
                 level="h1"
                 color="white"
                 align={textAlign}
-                className="text-4xl lg:text-6xl leading-tight"
+                className="leading-tight"
               >
                 {title}
               </Heading>
@@ -190,10 +190,9 @@ export default function PageHero({
             {description && (
               <div>
                 <Text
-                  size="xl"
                   color="white"
                   align={textAlign}
-                  className="lg:text-2xl max-w-4xl mx-auto opacity-90"
+                  className="text-base sm:text-lg md:text-xl lg:text-2xl max-w-4xl mx-auto opacity-90"
                 >
                   {description}
                 </Text>
@@ -204,7 +203,7 @@ export default function PageHero({
             {actions && (
               <div
                 className={cn(
-                  'pt-4',
+                  'pt-3 sm:pt-4',
                   textAlign === 'center' && 'flex justify-center',
                   textAlign === 'right' && 'flex justify-end'
                 )}
