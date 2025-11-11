@@ -1,1 +1,0 @@
-export { default as ServiceTimes, TodaysServices, WeeklyServices } from './ServiceTimes';

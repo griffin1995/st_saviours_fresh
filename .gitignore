@@ -39,6 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+trace.json
+types.json
 
 # temporary documentation
 docs-temp/
@@ -47,3 +49,8 @@ docs-temp/
 src/lib/cms/*.backup
 cleanup-cms-content.py
 cleanup-report.txt
+
+# Payload CMS (if reinstalled)
+payload.db
+payload.db-*
+.payload/

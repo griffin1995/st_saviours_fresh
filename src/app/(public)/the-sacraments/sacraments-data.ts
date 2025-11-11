@@ -100,7 +100,7 @@ export interface SacramentData {
 }
 
 // All 7 Sacraments Data
-export const sacramentsData: Record<string, SacramentData> = {
+const sacramentsData: Record<string, SacramentData> = {
   baptism: {
     slug: 'baptism',
     title: 'Baptism - The Sacrament of New Life',
@@ -992,9 +992,4 @@ export function getSacramentData(slug: string): SacramentData | undefined {
 // Helper function to get all sacrament slugs
 export function getAllSacramentSlugs(): string[] {
   return Object.keys(sacramentsData);
-}
-
-// Helper function to get all sacraments for overview page
-export function getAllSacraments(): SacramentData[] {
-  return Object.values(sacramentsData);
 }

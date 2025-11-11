@@ -1,62 +1,16 @@
 /**
  * UI Component Library - Index
- * 
- * Centralized exports for all base UI components
- * Built with modern 2025 best practices using CVA and design tokens
+ *
+ * Centralized exports for actively used UI components
+ * Other components can be imported directly from their files when needed
  */
 
 // Base components
-export { Button, buttonVariants, type ButtonProps } from './Button'
-export { 
-  Badge, 
-  BadgeGroup, 
-  CountBadge, 
-  StatusBadge,
-  badgeVariants,
-  type BadgeProps 
-} from './Badge'
-export { 
-  Card, 
-  CardHeader, 
-  CardTitle, 
-  CardDescription, 
-  CardContent, 
-  CardFooter,
-  cardVariants,
-  type CardProps 
-} from './Card'
+export { Button, type ButtonProps } from './Button'
+export { Card, CardContent, type CardProps } from './Card'
 
 // Typography components
-export { 
-  Heading, 
-  Text, 
-  Label, 
-  Caption, 
-  Lead,
-  headingVariants,
-  textVariants,
-  labelVariants,
-  type HeadingProps,
-  type TextProps,
-  type LabelProps
-} from './Typography'
+export { Heading, Text, type HeadingProps, type TextProps } from './Typography'
 
 // Layout components
-export {
-  Container,
-  Section, 
-  Grid,
-  Flex,
-  containerVariants,
-  sectionVariants,
-  gridVariants,
-  flexVariants,
-  type ContainerProps,
-  type SectionProps,
-  type GridProps,
-  type FlexProps
-} from './Container'
-
-// Design tokens and utilities
-export { designTokens } from '@/lib/design-tokens'
-export { cn, prefersReducedMotion } from '@/lib/utils'
+export { Container, Section, type ContainerProps, type SectionProps } from './Container'
