@@ -276,12 +276,12 @@ const defaultContent: WebsiteSettings = {
 };
 
 // Get all CMS content (in future, this can fetch from API)
-export function getCMSContent(): WebsiteSettings {
+function getCMSContent(): WebsiteSettings {
   return defaultContent;
 }
 
 // Get parish information
-export function getParishInfo() {
+function getParishInfo() {
   const content = getCMSContent();
   return content.parish;
 }
@@ -308,7 +308,7 @@ export interface PrayerRequestCategory {
   pastoralNotes?: string;
 }
 
-export const prayerRequestCategories: PrayerRequestCategory[] = [
+const prayerRequestCategories: PrayerRequestCategory[] = [
   {
     id: 'healing',
     label: 'Healing & Health',

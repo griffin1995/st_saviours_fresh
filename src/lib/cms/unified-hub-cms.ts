@@ -18,7 +18,7 @@ import {
 import { CATEGORY_CUSTOM_CONTENT } from './category-content';
 
 // Valid hub slugs
-export const VALID_HUBS = ['learning-hub', 'prayer-hub', 'spiritual-reflections'] as const;
+const VALID_HUBS = ['learning-hub', 'prayer-hub', 'spiritual-reflections'] as const;
 export type HubSlug = typeof VALID_HUBS[number];
 
 // Hub metadata configuration
@@ -208,7 +208,7 @@ function convertToArticleWithMetadata(article: HubArticle): HubArticleWithMetada
  * Get all content for a specific hub
  * Returns articles organized by category
  */
-export function getHubContent(hub: HubSlug): (HubCategory | HubArticleWithMetadata)[] {
+function getHubContent(hub: HubSlug): (HubCategory | HubArticleWithMetadata)[] {
   const articles = getArticlesByHub(hub);
 
   // Group articles by category
@@ -273,7 +273,7 @@ export function getContentBySlug(
 /**
  * Get all articles (leaf nodes) from a hub
  */
-export function getAllArticles(hub: HubSlug): HubArticleWithMetadata[] {
+function getAllArticles(hub: HubSlug): HubArticleWithMetadata[] {
   const articles = getArticlesByHub(hub);
   return articles.map(convertToArticleWithMetadata);
 }
@@ -333,31 +333,6 @@ export function getBreadcrumbs(hub: HubSlug, slugPath: string[]): Breadcrumb[] {
 }
 
 /**
- * Search articles across a hub
- */
-export function searchHub(hub: HubSlug, query: string): HubArticleWithMetadata[] {
-  const articles = getAllArticles(hub);
-  const lowerQuery = query.toLowerCase();
-
-  return articles.filter(article =>
-    article.metadata.title.toLowerCase().includes(lowerQuery) ||
-    article.metadata.description?.toLowerCase().includes(lowerQuery) ||
-    article.metadata.tags?.some(tag => tag.toLowerCase().includes(lowerQuery)) ||
-    article.content.toLowerCase().includes(lowerQuery)
-  );
-}
-
-/**
- * Get featured articles for a hub
- */
-export function getFeaturedArticles(hub: HubSlug, limit = 3): HubArticleWithMetadata[] {
-  const articles = getAllArticles(hub);
-  return articles
-    .filter(article => article.metadata.featured)
-    .slice(0, limit);
-}
-
-/**
  * Get related articles from the same category
  */
 export function getRelatedArticles(hub: HubSlug, currentArticle: HubArticleWithMetadata, limit = 3): HubArticleWithMetadata[] {
@@ -377,10 +352,6 @@ export function getRelatedArticles(hub: HubSlug, currentArticle: HubArticleWithM
  */
 export function isHubArticle(item: HubCategory | HubArticleWithMetadata): item is HubArticleWithMetadata {
   return 'content' in item;
-}
-
-export function isHubCategory(item: HubCategory | HubArticleWithMetadata): item is HubCategory {
-  return 'children' in item;
 }
 
 /**

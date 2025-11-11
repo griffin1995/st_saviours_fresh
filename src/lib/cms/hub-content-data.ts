@@ -37,7 +37,7 @@ export interface HubArticle {
 
 
 // LEARNING HUB ARTICLES
-export const LEARNING_HUB_ARTICLES: HubArticle[] = [
+const LEARNING_HUB_ARTICLES: HubArticle[] = [
   {
     id: 'church-history-12th-century-timeline',
     slug: 'church-history/12th-century-timeline',
@@ -462,7 +462,7 @@ export const LEARNING_HUB_ARTICLES: HubArticle[] = [
 ];
 
 // PRAYER HUB ARTICLES
-export const PRAYER_HUB_ARTICLES: HubArticle[] = [
+const PRAYER_HUB_ARTICLES: HubArticle[] = [
   {
     id: 'litanies-introduction',
     slug: 'litanies/introduction',
@@ -881,7 +881,7 @@ Lamb of God, Who takes away the sins of the world, <em>Have mercy on us</em>.</p
 ];
 
 // SPIRITUAL REFLECTIONS ARTICLES
-export const SPIRITUAL_REFLECTIONS_ARTICLES: HubArticle[] = [
+const SPIRITUAL_REFLECTIONS_ARTICLES: HubArticle[] = [
   {
     id: '2025-april',
     slug: '2025/april',
@@ -1053,14 +1053,6 @@ export const SPIRITUAL_REFLECTIONS_ARTICLES: HubArticle[] = [
 ];
 
 // Helper functions
-export function getAllHubArticles(): HubArticle[] {
-  return [
-    ...LEARNING_HUB_ARTICLES,
-    ...PRAYER_HUB_ARTICLES,
-    ...SPIRITUAL_REFLECTIONS_ARTICLES
-  ];
-}
-
 export function getArticlesByHub(hub: HubType): HubArticle[] {
   switch (hub) {
     case 'learning-hub':
@@ -1077,9 +1069,4 @@ export function getArticlesByHub(hub: HubType): HubArticle[] {
 export function getArticleBySlug(hub: HubType, slug: string): HubArticle | null {
   const articles = getArticlesByHub(hub);
   return articles.find(article => article.slug === slug) || null;
-}
-
-export function getArticlesByCategory(hub: HubType, category: string): HubArticle[] {
-  const articles = getArticlesByHub(hub);
-  return articles.filter(article => article.category === category);
 }

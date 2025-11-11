@@ -281,5 +281,3 @@ export function UnifiedHubLayout({
     </main>
   );
 }
-
-export default UnifiedHubLayout;

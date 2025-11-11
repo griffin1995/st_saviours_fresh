@@ -64,54 +64,6 @@ export const massTimings = {
 	],
 };
 
-// Confession times in array format for easy display
-export const confessionTimes = [
-	{ day: 'Tuesday', time: '6:00-6:20 PM', note: 'Before evening Mass' },
-	{ day: 'Wednesday', time: '6:00-6:20 PM', note: 'Before evening Mass' },
-	{ day: 'Thursday', time: '7:00-7:20 PM', note: 'After evening Mass' },
-	{ day: 'Friday', time: '6:00-6:20 PM', note: 'Before evening Mass' },
-	{ day: 'Saturday', time: '11:00 AM-12:00 PM', note: 'Before Pilgrim Mass' },
-];
-
-// Adoration times in array format for easy display
-export const adorationTimes = [
-	{
-		day: 'Thursday',
-		time: '10:30 AM-12:00 PM',
-		description: 'Morning Adoration',
-	},
-	{
-		day: 'Thursday',
-		time: '7:00-7:30 PM',
-		description: 'Evening Adoration (ends with Benediction)',
-	},
-	{
-		day: 'Saturday',
-		time: '10:30 AM-12:00 PM',
-		description: 'Morning Adoration',
-	},
-];
-
-// Helper function to get today's services
-export const getTodaysServices = () => {
-	const today = new Date();
-	const dayNames = [
-		'sunday',
-		'monday',
-		'tuesday',
-		'wednesday',
-		'thursday',
-		'friday',
-		'saturday',
-	];
-	const todayName = dayNames[today.getDay()] as keyof typeof massTimings;
-
-	return massTimings[todayName] || [];
-};
-
-// Legacy export for backwards compatibility (can be removed later)
-export const todaysServices = getTodaysServices();
-
 // Navigation Menu Structure - Primary site navigation
 export const navigationMenu = [
 	{ name: 'Mass', href: '/mass' },
