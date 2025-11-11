@@ -1,6 +1,6 @@
 # St Saviour's Catholic Church Design System
 
-**Version 1.0** | Last Updated: November 6, 2025
+**Version 1.1** | Last Updated: November 11, 2025
 
 ---
 
@@ -55,10 +55,11 @@ This design system provides comprehensive guidelines for building and maintainin
 
 ### Technology Stack
 
-- **Framework**: Next.js 16 (App Router)
-- **React**: Version 19.2.0
+- **Framework**: Next.js 15.3.3 (App Router)
+- **React**: Version 19.1.0
 - **Styling**: Tailwind CSS v4.1.16 (CSS-first configuration)
 - **TypeScript**: v5.9.3 (strict mode)
+- **CMS**: Payload CMS 3.63.0 (SQLite)
 - **UI Components**: shadcn/ui with Radix UI primitives
 - **Variant Management**: class-variance-authority (CVA)
 
@@ -2782,6 +2783,16 @@ import Image from 'next/image';
 
 ## Change Log
 
+### Version 1.1 - November 11, 2025
+
+**Tech Stack Update**
+
+- Updated technology stack versions to match locked dependencies
+- Added Payload CMS 3.63.0 to tech stack
+- Corrected Next.js version (16 → 15.3.3)
+- Corrected React version (19.2.0 → 19.1.0)
+- All versions now match exact locked versions from package.json
+
 ### Version 1.0 - November 6, 2025
 
 **Initial Release**
@@ -2794,10 +2805,11 @@ import Image from 'next/image';
 - Built quick reference tables
 
 **Technology Stack**:
-- Next.js 16 (App Router)
-- React 19.2.0
+- Next.js 15.3.3 (App Router)
+- React 19.1.0
 - Tailwind CSS v4.1.16
 - TypeScript 5.9.3
+- Payload CMS 3.63.0
 
 **Previous Changes** (from CLAUDE.md):
 
