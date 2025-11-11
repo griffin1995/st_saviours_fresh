@@ -141,10 +141,8 @@ export default function PrayerRequestPageClient({
     try {
       // Simulate API call
       await new Promise((resolve) => setTimeout(resolve, 2000));
-      
+
       // In a real implementation, this would submit to your backend
-      console.log("Prayer request submitted:", formData);
-      
       setIsSubmitted(true);
     } catch (error) {
       console.error("Error submitting prayer request:", error);

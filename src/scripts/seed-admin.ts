@@ -23,7 +23,7 @@ async function seedAdmin() {
   console.log('No users found. Creating first admin user...')
 
   try {
-    const adminUser = await payload.create({
+    await payload.create({
       collection: 'users',
       data: {
         email: 'admin@stsaviours.ie',
