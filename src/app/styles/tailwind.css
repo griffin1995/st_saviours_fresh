@@ -63,6 +63,20 @@
   --color-accent-900: #6d4a21;
   --color-accent-950: #4a3318;
 
+  /* Neutral Colors - Override gray with slate (Tailwind v4 best practice) */
+  /* This allows using bg-gray-300 everywhere while getting slate's blue-tinted grays */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+  --color-gray-950: #020617;
+
   /* Semantic Colors - Dark Sections */
   --color-dark-section: #1e293b;
   --color-darker-section: #0f172a;

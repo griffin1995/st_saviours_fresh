@@ -38,13 +38,13 @@ const cardVariants = cva(
         ]
       },
       
-      // Padding options
+      // Padding options (responsive)
       padding: {
         none: 'p-0',
-        sm: 'p-4',
-        md: 'p-6', 
-        lg: 'p-8',
-        xl: 'p-12'
+        sm: 'p-3 sm:p-4',
+        md: 'p-4 sm:p-6 md:p-8',
+        lg: 'p-6 sm:p-8 md:p-10',
+        xl: 'p-8 sm:p-12 md:p-16'
       },
       
       // Border radius options
@@ -151,7 +151,7 @@ export const CardHeader = React.forwardRef<
 CardHeader.displayName = 'CardHeader'
 
 /**
- * CardTitle component for card titles
+ * CardTitle component for card titles (responsive)
  */
 export const CardTitle = React.forwardRef<
   HTMLHeadingElement,
@@ -159,14 +159,14 @@ export const CardTitle = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <h3
     ref={ref}
-    className={cn('text-2xl font-serif font-semibold text-slate-900', className)}
+    className={cn('text-xl sm:text-2xl md:text-3xl font-serif font-semibold text-slate-900', className)}
     {...props}
   />
 ))
 CardTitle.displayName = 'CardTitle'
 
 /**
- * CardDescription component for card descriptions
+ * CardDescription component for card descriptions (responsive)
  */
 export const CardDescription = React.forwardRef<
   HTMLParagraphElement,
@@ -174,7 +174,7 @@ export const CardDescription = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-gray-600 leading-relaxed', className)}
+    className={cn('text-gray-600 leading-relaxed text-sm sm:text-base', className)}
     {...props}
   />
 ))
