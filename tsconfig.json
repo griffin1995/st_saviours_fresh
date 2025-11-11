@@ -56,9 +56,6 @@
     "paths": {
       "@/*": [
         "./src/*"
-      ],
-      "@payload-config": [
-        "./src/payload.config.ts"
       ]
     },
     // CONTEXT7 SOURCE: /microsoft/typescript - Disable automatic @types inclusion

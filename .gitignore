@@ -49,3 +49,8 @@ docs-temp/
 src/lib/cms/*.backup
 cleanup-cms-content.py
 cleanup-report.txt
+
+# Payload CMS (if reinstalled)
+payload.db
+payload.db-*
+.payload/

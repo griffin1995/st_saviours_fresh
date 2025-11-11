@@ -153,10 +153,6 @@ export const navigationMenu = [
 		],
 	},
 	{
-		name: 'Newsletter',
-		href: '/newsletter',
-	},
-	{
 		name: 'Prayer Hub',
 		href: '/prayer-hub',
 	},
