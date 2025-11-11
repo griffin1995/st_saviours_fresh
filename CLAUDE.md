@@ -2,6 +2,41 @@
 
 ---
 
+## 📚 Documentation Index
+
+This project maintains a **minimal, essential** set of documentation for efficient development.
+
+### Core Documentation
+
+- **CLAUDE.md** (this file) - Development rules, standards, quick reference, and session history
+- **README.md** - Project overview, setup instructions, tech stack, and deployment guide
+- **DESIGN_SYSTEM.md** - Complete design system documentation (Tailwind v4, tokens, components)
+- **ARCHITECTURE.md** - Technical architecture, migration history, and architectural decisions
+- **FUTURE_NAVIGATION_REFACTOR_OPTION_2.md** - Optional future Radix UI migration plan
+
+### Source Code Documentation
+
+- **src/lib/blog/README.md** - Blog utilities and conversion functions documentation
+- Inline code comments throughout the codebase
+- TypeScript interfaces serve as self-documentation
+
+### Content Files (DO NOT MODIFY)
+
+- **blog/** directory - 22 CMS content articles (Learning Hub, Prayer Hub, Spiritual Reflections)
+- **temp-francesca-content/** - Backup content from original submissions
+
+### Quick Navigation
+
+- [Critical Development Rules](#critical-development-rules---read-first)
+- [Quick Reference](#quick-reference)
+- [Session History](#session-2025-11-04---project-modernization--live-stream-implementation)
+- [Project Overview](./README.md)
+- [Design System](./DESIGN_SYSTEM.md)
+- [Architecture & Migrations](./ARCHITECTURE.md)
+- [Future Enhancements](./FUTURE_NAVIGATION_REFACTOR_OPTION_2.md)
+
+---
+
 ## 🚨 CRITICAL DEVELOPMENT RULES - READ FIRST
 
 These rules MUST be followed in ALL future development sessions. They are based on the current codebase configuration and technology stack.
@@ -35,8 +70,8 @@ These rules MUST be followed in ALL future development sessions. They are based 
 
 ### B. Framework & Library Rules
 
-**Rule:** Must use Next.js 16 App Router patterns
-**Source:** `package.json` - "next": "^16.0.1"
+**Rule:** Must use Next.js 15+ App Router patterns
+**Source:** `package.json` - "next": "^15.5.6"
 **Applies To:** All routing, layouts, and page components
 **Example:** Use `app/` directory, not `pages/`. Use metadata exports, not Head components
 
@@ -277,3 +312,407 @@ setIsScrolled(window.scrollY > bannerHeight);
 3. Add metadata exports to remaining page.tsx files for SEO
 4. Implement environment variables from .env.example
 5. Contact MCN.live for alternative embed methods if needed
+
+---
+
+## Session: 2025-11-11 - Payload CMS 3.0 Integration for Newsletter Management
+
+### Phase 1: Initial Setup & Dependency Resolution
+
+**Objective:** Integrate Payload CMS 3.0 for newsletter subscription management with offline SQLite database.
+
+**Requirements Gathered:**
+- Newsletter management system with subscription tracking
+- Offline development with SQLite (no MongoDB)
+- Admin panel at `/admin` route
+- Newsletter page link in navigation (page to be created later)
+- Resend email service integration (API key pending)
+
+**Architecture Research:**
+- Payload CMS 3.0 requires React 19.x and Next.js 15.3+
+- SQLite adapter available via `@payloadcms/db-sqlite`
+- Hybrid CMS approach: Keep existing TypeScript CMS (22 articles), add Payload for newsletter
+- Ethereal email testing available for offline development
+
+### Dependency Configuration Challenges
+
+**Initial Attempt:**
+- Downgraded Next.js 16.0.1 → 15.2.3
+- Downgraded React 19.2.0 → 18.3.1
+- Goal: Payload CMS compatibility based on initial research
+
+**Build Errors Encountered:**
+1. `--turbopack` flag error: Next.js 15.2.3 doesn't support flag for production builds
+2. React peer dependency conflict: `@payloadcms/richtext-lexical@3.63.0` requires React 19.x
+
+**Root Cause Analysis:**
+- Payload CMS 3.63.0 explicitly requires React 19.0+
+- Multiple Payload packages incompatible with React 18
+- Next.js 15.2.3 lacks Turbopack production build support (added in 15.3+)
+- Initial downgrade strategy was incorrect
+
+**Final Solution - Version Locking Strategy:**
+
+| Package | Initial | Attempted | Final (Locked) |
+|---------|---------|-----------|----------------|
+| Next.js | 16.0.1 | 15.2.3 ❌ | **15.3.3** ✅ |
+| React | 19.2.0 | 18.3.1 ❌ | **19.1.0** ✅ |
+| React-DOM | 19.2.0 | 18.3.1 ❌ | **19.1.0** ✅ |
+| Payload | - | ^3.63.0 ❌ | **3.63.0** ✅ (exact) |
+
+**Critical Discovery - Version Alignment Required:**
+- Payload 3.63.0 tested with Next.js 15.3.x and React 19.1.0 (per official payload-3.0-demo)
+- Using exact versions (`3.63.0` not `^3.63.0`) prevents future breaking changes
+- Next.js 15.3.3 provides stable Turbopack support and Payload compatibility
+- React 19.1.0 is the tested version for Payload CMS 3.x integration
+
+**Build Script Fix:**
+- Changed: `"build": "next build --turbopack"` → `"build": "next build"`
+- Kept: `"dev": "next dev --turbopack"` (Turbopack supported for dev)
+
+### Payload CMS Installation
+
+**Dependencies Installed (Exact Versions):**
+```json
+"payload": "3.63.0",
+"@payloadcms/db-sqlite": "3.63.0",
+"@payloadcms/richtext-lexical": "3.63.0",
+"@payloadcms/next": "3.63.0",
+"@payloadcms/ui": "3.63.0",
+"graphql": "^16.8.1",
+"sharp": "^0.33.5"
+```
+
+**Configuration Files Created:**
+
+1. **`src/payload.config.ts`** - Main Payload configuration
+   - SQLite adapter: `file:./payload.db`
+   - Admin route: `/admin`
+   - Server URL: `http://localhost:3000`
+   - TypeScript output: `src/lib/payload/types.ts`
+   - Newsletter collection imported
+
+2. **`src/collections/Newsletters.ts`** - Newsletter subscriber schema
+   - Fields: email, firstName, lastName, status, interests, timestamps, IP/UA
+   - Access controls: Public read/create, admin update/delete
+   - Status options: active, unsubscribed, bounced
+   - Interest categories: mass, events, learning, prayer
+
+3. **`src/app/api/payload/[...slug]/route.ts`** - Payload REST API handler
+   - Exports: GET, POST, PATCH, DELETE
+   - Uses Payload 3.0 official REST handlers
+
+4. **`.env.local`** - Environment variables
+   - `DATABASE_URL=file:./payload.db`
+   - `PAYLOAD_SECRET=<generated-secure-key>`
+   - `NEXT_PUBLIC_SERVER_URL=http://localhost:3000`
+   - `RESEND_API_KEY=<placeholder>`
+
+5. **`tsconfig.json`** - Updated paths
+   - Added: `"@payload-config": ["./src/payload.config.ts"]`
+
+### Navigation Updates
+
+**Modified:** `src/lib/data.ts`
+- Added "Newsletter" link to `navigationMenu` array
+- Position: After "Community" dropdown, before "Prayer Hub"
+- Direct link: `{ name: 'Newsletter', href: '/newsletter' }`
+- Page creation deferred to Phase 2
+
+### Phase 2: Admin Panel Configuration & Critical Fixes
+
+**Error #1: Missing RootLayout Provider**
+
+**Error Message:**
+```
+Error: Cannot destructure property 'config' of 'ue(...)' as it is undefined.
+```
+
+**Root Cause:**
+- Payload admin UI requires `RootLayout` provider from `@payloadcms/next/layouts`
+- Missing context provider wrapper in `(payload)` route group
+- Admin page tried to access config context before it was provided
+
+**Solution - Created `src/app/(payload)/layout.tsx`:**
+```typescript
+import { RootLayout } from '@payloadcms/next/layouts'
+import { importConfig } from 'payload'
+import config from '@payload-config'
+
+export default async function PayloadLayout({
+  children,
+}: {
+  children: React.ReactNode
+}) {
+  await importConfig(config)
+  return <RootLayout config={config}>{children}</RootLayout>
+}
+```
+
+**Key Learnings:**
+- `RootLayout` provider is **mandatory** for all Payload admin routes
+- Must be placed in `(payload)` route group layout, not root layout
+- `importConfig()` initializes Payload before rendering admin UI
+- This pattern matches official payload-3.0-demo repository structure
+
+**Error #2: TypeScript Type Errors in Admin Page**
+
+**Errors Encountered:**
+```typescript
+// Error: Property 'params' does not exist on type 'AdminViewProps'
+// Error: Type 'Promise<{ segments?: string[] }>' is not assignable to 'string[]'
+```
+
+**Root Cause:**
+- Next.js 15 uses async `params` and `searchParams` in App Router
+- Payload `AdminViewProps` type doesn't match Next.js async props pattern
+- Route segment parameters must be awaited before use
+
+**Solution - Fixed `src/app/(payload)/admin/[[...segments]]/page.tsx`:**
+```typescript
+export default async function AdminView({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ segments?: string[] }>
+  searchParams: Promise<Record<string, string | string[]>>
+}) {
+  const { segments = [] } = await params
+  const resolvedSearchParams = await searchParams
+
+  return (
+    <RenderAdmin
+      params={{ segments }}
+      searchParams={resolvedSearchParams}
+    />
+  )
+}
+```
+
+**Pattern Explanation:**
+- Await `params` and `searchParams` (Next.js 15 requirement)
+- Extract `segments` with default empty array fallback
+- Pass resolved values to `RenderAdmin` component
+- Maintains type safety with explicit Promise types
+
+**Error #3: Build Failures**
+
+**Initial Build Errors:**
+1. Missing `(payload)/layout.tsx` causing context errors
+2. Type mismatches in admin page props
+3. Unhandled promise rejections in route handlers
+
+**Final Build Success After:**
+- Creating RootLayout provider wrapper
+- Fixing async props handling
+- Verifying all Payload imports resolve correctly
+- Confirming SQLite adapter configuration
+
+### React 19 Compatibility Audit
+
+**Codebase Analysis Results:**
+- ✅ No `defaultProps` on function components (deprecated in React 19)
+- ✅ No `propTypes` usage (TypeScript used instead)
+- ✅ No legacy Context API
+- ✅ Modern Context API used correctly (`carousel.tsx`)
+- ✅ All components use explicit function typing (no React.FC)
+- ✅ Zero code modifications required for React 19
+
+**Third-Party Library Compatibility:**
+- framer-motion 12.23.24: ✅ Compatible
+- embla-carousel-react 8.6.0: ✅ Compatible
+- @radix-ui/* 1.x: ✅ Compatible
+- lucide-react 0.548.0: ✅ Compatible
+- All Payload packages: ✅ Require React 19
+
+### Build & Type-Check Results
+
+**npm install:**
+- ✅ All dependencies resolved successfully
+- ✅ Zero peer dependency conflicts
+- ✅ React 19.1.0 + Next.js 15.3.3 installed
+- ✅ Exact version locking prevents future breakage
+
+**Type-check:**
+- ✅ Zero TypeScript errors
+- ✅ Strict mode compliance maintained
+- ✅ All Payload types generated correctly
+- ✅ Async props properly typed
+
+**Build:**
+- ✅ Production build successful
+- ✅ All routes compiled (including admin routes)
+- ✅ No Turbopack errors
+- ✅ Confirmed by user after all fixes applied
+
+### Files Created/Modified
+
+**Created:**
+1. `src/collections/Newsletters.ts` (2.3 KB) - Newsletter subscriber schema
+2. `src/app/api/payload/[...slug]/route.ts` (343 bytes) - REST API handler
+3. `src/payload.config.ts` (1.2 KB) - Main Payload configuration
+4. `src/app/(payload)/layout.tsx` (389 bytes) - **CRITICAL: RootLayout provider**
+5. `src/app/(payload)/admin/[[...segments]]/page.tsx` (665 bytes) - Admin UI page with async props
+6. `.env.local` (306 bytes) - Environment variables
+
+**Modified:**
+1. `package.json` - Exact version locking for Payload ecosystem
+2. `tsconfig.json` - Path aliases for @payload-config
+3. `src/lib/data.ts` - Navigation menu update
+4. `package-lock.json` - Dependency tree regenerated
+
+**Verified Existing:**
+- All existing components React 19 compatible
+- TypeScript strict mode intact
+- Tailwind v4 configuration unchanged
+- 22 existing CMS articles preserved
+
+### Technical Highlights
+
+**Payload Configuration Pattern:**
+```typescript
+import { buildConfig } from 'payload'
+import { sqliteAdapter } from '@payloadcms/db-sqlite'
+import { lexicalEditor } from '@payloadcms/richtext-lexical'
+
+export default buildConfig({
+  serverURL: process.env['NEXT_PUBLIC_SERVER_URL'] || 'http://localhost:3000',
+  collections: [Newsletters],
+  db: sqliteAdapter({
+    client: { url: process.env['DATABASE_URL'] || 'file:./payload.db' },
+    push: true,
+  }),
+  editor: lexicalEditor({}),
+  admin: { user: 'users' },
+  typescript: { outputFile: path.resolve(__dirname, 'lib/payload/types.ts') },
+})
+```
+
+**Newsletter Collection Schema:**
+```typescript
+export const Newsletters: CollectionConfig = {
+  slug: 'newsletter-subscribers',
+  admin: { useAsTitle: 'email' },
+  access: {
+    read: () => true,    // Public (for unsubscribe)
+    create: () => true,  // Public (for signup)
+    update: ({ req }) => !!req.user,  // Admin only
+    delete: ({ req }) => !!req.user,  // Admin only
+  },
+  fields: [
+    { name: 'email', type: 'email', required: true, unique: true, index: true },
+    { name: 'firstName', type: 'text' },
+    { name: 'lastName', type: 'text' },
+    { name: 'status', type: 'select', options: ['active', 'unsubscribed', 'bounced'], defaultValue: 'active' },
+    { name: 'interests', type: 'select', hasMany: true, options: [...] },
+    { name: 'subscribedAt', type: 'date', defaultValue: () => new Date() },
+    { name: 'ipAddress', type: 'text', admin: { readOnly: true } },
+  ],
+}
+```
+
+**API Route Handler (Payload 3.0 Pattern):**
+```typescript
+export {
+  REST_DELETE as DELETE,
+  REST_GET as GET,
+  REST_PATCH as PATCH,
+  REST_POST as POST,
+} from '@payloadcms/next/routes'
+```
+
+**RootLayout Provider Pattern (CRITICAL):**
+```typescript
+import { RootLayout } from '@payloadcms/next/layouts'
+import { importConfig } from 'payload'
+import config from '@payload-config'
+
+export default async function PayloadLayout({ children }: { children: React.ReactNode }) {
+  await importConfig(config)
+  return <RootLayout config={config}>{children}</RootLayout>
+}
+```
+
+### Project State
+
+- **Status:** Phase 1 & 2 Complete - Admin Panel Ready for Testing
+- **Build:** ✅ Passing with zero errors
+- **Type Safety:** ✅ Zero TypeScript errors
+- **Dependencies:** ✅ Exact versions locked for stability
+- **Database:** ✅ SQLite configured (will auto-create on first admin login)
+- **Admin Panel:** ✅ Available at `http://localhost:3000/admin`
+- **API Endpoints:** ✅ REST API at `/api/payload/*`
+- **Navigation:** ✅ Newsletter link added to main menu
+- **Context Provider:** ✅ RootLayout properly configured
+- **React Compatibility:** ✅ Zero code changes needed for React 19
+
+### Configuration Summary
+
+**Tech Stack (Final - Locked Versions):**
+- Next.js 15.3.3 (App Router)
+- React 19.1.0
+- TypeScript 5.9.3 (strict mode)
+- Tailwind CSS 4.1.16
+- Payload CMS 3.63.0 (exact)
+- SQLite database (offline)
+
+**Admin Access:**
+- Route: `http://localhost:3000/admin`
+- First-time setup: Create admin user on first visit
+- Collections: Newsletter Subscribers
+- Database: SQLite auto-creates on initialization
+
+**Environment Variables:**
+- `DATABASE_URL`: SQLite file path (file:./payload.db)
+- `PAYLOAD_SECRET`: Authentication secret (generated)
+- `NEXT_PUBLIC_SERVER_URL`: Server URL for API
+- `RESEND_API_KEY`: Email service (placeholder, to be added)
+
+### Next Steps (Phase 3 - To Be Implemented)
+
+1. **Admin Panel Testing:**
+   - Run `npm run dev`
+   - Navigate to `http://localhost:3000/admin`
+   - Create first admin user
+   - Test newsletter subscriber CRUD operations
+
+2. **Newsletter Page Creation:**
+   - Create `/newsletter` page with blog-style layout
+   - Display newsletter archive (future collection)
+   - Newsletter signup form component
+
+3. **Newsletter Signup Component:**
+   - Build `<NewsletterSignup />` component with brand styling
+   - API route: `/api/newsletter/subscribe`
+   - Form validation and error handling
+   - Interest preference selection
+
+4. **Email Integration:**
+   - Add Resend API key to `.env.local`
+   - Create welcome email template
+   - Implement subscription confirmation email
+   - Add unsubscribe functionality
+
+5. **Admin Dashboard Enhancements:**
+   - CSV export functionality
+   - Bulk action workflows
+   - Analytics dashboard
+
+### Security Considerations
+
+- IP address tracking for audit trail
+- User agent logging for abuse detection
+- Public access limited to read/create operations
+- Admin authentication required for modifications
+- Environment variables secured in `.env.local` (gitignored)
+- PAYLOAD_SECRET cryptographically generated
+
+### Lessons Learned
+
+1. **Exact version matching is critical for Payload CMS:** Using `^3.63.0` can break on patch updates; lock to exact versions
+2. **RootLayout provider is mandatory:** Cannot render admin UI without proper context provider wrapper
+3. **Next.js 15 async params pattern:** Must await `params` and `searchParams` before destructuring
+4. **Official demo repo is the source of truth:** payload-3.0-demo repository provides tested patterns for Next.js 15 integration
+5. **Version alignment matters:** Next.js 15.3.3 + React 19.1.0 + Payload 3.63.0 is the tested combination
+6. **Route group layouts are powerful:** `(payload)` route group isolates admin routes from public site layout
+7. **SQLite is ideal for offline development:** No external database server needed for development phase

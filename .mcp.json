@@ -16,6 +16,23 @@
         "search",
         "drafts"
       ]
+    },
+    "context7": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@upstash/context7-mcp"
+      ],
+      "description": "Context7 MCP for intelligent code context and web search capabilities",
+      "capabilities": [
+        "code-search",
+        "documentation-access",
+        "semantic-search",
+        "web-search"
+      ],
+      "env": {
+        "CONTEXT7_API_KEY": "${CONTEXT7_API_KEY}"
+      }
     }
   }
 }

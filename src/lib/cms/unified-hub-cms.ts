@@ -15,6 +15,7 @@ import {
   getArticlesByHub,
   getArticleBySlug as getArticleBySlugFromData
 } from './hub-content-data';
+import { CATEGORY_CUSTOM_CONTENT } from './category-content';
 
 // Valid hub slugs
 export const VALID_HUBS = ['learning-hub', 'prayer-hub', 'spiritual-reflections'] as const;
@@ -99,6 +100,38 @@ export interface Breadcrumb {
   slug: string;
 }
 
+// Category Introduction Configuration
+export interface CategoryIntroduction {
+  label: string;
+  title: string;
+  subtitle: string;
+  paragraphs: Array<{
+    text: string;
+    emphasized?: boolean;
+  }>;
+}
+
+// Category Categories Section Configuration
+export interface CategoryCategoriesConfig {
+  sectionLabel: string;
+  sectionTitle: string;
+  description: string;
+}
+
+// Category CTA Configuration
+export interface CategoryCTAConfig {
+  title: string;
+  description: string;
+  primaryButton?: {
+    text: string;
+    href: string;
+  };
+  secondaryButton?: {
+    text: string;
+    href: string;
+  };
+}
+
 // Category/Section
 export interface HubCategory {
   slug: string;
@@ -109,6 +142,13 @@ export interface HubCategory {
   imageUrl?: string;
   children: (HubCategory | HubArticleWithMetadata)[];
   breadcrumbs: Breadcrumb[];
+}
+
+// Enhanced Category with Layout Content
+export interface HubCategoryEnhanced extends HubCategory {
+  introduction?: CategoryIntroduction;
+  categoriesConfig?: CategoryCategoriesConfig;
+  ctaConfig?: CategoryCTAConfig;
 }
 
 /**
@@ -341,6 +381,154 @@ export function isHubArticle(item: HubCategory | HubArticleWithMetadata): item i
 
 export function isHubCategory(item: HubCategory | HubArticleWithMetadata): item is HubCategory {
   return 'children' in item;
+}
+
+/**
+ * Interface for UnifiedHubLayout component props
+ */
+export interface UnifiedHubLayoutProps {
+  hero: {
+    title: string;
+    description: string;
+    backgroundImage: string;
+    primaryButton?: {
+      text: string;
+      href: string;
+    };
+    secondaryButton?: {
+      text: string;
+      href: string;
+    };
+  };
+  breadcrumbs?: Array<{
+    title: string;
+    href: string;
+  }>;
+  introduction?: CategoryIntroduction;
+  categories: {
+    sectionLabel: string;
+    sectionTitle: string;
+    description: string;
+    cards: Array<{
+      title: string;
+      description: string;
+      imageUrl: string;
+      url: string;
+    }>;
+  };
+  cta: CategoryCTAConfig;
+}
+
+/**
+ * Generate category layout content compatible with UnifiedHubLayout component
+ *
+ * @param _hub - The hub slug (learning-hub, prayer-hub, spiritual-reflections) - reserved for future use
+ * @param category - The category object to generate content for
+ * @param config - The hub configuration
+ * @param breadcrumbs - Breadcrumb trail for navigation
+ * @returns Props object compatible with UnifiedHubLayout component
+ */
+export function getCategoryLayoutContent(
+  _hub: HubSlug,
+  category: HubCategory,
+  config: HubConfig,
+  breadcrumbs: Breadcrumb[]
+): UnifiedHubLayoutProps {
+  // Check for custom content first
+  const categoryPath = `${_hub}/${category.fullSlug}`;
+  const customContent = CATEGORY_CUSTOM_CONTENT[categoryPath];
+  const enhanced = category as HubCategoryEnhanced;
+
+  // Determine parent breadcrumb for back button
+  const parentBreadcrumb = breadcrumbs.length > 1 ? breadcrumbs[breadcrumbs.length - 2] : breadcrumbs[0];
+  const parentTitle = parentBreadcrumb ? parentBreadcrumb.title : config.title;
+  const parentHref = parentBreadcrumb && parentBreadcrumb.slug
+    ? `${config.baseRoute}/${parentBreadcrumb.slug}`
+    : config.baseRoute;
+
+  return {
+    // Hero configuration
+    hero: {
+      title: category.title,
+      description: category.description || config.description,
+      backgroundImage: category.imageUrl || config.heroImage,
+      primaryButton: {
+        text: `Explore ${category.title}`,
+        href: '#topics'
+      },
+      secondaryButton: {
+        text: `Back to ${parentTitle}`,
+        href: parentHref
+      }
+    },
+
+    // Breadcrumb navigation
+    breadcrumbs: breadcrumbs.map(crumb => ({
+      title: crumb.title,
+      href: crumb.slug ? `${config.baseRoute}/${crumb.slug}` : config.baseRoute
+    })),
+
+    // Introduction section (check custom content first, then enhanced, then generate default)
+    introduction: customContent?.introduction ||
+                  enhanced.introduction || {
+      label: `About ${category.title}`,
+      title: 'Exploring',
+      subtitle: category.title,
+      paragraphs: category.description ? [
+        { text: category.description, emphasized: false }
+      ] : [
+        {
+          text: `Welcome to the ${category.title} section. Browse our collection of resources and deepen your understanding.`,
+          emphasized: false
+        }
+      ]
+    },
+
+    // Categories/Topics section (check custom content first)
+    categories: {
+      sectionLabel: customContent?.categoriesConfig?.sectionLabel ||
+                    enhanced.categoriesConfig?.sectionLabel ||
+                    `Browse ${category.title}`,
+      sectionTitle: customContent?.categoriesConfig?.sectionTitle ||
+                    enhanced.categoriesConfig?.sectionTitle ||
+                    category.title,
+      description: customContent?.categoriesConfig?.description ||
+                   enhanced.categoriesConfig?.description ||
+                   `Explore our curated collection of ${category.title.toLowerCase()} resources.`,
+      cards: category.children.map(child => {
+        if (isHubArticle(child)) {
+          return {
+            title: child.metadata.title,
+            description: child.metadata.description || '',
+            imageUrl: child.metadata.imageUrl || config.heroImage,
+            url: `${config.baseRoute}/${child.fullSlug}`
+          };
+        } else {
+          return {
+            title: child.title,
+            description: child.description || '',
+            imageUrl: child.imageUrl || config.heroImage,
+            url: `${config.baseRoute}/${child.fullSlug}`
+          };
+        }
+      })
+    },
+
+    // Call-to-action section (check custom content first, then enhanced, then generate default)
+    cta: customContent?.ctaConfig ||
+         enhanced.ctaConfig || {
+      title: `Discover ${category.title}`,
+      description: `Dive deeper into ${category.title.toLowerCase()} and expand your understanding of Catholic faith and tradition.`,
+      primaryButton: {
+        text: 'Browse All Topics',
+        href: '#topics'
+      },
+      secondaryButton: {
+        text: `Back to ${config.title}`,
+        href: config.baseRoute
+      }
+    }
+  };
 }
 
 // Re-export types for backward compatibility

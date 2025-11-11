@@ -1,8 +1,6 @@
 import type { Metadata } from 'next';
-import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import Hero from '@/components/Hero';
-import ThreePillarCards from '@/components/ThreePillarCards';
+import { UnifiedHubLayout, type UnifiedHubLayoutProps } from '@/components/hub/UnifiedHubLayout';
 import {
   isValidHub,
   HUB_CONFIGS,
@@ -56,121 +54,45 @@ export default async function HubLandingPage({ params }: HubPageProps) {
   // Hub-specific content based on which hub we're rendering
   const hubContent = getHubSpecificContent(hub);
 
-  return (
-    <main>
-      {/* HERO SECTION */}
-      <Hero
-        backgroundImage={config.heroImage}
-        title={config.title}
-        description={config.description}
-        primaryButton={{
-          text: 'Explore Topics',
-          href: '#topics'
-        }}
-        secondaryButton={
-          hubContent.secondaryButton || {
-            text: 'Our Resources',
-            href: '#resources'
-          }
-        }
-      />
+  // Transform to UnifiedHubLayout props
+  const layoutProps: UnifiedHubLayoutProps = {
+    hero: {
+      title: config.title,
+      description: config.description,
+      backgroundImage: config.heroImage,
+      primaryButton: {
+        text: 'Explore Topics',
+        href: '#categories'
+      },
+      ...(hubContent.secondaryButton && { secondaryButton: hubContent.secondaryButton })
+    },
+    ...(hubContent.introduction && { introduction: hubContent.introduction }),
+    categories: {
+      sectionLabel: 'Explore Topics',
+      sectionTitle: hubContent.categoriesTitle,
+      description: hubContent.categoriesDescription,
+      cards: categories.map(category => ({
+        title: category.title,
+        description: category.description || '',
+        imageUrl: category.imageUrl || config.heroImage,
+        url: `${config.baseRoute}/${category.fullSlug}`
+      }))
+    },
+    cta: {
+      title: hubContent.ctaTitle,
+      description: hubContent.ctaDescription,
+      primaryButton: {
+        text: 'Explore Topics',
+        href: '#categories'
+      },
+      secondaryButton: {
+        text: 'Contact Us',
+        href: '/contact-us'
+      }
+    }
+  };
 
-      {/* INTRODUCTION SECTION */}
-      {hubContent.introduction && (
-        <section className="py-16 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="max-w-4xl mx-auto">
-              <div className="mb-12">
-                <div className="flex items-center space-x-3 mb-4">
-                  <div className="w-2 h-2 bg-gold-500" />
-                  <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
-                    {hubContent.introduction.label}
-                  </span>
-                </div>
-                <h2 className="text-4xl lg:text-5xl font-light text-slate-900 mb-4">
-                  <span className="block">{hubContent.introduction.title}</span>
-                  <span className="block text-3xl lg:text-4xl font-medium">
-                    {hubContent.introduction.subtitle}
-                  </span>
-                </h2>
-              </div>
-
-              <div className="space-y-6 text-lg text-slate-700 leading-relaxed">
-                {hubContent.introduction.paragraphs.map((paragraph, index) => (
-                  <p
-                    key={index}
-                    className={paragraph.emphasized ? 'text-slate-900 font-semibold' : ''}
-                    dangerouslySetInnerHTML={{ __html: paragraph.text }}
-                  />
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {/* CATEGORIES/TOPICS SECTION */}
-      <section id="topics" className="py-16 bg-slate-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-12">
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-slate-900 font-bold text-sm uppercase tracking-wider">
-                Explore Topics
-              </span>
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
-              <span className="block">{hubContent.categoriesTitle}</span>
-              <span className="block text-3xl lg:text-4xl font-medium">Categories</span>
-            </h2>
-            <p className="text-lg text-slate-700 max-w-3xl">
-              {hubContent.categoriesDescription}
-            </p>
-          </div>
-
-          {/* Categories Grid */}
-          <ThreePillarCards
-            cards={categories.map(category => ({
-              title: category.title,
-              description: category.description || '',
-              imageUrl: category.imageUrl || config.heroImage,
-              url: `${config.baseRoute}/${category.fullSlug}`
-            }))}
-            className="bg-transparent text"
-          />
-        </div>
-      </section>
-
-      {/* CALL TO ACTION SECTION */}
-      <section className="py-16 bg-slate-900">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl lg:text-5xl font-semibold text-white mb-6">
-            {hubContent.ctaTitle}
-          </h2>
-
-          <p className="text-lg text-gray-200 max-w-3xl mx-auto leading-relaxed mb-8">
-            {hubContent.ctaDescription}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="#topics"
-              className="inline-flex items-center justify-center px-6 py-3 bg-white text-slate-900 hover:bg-gray-100 font-semibold transition-colors duration-300"
-            >
-              Explore Topics
-            </Link>
-
-            <Link
-              href="/contact-us"
-              className="inline-flex items-center justify-center px-6 py-3 border-2 border-white text-white hover:bg-white/10 font-semibold transition-colors duration-300"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-      </section>
-    </main>
-  );
+  return <UnifiedHubLayout {...layoutProps} />;
 }
 
 // Hub-specific content configuration

@@ -2,10 +2,10 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeftIcon as ArrowLeft } from '@heroicons/react/24/solid';
-import { PageLayout, PageHero } from '@/components/layout';
+import { PageLayout } from '@/components/layout';
 import UniversalBlogTemplate from '@/components/blog/UniversalBlogTemplate';
 import { Section, Container, Text, Button } from '@/components/ui';
-import ThreePillarCards from '@/components/ThreePillarCards';
+import { UnifiedHubLayout } from '@/components/hub/UnifiedHubLayout';
 import {
   isValidHub,
   HUB_CONFIGS,
@@ -14,6 +14,7 @@ import {
   isHubArticle,
   generateAllHubParams,
   getRelatedArticles,
+  getCategoryLayoutContent,
   type HubCategory
 } from '@/lib/cms/unified-hub-cms';
 import { getParishName } from '@/lib/cms/cms-content';
@@ -186,107 +187,8 @@ export default async function HubContentPage({ params }: HubContentPageProps) {
     );
   }
 
-  // CATEGORY PAGE - Show children as cards
+  // CATEGORY PAGE - Use UnifiedHubLayout
   const category = content as HubCategory;
-
-  return (
-    <PageLayout
-      title={`${category.title} - ${config.title} - ${parishName}`}
-      description={category.description || config.description}
-      keywords={`Catholic, ${hub}, ${category.title}`}
-      background="slate"
-    >
-      {/* Hero Section */}
-      <PageHero
-        title={category.title}
-        subtitle={category.description || ''}
-        backgroundImage={category.imageUrl || config.heroImage}
-        overlay="dark"
-      />
-
-      {/* Breadcrumb Navigation */}
-      <Section background="slate" className="py-6 border-b border-slate-700">
-        <Container>
-          <nav className="flex items-center gap-2 text-sm text-gray-300">
-            <Link
-              href={config.baseRoute}
-              className="hover:text-gold-300 transition-colors"
-            >
-              {config.title}
-            </Link>
-            {breadcrumbs.slice(1).map((crumb, index) => (
-              <span key={crumb.slug} className="flex items-center gap-2">
-                <span>/</span>
-                {index === breadcrumbs.length - 2 ? (
-                  <span className="text-white">{crumb.title}</span>
-                ) : (
-                  <Link
-                    href={`${config.baseRoute}/${crumb.slug}`}
-                    className="hover:text-gold-300 transition-colors"
-                  >
-                    {crumb.title}
-                  </Link>
-                )}
-              </span>
-            ))}
-          </nav>
-        </Container>
-      </Section>
-
-      {/* Sub-categories/Children */}
-      {category.children.length > 0 && (
-        <Section background="slate" className="py-16">
-          <Container>
-            <ThreePillarCards
-              cards={category.children.map(child => {
-                if (isHubArticle(child)) {
-                  return {
-                    title: child.metadata.title,
-                    description: child.metadata.description || '',
-                    imageUrl: child.metadata.imageUrl || config.heroImage,
-                    url: `${config.baseRoute}/${child.fullSlug}`
-                  };
-                } else {
-                  return {
-                    title: child.title,
-                    description: child.description || '',
-                    imageUrl: child.imageUrl || config.heroImage,
-                    url: `${config.baseRoute}/${child.fullSlug}`
-                  };
-                }
-              })}
-              className="bg-transparent"
-            />
-          </Container>
-        </Section>
-      )}
-
-      {/* Back Navigation */}
-      <Section background="slate" className="py-12 border-t border-slate-700">
-        <Container>
-          <div className="text-center">
-            <Link
-              href={
-                breadcrumbs.length > 2
-                  ? `${config.baseRoute}/${breadcrumbs[breadcrumbs.length - 2]?.slug}`
-                  : config.baseRoute
-              }
-            >
-              <Button
-                variant="secondary"
-                className="hover:bg-white hover:text-slate-900"
-                style={{ color: 'rgba(255,255,255,1)' }}
-              >
-                <ArrowLeft className="h-4 w-4 mr-2" />
-                Back to{' '}
-                {breadcrumbs.length > 2
-                  ? breadcrumbs[breadcrumbs.length - 2]?.title
-                  : config.title}
-              </Button>
-            </Link>
-          </div>
-        </Container>
-      </Section>
-    </PageLayout>
-  );
+  const layoutProps = getCategoryLayoutContent(hub, category, config, breadcrumbs);
+  return <UnifiedHubLayout {...layoutProps} />;
 }
