@@ -59,11 +59,11 @@ export default function InitiativeCard({
   const textClass = colorVariants[color as keyof typeof colorVariants]?.split(' ')[1] || 'text-gold-600';
 
   return (
-    <div className={`${bgClass} px-6 py-10 lg:px-8 lg:py-14 shadow-lg`}>
-      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-8 lg:gap-0 items-center">
+    <div className={`${bgClass} px-4 py-8 sm:px-6 sm:py-10 md:px-7 md:py-12 lg:px-8 lg:py-14 shadow-lg rounded-xl`}>
+      <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto_1fr] gap-6 sm:gap-7 md:gap-8 lg:gap-0 items-center">
         {/* Image */}
         <div className={`relative ${imagePosition === 'right' ? 'lg:order-3' : 'lg:order-1'}`}>
-          <AspectRatio.Root ratio={16 / 9}>
+          <AspectRatio.Root ratio={16 / 9} className="rounded-lg overflow-hidden">
             <Image
               src={image}
               alt={alt}
@@ -78,24 +78,28 @@ export default function InitiativeCard({
         <Separator.Root
           orientation="vertical"
           decorative
-          className="hidden lg:block w-px h-[90%] bg-white mx-8 order-2"
+          className="hidden lg:block w-px h-[90%] bg-white mx-6 lg:mx-8 order-2"
         />
 
         {/* Text Content */}
         <div className={`flex flex-col justify-center ${imagePosition === 'right' ? 'lg:order-1' : 'lg:order-3'}`}>
-          <h3 className="font-heading text-4xl lg:text-5xl font-light text-white mb-6 leading-tight">
+          <h3 className="font-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-light text-white mb-4 sm:mb-5 md:mb-6 leading-tight">
             {title}
           </h3>
-          <Separator.Root className="w-20 h-px bg-white mb-6" />
-          <p className="font-body text-lg lg:text-xl text-white leading-relaxed mb-8">
+          <Separator.Root className="w-16 sm:w-18 md:w-20 h-px bg-white mb-4 sm:mb-5 md:mb-6" />
+          <p className="font-body text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed mb-6 sm:mb-7 md:mb-8">
             {description}
           </p>
           <Link
             href={linkHref}
-            className={`inline-flex items-center self-start px-6 py-3 bg-white ${textClass} hover:bg-gold-50 font-semibold`}
+            className={`inline-flex items-center self-start
+                       px-5 py-2.5 sm:px-6 sm:py-3 md:px-7 md:py-3.5
+                       text-sm sm:text-base md:text-lg
+                       bg-white ${textClass} hover:bg-gold-50 font-semibold
+                       rounded-lg transition-all duration-300`}
           >
             {linkText}
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
           </Link>
         </div>
       </div>
