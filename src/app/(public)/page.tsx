@@ -43,10 +43,7 @@ export default function HomePage() {
 
 	return (
 		<main>
-			{/* LIVE STREAM BANNER - Fixed at top (10vh) - HOMEPAGE ONLY */}
-			<LiveStreamBanner />
-
-			{/* HERO SECTION - 90vh to complement banner (10vh + 90vh = 100vh) */}
+			{/* HERO SECTION - Full viewport (100vh) */}
 			<Hero
 				backgroundImage='/images/inside-church-aisle.jpg'
 				title="Welcome to St Saviour's Catholic Church"
@@ -65,6 +62,9 @@ export default function HomePage() {
 					href: '#initiatives',
 				}}
 			/>
+
+			{/* LIVE STREAM BANNER - Positioned below hero (dismissible announcement) */}
+			<LiveStreamBanner />
 
 			{/* WELCOME SECTION - 2/3 Content + 1/3 Today's Services Sidebar */}
 			{/* <section id="welcome" className="py-16 bg-white">
