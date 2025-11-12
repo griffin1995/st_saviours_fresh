@@ -34,28 +34,20 @@ interface NavigationProps {
  * - Modern React hooks with useCallback for performance
  * - Better TypeScript typing and accessibility
  * - Only one dropdown open at a time
- * - Fixed hydration by using CSS for scroll effects
- * - Smart positioning: absolute (scrolls with page) on homepage initially,
- *   then transitions to fixed (sticky) after scrolling past banner (10vh)
- * - Dynamic scroll threshold based on banner height (10vh)
+ * - Fixed positioning at top of viewport (industry standard)
+ * - Simplified scroll effects without complex banner calculations
  */
 export default function Navigation({ className = '' }: NavigationProps) {
   // State management
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const pathname = usePathname();
 
-  // Check if we're on homepage
-  const isHomepage = pathname === '/';
-
-  // Track scroll position - using mounted flag to avoid hydration mismatch
+  // Track scroll position for background effect
   useEffect(() => {
     const handleScroll = () => {
-      // Calculate banner height dynamically (10vh in pixels)
-      const bannerHeight = window.innerHeight * 0.1;
-      // Only set scrolled state when scrolled past the banner
-      setIsScrolled(window.scrollY > bannerHeight);
+      // Simple threshold - show background after scrolling 50px
+      setIsScrolled(window.scrollY > 50);
     };
 
     // Set initial scroll position after mount
@@ -123,9 +115,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
     <>
       <nav
         data-navigation
-        className={`${
-          isHomepage && !isScrolled ? 'absolute top-[10vh]' : 'fixed top-0'
-        } left-0 right-0 w-full z-[9999] ${
+        className={`fixed top-0 left-0 right-0 w-full z-[9999] ${
           isScrolled || activeDropdown !== null || mobileMenuOpen
             ? 'bg-slate-900/95 backdrop-blur-xl shadow-xl'
             : 'bg-transparent'
@@ -303,11 +293,7 @@ export default function Navigation({ className = '' }: NavigationProps) {
       {/* Desktop Dropdown Menu */}
       {activeDropdown && (
         <div
-          className={`${
-            isHomepage && !isScrolled ? 'absolute' : 'fixed'
-          } left-0 right-0 bg-slate-900/95 backdrop-blur-xl shadow-xl border-b border-slate-700/50 z-[9998] dropdown-area transition-all duration-300 ${
-            isHomepage && !isScrolled ? 'top-[calc(10vh+120px)]' : 'top-[120px]'
-          }`}
+          className="fixed left-0 right-0 top-[120px] bg-slate-900/95 backdrop-blur-xl shadow-xl border-b border-slate-700/50 z-[9998] dropdown-area transition-all duration-300"
           data-navigation
           role="menu"
           aria-label={`${activeDropdown} menu`}
@@ -361,12 +347,8 @@ export default function Navigation({ className = '' }: NavigationProps) {
       {/* Backdrop Overlay */}
       {(activeDropdown !== null || mobileMenuOpen) && (
         <div
-          className={`${
-            isHomepage && !isScrolled ? 'absolute' : 'fixed'
-          } inset-0 bg-black/20 backdrop-blur-sm z-[9997] transition-all duration-300 ${
-            isHomepage && !isScrolled
-              ? (activeDropdown !== null ? 'top-[calc(10vh+360px)]' : 'top-[calc(10vh+120px)]')
-              : (activeDropdown !== null ? 'top-[360px]' : 'top-[120px]')
+          className={`fixed inset-0 bg-black/20 backdrop-blur-sm z-[9997] transition-all duration-300 ${
+            activeDropdown !== null ? 'top-[360px]' : 'top-[120px]'
           }`}
           onClick={() => {
             setActiveDropdown(null);
