@@ -108,39 +108,39 @@ export default function NewsPage() {
     },
     {
       id: 7,
-      title: "Parish Newsletter - January 2025 Edition",
-      excerpt: "Read our latest parish newsletter featuring upcoming events, Mass intentions, parish finances, and important community announcements for January.",
-      content: "Welcome to the January 2025 edition of our parish newsletter. This month we highlight our Jubilee preparations, upcoming sacramental programs, and community outreach initiatives...",
+      title: "Weekly Parish Newsletter - 10 November 2025",
+      excerpt: "This week's newsletter featuring upcoming Advent preparations, Mass intentions, parish events, and important community announcements.",
+      content: "Welcome to this week's parish newsletter. As we approach Advent, we highlight preparations for the season, upcoming sacramental programs, and community outreach initiatives...",
       image: "/images/hands-up-praising.jpg",
       category: "Newsletter",
-      date: "2025-01-01",
-      readTime: "8 min read",
+      date: "2025-11-10",
+      readTime: "6 min read",
       featured: false,
-      tags: ["Newsletter", "January", "Updates", "Community"]
+      tags: ["Newsletter", "November", "Weekly", "Updates"]
     },
     {
       id: 8,
-      title: "December 2024 Newsletter - Advent & Christmas",
-      excerpt: "Our December newsletter celebrates the Advent season and Christmas preparations, including Mass schedules, carol services, and festive parish gatherings.",
-      content: "As we prepare our hearts for the birth of Christ, our December newsletter brings you all the details of our Advent and Christmas celebrations...",
+      title: "Weekly Parish Newsletter - 3 November 2025",
+      excerpt: "This week's parish news includes All Saints celebrations recap, upcoming events, Mass schedules, and parish group updates.",
+      content: "In this week's newsletter, we reflect on our beautiful All Saints Day celebrations and look ahead to the coming weeks...",
       image: "/images/mid-mass-priest-and-community.jpg",
       category: "Newsletter",
-      date: "2024-12-01",
-      readTime: "7 min read",
+      date: "2025-11-03",
+      readTime: "6 min read",
       featured: false,
-      tags: ["Newsletter", "December", "Advent", "Christmas"]
+      tags: ["Newsletter", "November", "Weekly", "All Saints"]
     },
     {
       id: 9,
-      title: "November 2024 Newsletter - Month of Remembrance",
-      excerpt: "November's newsletter focuses on remembering our faithful departed, with information about memorial Masses, cemetery blessings, and All Souls Day services.",
-      content: "During this Month of Remembrance, we pray for all the faithful departed and invite you to submit Mass intentions for your loved ones...",
+      title: "Weekly Parish Newsletter - 27 October 2025",
+      excerpt: "Last week's newsletter with October recap, All Souls Day preparations, memorial Mass information, and parish announcements.",
+      content: "This week we prepare for All Souls Day and remember our faithful departed. Details of memorial Masses and cemetery blessings included...",
       image: "/images/open-bible-rosary.jpg",
       category: "Newsletter",
-      date: "2024-11-01",
+      date: "2025-10-27",
       readTime: "6 min read",
       featured: false,
-      tags: ["Newsletter", "November", "Remembrance", "All Souls"]
+      tags: ["Newsletter", "October", "Weekly", "All Souls"]
     }
   ];
 
