@@ -28,15 +28,19 @@ export default function LiveStreamBanner({
     <section className="bg-gold-600 min-h-[10vh] flex items-center">
       {/* Mobile: Stacked layout */}
       <div className="w-full px-4 py-6 flex flex-col items-center gap-4 sm:hidden">
-        <h2 className="text-white text-xl font-light text-center m-0">
+        <h2 className="text-white text-lg sm:text-xl font-light text-center m-0">
           {text}
         </h2>
         <Link
           href={buttonHref}
-          className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold  hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
+          className="inline-flex items-center px-5 py-2.5 sm:px-6 sm:py-3
+                     bg-primary-700 text-white text-sm sm:text-base font-semibold
+                     hover:bg-white hover:text-primary-700
+                     border-2 border-primary-700 rounded-lg
+                     whitespace-nowrap transition-all duration-300"
         >
           {buttonText}
-          <ArrowRight className="ml-2 h-5 w-5" />
+          <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
         </Link>
       </div>
 
@@ -47,7 +51,7 @@ export default function LiveStreamBanner({
 
         {/* Center - H2 text, flex: 1 for equal width */}
         <div className="flex-1 flex justify-center">
-          <h2 className="text-white text-2xl lg:text-3xl font-light whitespace-nowrap m-0">
+          <h2 className="text-white text-xl sm:text-2xl lg:text-3xl font-light whitespace-nowrap m-0">
             {text}
           </h2>
         </div>
@@ -56,10 +60,14 @@ export default function LiveStreamBanner({
         <div className="flex-1 flex justify-center">
           <Link
             href={buttonHref}
-            className="inline-flex items-center px-6 py-3 bg-primary-700 text-white font-semibold  hover:bg-white hover:text-primary-700 border-2 border-primary-700 whitespace-nowrap"
+            className="inline-flex items-center px-5 py-2.5 sm:px-6 sm:py-3
+                       bg-primary-700 text-white text-sm sm:text-base font-semibold
+                       hover:bg-white hover:text-primary-700
+                       border-2 border-primary-700 rounded-lg
+                       whitespace-nowrap transition-all duration-300"
           >
             {buttonText}
-            <ArrowRight className="ml-2 h-5 w-5" />
+            <ArrowRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
           </Link>
         </div>
       </div>

@@ -13,41 +13,39 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        // Primary: Always white background with dark text
-        // NOTE: Uses .btn-white instead of .bg-white due to CSS specificity conflicts
-        // See globals.css for detailed explanation of this enterprise solution
+        // Primary: Gold brand color (main CTA)
         primary: [
-          'btn-white border border-white',
-          'hover:shadow-lg hover:border-gray-100',
-          'focus:ring-2 focus:ring-gray-300 focus:ring-offset-2',
-          'active:bg-gray-200 shadow-md'
+          'bg-gold-600 text-white border border-gold-600',
+          'hover:bg-gold-500 hover:shadow-lg hover:border-gold-500',
+          'focus:ring-gold-600 focus:ring-offset-2',
+          'active:bg-gold-700 shadow-md'
         ],
-        
-        // Secondary: Secondary button
+
+        // Secondary: Navy brand color
         secondary: [
-          'border-2 text-white bg-transparent',
-          'border-white hover:bg-white hover:text-slate-900',
-          'focus:ring-white focus:ring-offset-slate-900',
-          'active:bg-gray-100 active:text-slate-900'
+          'bg-primary-700 text-white border-2 border-primary-700',
+          'hover:bg-primary-600 hover:border-primary-600',
+          'focus:ring-primary-600 focus:ring-offset-white',
+          'active:bg-primary-800'
         ],
-        
-        // Outline: Outline button
+
+        // Outline: Neutral with gray (now slate via override)
         outline: [
           'border bg-white text-gray-700',
           'border-gray-300 hover:bg-gray-50 hover:border-gray-400',
           'focus:ring-gray-300 focus:ring-offset-white',
           'active:bg-gray-100'
         ],
-        
-        // Ghost: Ghost button
+
+        // Ghost: Minimal neutral button
         ghost: [
           'bg-transparent text-gray-600',
           'hover:bg-gray-100 hover:text-gray-900',
           'focus:ring-gray-300 focus:ring-offset-white',
           'active:bg-gray-200'
         ],
-        
-        // Destructive: Destructive button
+
+        // Destructive: Semantic red (keep as-is)
         destructive: [
           'bg-red-600 text-white',
           'hover:bg-red-700 hover:shadow-lg',
@@ -57,11 +55,11 @@ const buttonVariants = cva(
       },
       
       size: {
-        xs: 'h-8 px-3 text-xs ',
-        sm: 'h-10 px-4 text-sm ',
-        md: 'h-12 px-6 text-base rounded-xl',
-        lg: 'h-14 px-8 text-lg rounded-xl',
-        xl: 'h-16 px-10 text-xl rounded-2xl'
+        xs: 'h-8 px-3 text-xs rounded-lg',
+        sm: 'h-9 sm:h-10 px-3 sm:px-4 text-sm rounded-lg sm:rounded-xl',
+        md: 'h-10 sm:h-12 px-4 sm:px-6 text-sm sm:text-base rounded-xl',
+        lg: 'h-12 sm:h-14 px-6 sm:px-8 text-base sm:text-lg rounded-xl sm:rounded-2xl',
+        xl: 'h-14 sm:h-16 px-8 sm:px-10 text-lg sm:text-xl rounded-2xl'
       },
       
       // Full width option

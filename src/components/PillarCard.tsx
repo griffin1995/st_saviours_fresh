@@ -44,25 +44,31 @@ export default function PillarCard({ image, alt, title, description, href }: Pil
           sizes="(max-width: 768px) 100vw, 33vw"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent" />
-        <div className="absolute bottom-0 left-0 right-0 p-6">
-          {/* Fixed height title area for alignment across cards */}
-          <div className="h-28 flex flex-col justify-end">
-            <h3 className="text-4xl font-bold m-0 text-text-on-dark leading-tight">{title}</h3>
-            <Separator.Root className="w-full h-px bg-text-on-dark mt-3" />
+        <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+          {/* Responsive height title area for alignment across cards */}
+          <div className="h-24 sm:h-28 md:h-32 flex flex-col justify-end">
+            <h3 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl
+                           font-bold m-0 text-text-on-dark leading-tight">
+              {title}
+            </h3>
+            <Separator.Root className="w-full h-px bg-text-on-dark mt-2 sm:mt-3" />
           </div>
 
-          {/* Fixed height text area for alignment across cards */}
-          <div className="h-52 mt-4 overflow-hidden">
-            <p className="text-text-on-dark text-lg leading-relaxed">
+          {/* Responsive height text area for alignment across cards */}
+          <div className="h-44 sm:h-52 md:h-60 mt-3 sm:mt-4 overflow-hidden">
+            <p className="text-text-on-dark text-base sm:text-lg md:text-xl leading-relaxed">
               {description}
             </p>
           </div>
 
           {/* Call-to-action - only shown when card is clickable */}
           {href && (
-            <div className="mt-6 flex items-center gap-2 text-white group-hover:text-gold-500 transition-colors duration-300 font-semibold text-sm">
+            <div className="mt-4 sm:mt-6 flex items-center gap-2
+                            text-white group-hover:text-gold-500
+                            transition-colors duration-300
+                            font-semibold text-xs sm:text-sm md:text-base">
               <span>Discover More</span>
-              <ArrowRight className="w-4 h-4" />
+              <ArrowRight className="w-4 h-4 sm:w-5 sm:h-5" />
             </div>
           )}
         </div>

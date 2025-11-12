@@ -118,12 +118,11 @@ export default function Hero({
           {/* Main title/description/buttons - always rendered if provided */}
           {/* H1 with multi-layer text shadow */}
           {title && (
-            <div className="mb-6">
+            <div className="mb-4 sm:mb-6">
               <h1
-                className="text-6xl font-semibold tracking-tight text-balance text-white sm:text-8xl"
-                style={{
-                  textShadow: '0 1px 2px rgba(0,0,0,0.4), 0 4px 8px rgba(0,0,0,0.2), 0 8px 16px rgba(0,0,0,0.1)'
-                }}
+                className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl
+                           font-semibold tracking-tight text-balance text-white
+                           [text-shadow:0_1px_2px_rgba(0,0,0,0.4),0_4px_8px_rgba(0,0,0,0.2),0_8px_16px_rgba(0,0,0,0.1)]"
               >
                 {title}
               </h1>
@@ -134,12 +133,10 @@ export default function Hero({
           {description && (
             <div>
               <p
-                className="text-white text-center max-w-full mx-auto px-4 text-xl sm:text-2xl leading-8"
-                style={{
-                  fontWeight: 300,
-                  letterSpacing: '0.02em',
-                  textShadow: '0 2px 8px rgba(0, 0, 0, 0.3)'
-                }}
+                className="text-white text-center max-w-full mx-auto px-4
+                           text-lg sm:text-xl md:text-2xl lg:text-3xl
+                           font-light tracking-wide leading-relaxed
+                           [text-shadow:0_2px_8px_rgba(0,0,0,0.3)]"
               >
                 {description}
               </p>
@@ -148,11 +145,17 @@ export default function Hero({
 
           {/* CTA Buttons */}
           {(primaryButton || secondaryButton) && (
-            <div className="mt-10 flex items-center justify-center gap-x-6">
+            <div className="mt-6 sm:mt-8 md:mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6">
               {primaryButton && (
                 <Link
                   href={primaryButton.href}
-                  className="bg-gold-600 px-4 py-3 text-base font-semibold text-white shadow-sm hover:bg-gold-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-600"
+                  className="bg-gold-600 px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4
+                             text-sm sm:text-base md:text-lg
+                             font-semibold text-white shadow-sm rounded-lg sm:rounded-xl
+                             hover:bg-gold-500
+                             focus-visible:outline focus-visible:outline-2
+                             focus-visible:outline-offset-2 focus-visible:outline-gold-600
+                             transition-colors duration-300"
                 >
                   {primaryButton.text}
                 </Link>
@@ -160,7 +163,13 @@ export default function Hero({
               {secondaryButton && (
                 <Link
                   href={secondaryButton.href}
-                  className="border-2 border-gold-600 px-4 py-3 text-base font-semibold text-white hover:border-gold-500 hover:bg-gold-600/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-600"
+                  className="border-2 border-gold-600 px-5 py-2.5 sm:px-6 sm:py-3 md:px-8 md:py-4
+                             text-sm sm:text-base md:text-lg
+                             font-semibold text-white rounded-lg sm:rounded-xl
+                             hover:border-gold-500 hover:bg-gold-600/10
+                             focus-visible:outline focus-visible:outline-2
+                             focus-visible:outline-offset-2 focus-visible:outline-gold-600
+                             transition-all duration-300"
                 >
                   {secondaryButton.text} <span>→</span>
                 </Link>

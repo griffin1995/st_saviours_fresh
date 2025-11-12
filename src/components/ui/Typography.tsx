@@ -11,12 +11,12 @@ const headingVariants = cva(
   {
     variants: {
       level: {
-        h1: 'text-4xl lg:text-6xl',
-        h2: 'text-3xl lg:text-4xl', 
-        h3: 'text-2xl lg:text-3xl font-medium',
-        h4: 'text-xl lg:text-2xl font-medium',
-        h5: 'text-lg lg:text-xl font-medium',
-        h6: 'text-base lg:text-lg font-medium'
+        h1: 'text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl',
+        h2: 'text-2xl sm:text-3xl md:text-4xl lg:text-5xl',
+        h3: 'text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium',
+        h4: 'text-lg sm:text-xl md:text-2xl lg:text-3xl font-medium',
+        h5: 'text-base sm:text-lg md:text-xl lg:text-2xl font-medium',
+        h6: 'text-sm sm:text-base md:text-lg lg:text-xl font-medium'
       },
       
       color: {
@@ -245,7 +245,7 @@ export const Lead = React.forwardRef<
 >(({ className, ...props }, ref) => (
   <p
     ref={ref}
-    className={cn('text-xl lg:text-2xl text-gray-600 leading-relaxed', className)}
+    className={cn('text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-600 leading-relaxed', className)}
     {...props}
   />
 ))

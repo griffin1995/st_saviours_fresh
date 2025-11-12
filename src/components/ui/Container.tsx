@@ -60,11 +60,11 @@ const sectionVariants = cva(
     variants: {
       spacing: {
         none: 'py-0',
-        xs: 'py-8',
-        sm: 'py-12',
-        md: 'py-16',
-        lg: 'py-24',
-        xl: 'py-32'
+        xs: 'py-6 sm:py-8',
+        sm: 'py-8 sm:py-10 md:py-12',
+        md: 'py-12 sm:py-14 md:py-16',
+        lg: 'py-16 sm:py-20 md:py-24',
+        xl: 'py-20 sm:py-24 md:py-28 lg:py-32'
       },
       
       background: {

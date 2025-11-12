@@ -16,46 +16,50 @@ export const badgeVariants = cva(
   {
     variants: {
       variant: {
+        // Default: Neutral gray (now slate via override)
         default: "bg-gray-100 text-gray-800 hover:bg-gray-200",
-        primary: "bg-blue-100 text-blue-800 hover:bg-blue-200",
-        secondary: "bg-gray-100 text-gray-600 hover:bg-gray-200",
+
+        // Primary: Navy brand color
+        primary: "bg-primary-100 text-primary-800 hover:bg-primary-200",
+
+        // Secondary: Lighter navy
+        secondary: "bg-primary-50 text-primary-600 hover:bg-primary-100",
+
+        // Accent: Gold brand color
+        accent: "bg-gold-100 text-gold-800 hover:bg-gold-200",
+
+        // Semantic colors (keep for status/alerts)
         success: "bg-green-100 text-green-800 hover:bg-green-200",
         warning: "bg-amber-100 text-amber-800 hover:bg-amber-200",
         error: "bg-red-100 text-red-800 hover:bg-red-200",
         info: "bg-blue-100 text-blue-800 hover:bg-blue-200",
-        
-        // Color variations
-        blue: "bg-blue-100 text-blue-800 hover:bg-blue-200",
+
+        // Content categorization (map to brand/semantic)
+        blue: "bg-primary-100 text-primary-800 hover:bg-primary-200", // Maps to primary
         green: "bg-green-100 text-green-800 hover:bg-green-200",
-        red: "bg-red-100 text-red-800 hover:bg-red-200",
-        amber: "bg-amber-100 text-amber-800 hover:bg-amber-200",
         purple: "bg-purple-100 text-purple-800 hover:bg-purple-200",
-        pink: "bg-pink-100 text-pink-800 hover:bg-pink-200",
-        indigo: "bg-indigo-100 text-indigo-800 hover:bg-indigo-200",
-        emerald: "bg-emerald-100 text-emerald-800 hover:bg-emerald-200",
-        gray: "bg-gray-100 text-gray-800 hover:bg-gray-200",
-        slate: "bg-slate-100 text-slate-800 hover:bg-slate-200",
-        
+        gray: "bg-gray-100 text-gray-800 hover:bg-gray-200", // Now slate
+
         // Outline variants
         outline: "border border-gray-300 text-gray-700 hover:bg-gray-50",
-        "outline-primary": "border border-blue-300 text-blue-700 hover:bg-blue-50",
+        "outline-primary": "border border-primary-300 text-primary-700 hover:bg-primary-50",
+        "outline-accent": "border border-gold-300 text-gold-700 hover:bg-gold-50",
         "outline-success": "border border-green-300 text-green-700 hover:bg-green-50",
-        "outline-warning": "border border-amber-300 text-amber-700 hover:bg-amber-50",
         "outline-error": "border border-red-300 text-red-700 hover:bg-red-50",
-        
+
         // Solid variants
         solid: "bg-gray-800 text-white hover:bg-gray-700",
-        "solid-primary": "bg-blue-600 text-white hover:bg-blue-700",
+        "solid-primary": "bg-primary-600 text-white hover:bg-primary-700",
+        "solid-accent": "bg-gold-600 text-white hover:bg-gold-700",
         "solid-success": "bg-green-600 text-white hover:bg-green-700",
-        "solid-warning": "bg-amber-600 text-white hover:bg-amber-700",
         "solid-error": "bg-red-600 text-white hover:bg-red-700"
       },
       size: {
         xs: "px-2 py-0.5 text-xs",
-        sm: "px-2.5 py-0.5 text-xs",
-        md: "px-3 py-1 text-sm",
-        lg: "px-3.5 py-1.5 text-sm",
-        xl: "px-4 py-2 text-base"
+        sm: "px-2.5 py-0.5 text-xs sm:text-sm",
+        md: "px-3 py-1 text-sm sm:text-base",
+        lg: "px-3.5 py-1.5 text-sm sm:text-base md:text-lg",
+        xl: "px-4 py-2 text-base sm:text-lg"
       },
       interactive: {
         true: "cursor-pointer",
