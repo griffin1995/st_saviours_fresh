@@ -8,7 +8,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import * as AspectRatio from '@radix-ui/react-aspect-ratio';
 import * as Separator from '@radix-ui/react-separator';
-import Hero from '@/components/Hero-Homepage';
+import Hero from '@/components/Hero';
 import LiveStreamBanner from '@/components/LiveStreamBanner';
 import PillarCardsSection from '@/components/PillarCardsSection';
 import InitiativesSection from '@/components/InitiativesSection';
@@ -45,6 +45,7 @@ export default function HomePage() {
 		<main>
 			{/* HERO SECTION - 90vh (works with 10vh banner below = 100vh total) */}
 			<Hero
+				height="90vh"
 				backgroundImage='/images/inside-church-aisle.jpg'
 				title="Welcome to St Saviour's Catholic Church"
 				description="For over 150 years, our vibrant parish community has been a beacon of faith, hope, and love in Lewisham. All are welcome in God's house to grow in relationship with Christ and one another."

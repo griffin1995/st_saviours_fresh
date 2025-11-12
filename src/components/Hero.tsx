@@ -3,17 +3,20 @@
 import Link from 'next/link';
 
 /**
- * HERO COMPONENT - STANDARD VERSION
- * Full-screen cinematic hero
+ * HERO COMPONENT - UNIFIED VERSION
+ * Full-screen cinematic hero with configurable height
  *
  * Features:
- * - Full viewport height (100vh)
+ * - Configurable height via prop (default 100vh)
  * - Multi-layer overlays (navy + gold + dot pattern)
  * - Advanced typography with text shadows
  * - Scroll indicator with smooth scroll
  * - Client Component (for scroll functionality)
+ * - Brand-consistent colors (primary-900 for overlays)
  *
- * Note: For homepage with LiveStreamBanner, use Hero-Homepage.tsx (90vh)
+ * Usage:
+ * - Standard pages: <Hero backgroundImage="..." title="..." /> (100vh default)
+ * - Homepage with banner: <Hero height="90vh" backgroundImage="..." title="..." />
  */
 
 interface HeroButton {
@@ -36,6 +39,7 @@ interface HeroProps {
   primaryButton?: HeroButton;
   secondaryButton?: HeroButton;
   children?: React.ReactNode;
+  height?: string; // NEW: Configurable height (default "100vh")
 }
 
 export default function Hero({
@@ -45,7 +49,8 @@ export default function Hero({
   badge,
   primaryButton,
   secondaryButton,
-  children
+  children,
+  height = '100vh' // Default to full viewport
 }: HeroProps) {
   const handleScrollDown = () => {
     window.scrollTo({
@@ -55,7 +60,7 @@ export default function Hero({
   };
 
   return (
-    <section className="relative h-[100vh] w-screen overflow-hidden">
+    <section className="relative w-screen overflow-hidden" style={{ height }}>
       {/* Background image */}
       <div className="absolute inset-0">
         <div
@@ -76,7 +81,7 @@ export default function Hero({
 
       {/* Layer 2: Navy gradient for text contrast */}
       <div
-        className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/50 to-transparent"
+        className="absolute inset-0 bg-gradient-to-t from-primary-900/90 via-primary-900/50 to-transparent"
       />
 
       {/* Layer 3: Gold accent gradient for warmth */}
@@ -105,9 +110,9 @@ export default function Hero({
           {/* Announcement badge */}
           {badge && (
             <div className="hidden sm:mb-8 sm:flex sm:justify-center">
-              <div className="relative rounded-full px-4 py-1.5 text-base leading-7 text-gray-200 ring-1 ring-gray-300 hover:ring-gray-200 bg-white/10 backdrop-blur-sm">
+              <div className="relative rounded-full px-4 py-1.5 text-base leading-7 text-white ring-1 ring-primary-300 hover:ring-primary-200 bg-white/10 backdrop-blur-sm">
                 {badge.text}{' '}
-                <a href={badge.linkHref} className="font-semibold text-white hover:text-gray-200">
+                <a href={badge.linkHref} className="font-semibold text-white hover:text-primary-100">
                   <span className="absolute inset-0" />
                   {badge.linkText} <span>&rarr;</span>
                 </a>
@@ -189,8 +194,7 @@ export default function Hero({
               height="30"
               viewBox="0 0 24 24"
               fill="none"
-              className="text-white"
-              style={{ opacity: 0.7 }}
+              className="text-white opacity-70"
             >
               <path
                 d="M7 10l5 5 5-5"
@@ -201,11 +205,7 @@ export default function Hero({
               />
             </svg>
             <span
-              className="text-sm font-serif tracking-widest uppercase text-white mt-2"
-              style={{
-                opacity: 0.6,
-                letterSpacing: '0.1em'
-              }}
+              className="text-sm font-serif tracking-widest uppercase text-white mt-2 opacity-60 [letter-spacing:0.1em]"
             >
               SCROLL
             </span>
