@@ -108,7 +108,7 @@ export default function NewsPage() {
     }
   ];
 
-  const categories = ["All", "Jubilee 2025", "Sacraments", "Liturgical Season", "Parish Groups", "Parish Life", "Events"];
+  const categories = ["All", "Featured", "Newsletter", "Jubilee 2025", "Sacraments", "Liturgical Season", "Parish Groups", "Parish Life", "Events"];
 
   return (
     <main>
