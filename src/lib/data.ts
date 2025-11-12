@@ -153,8 +153,12 @@ export const navigationMenu = [
 		],
 	},
 	{
-		name: 'Newsletter',
-		href: '/newsletter',
+		name: 'News',
+		href: '#',
+		dropdown: [
+			{ name: 'Parish News', href: '/news#latest-news' },
+			{ name: 'Newsletter', href: '/news#newsletter' },
+		],
 	},
 	{
 		name: 'Prayer Hub',

@@ -17,6 +17,7 @@ import {
  * Features:
  * - Official shadcn/ui component architecture
  * - Brand gold background with responsive design
+ * - Min-height 10vh (works with 90vh hero = 100vh total visible on load)
  * - Dismissible with close button
  * - Session-based persistence (returns on new visits)
  * - Full responsive breakpoints per design system
@@ -45,6 +46,7 @@ export default function LiveStreamBanner() {
       visible={isVisible}
       onClose={handleClose}
       className="bg-gold-600 text-white border-0 rounded-none
+                 min-h-[10vh]
                  px-4 py-4 sm:px-6 sm:py-5 md:px-8 md:py-6
                  flex-col gap-4 items-center justify-center
                  sm:flex-row sm:gap-6 md:gap-8"

@@ -105,10 +105,46 @@ export default function NewsPage() {
       readTime: "5 min read",
       featured: false,
       tags: ["Christmas", "Carols", "Community", "Celebration"]
+    },
+    {
+      id: 7,
+      title: "Weekly Parish Newsletter - 10 November 2025",
+      excerpt: "This week's newsletter features Christ the King celebrations, Advent wreath preparation workshops, Christmas Mass schedule, and parish Christmas bazaar planning.",
+      content: "Welcome to this week's parish newsletter. As we approach the end of the liturgical year with the Solemnity of Christ the King, we begin preparations for Advent. Details of our Advent wreath making workshop, Christmas Mass schedules, and the annual parish bazaar included...",
+      image: "/images/hands-up-praising.jpg",
+      category: "Newsletter",
+      date: "2025-11-10",
+      readTime: "6 min read",
+      featured: false,
+      tags: ["Newsletter", "November", "Weekly", "Advent"]
+    },
+    {
+      id: 8,
+      title: "Weekly Parish Newsletter - 3 November 2025",
+      excerpt: "This week's parish news includes remembering our faithful departed, November memorial Masses, cemetery visits, and prayers for holy souls.",
+      content: "In this week's newsletter, we continue to remember all the faithful departed during this special month of November. Mass intentions for loved ones, cemetery blessing schedule, and opportunities for prayer and reflection included...",
+      image: "/images/mid-mass-priest-and-community.jpg",
+      category: "Newsletter",
+      date: "2025-11-03",
+      readTime: "6 min read",
+      featured: false,
+      tags: ["Newsletter", "November", "Weekly", "Memorial"]
+    },
+    {
+      id: 9,
+      title: "Weekly Parish Newsletter - 27 October 2025",
+      excerpt: "Last week's newsletter with All Saints Day Mass schedule, All Souls Day preparations, November memorial Mass intentions, and parish autumn events.",
+      content: "As we prepare to honor all saints and pray for all souls, this week's newsletter includes Mass schedules for All Saints Day (Nov 1st) and All Souls Day (Nov 2nd), information about submitting memorial Mass intentions, and our parish autumn social events...",
+      image: "/images/open-bible-rosary.jpg",
+      category: "Newsletter",
+      date: "2025-10-27",
+      readTime: "6 min read",
+      featured: false,
+      tags: ["Newsletter", "October", "Weekly", "All Souls"]
     }
   ];
 
-  const categories = ["All", "Jubilee 2025", "Sacraments", "Liturgical Season", "Parish Groups", "Parish Life", "Events"];
+  const categories = ["All", "Featured", "Newsletter", "Jubilee 2025", "Sacraments", "Liturgical Season", "Parish Groups", "Parish Life", "Events"];
 
   return (
     <main>
@@ -360,25 +396,25 @@ export default function NewsPage() {
       /> */}
 
       {/* NEWSLETTER SIGNUP SECTION */}
-      <section id="newsletter" className="py-16 bg-slate-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <section id="newsletter" className="py-16 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center space-x-3 mb-4">
               <div className="w-2 h-2 bg-gold-500" />
-              <span className="text-white font-bold text-sm uppercase tracking-wider">
+              <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 Stay Updated
               </span>
             </div>
-            <h2 className="text-4xl lg:text-5xl font-light text-white mb-4">
+            <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
               Never Miss an Update
             </h2>
-            <p className="text-lg text-gray-200 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-700 max-w-2xl">
               Subscribe to our newsletter and be the first to know about parish events,
               spiritual programs, and community news.
             </p>
           </div>
 
-          <div className="bg-white  p-8 shadow-xl">
+          <div className="bg-slate-50 border border-gray-200 p-8 shadow-sm">
             <div className="flex items-center justify-center mb-6">
               <BookOpen className="h-12 w-12 text-gold-500" />
             </div>
