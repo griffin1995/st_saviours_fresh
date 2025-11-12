@@ -361,9 +361,9 @@ export default function NewsPage() {
 
       {/* NEWSLETTER SIGNUP SECTION */}
       <section id="newsletter" className="py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-8">
-            <div className="flex items-center justify-center space-x-3 mb-4">
+            <div className="flex items-center space-x-3 mb-4">
               <div className="w-2 h-2 bg-gold-500" />
               <span className="text-primary-900 font-bold text-sm uppercase tracking-wider">
                 Stay Updated
@@ -372,7 +372,7 @@ export default function NewsPage() {
             <h2 className="text-4xl lg:text-5xl font-light text-primary-900 mb-4">
               Never Miss an Update
             </h2>
-            <p className="text-lg text-slate-700 max-w-2xl mx-auto">
+            <p className="text-lg text-slate-700 max-w-2xl">
               Subscribe to our newsletter and be the first to know about parish events,
               spiritual programs, and community news.
             </p>
