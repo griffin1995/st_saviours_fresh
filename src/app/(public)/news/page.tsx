@@ -109,32 +109,32 @@ export default function NewsPage() {
     {
       id: 7,
       title: "Weekly Parish Newsletter - 10 November 2025",
-      excerpt: "This week's newsletter featuring upcoming Advent preparations, Mass intentions, parish events, and important community announcements.",
-      content: "Welcome to this week's parish newsletter. As we approach Advent, we highlight preparations for the season, upcoming sacramental programs, and community outreach initiatives...",
+      excerpt: "This week's newsletter features Christ the King celebrations, Advent wreath preparation workshops, Christmas Mass schedule, and parish Christmas bazaar planning.",
+      content: "Welcome to this week's parish newsletter. As we approach the end of the liturgical year with the Solemnity of Christ the King, we begin preparations for Advent. Details of our Advent wreath making workshop, Christmas Mass schedules, and the annual parish bazaar included...",
       image: "/images/hands-up-praising.jpg",
       category: "Newsletter",
       date: "2025-11-10",
       readTime: "6 min read",
       featured: false,
-      tags: ["Newsletter", "November", "Weekly", "Updates"]
+      tags: ["Newsletter", "November", "Weekly", "Advent"]
     },
     {
       id: 8,
       title: "Weekly Parish Newsletter - 3 November 2025",
-      excerpt: "This week's parish news includes All Saints celebrations recap, upcoming events, Mass schedules, and parish group updates.",
-      content: "In this week's newsletter, we reflect on our beautiful All Saints Day celebrations and look ahead to the coming weeks...",
+      excerpt: "This week's parish news includes remembering our faithful departed, November memorial Masses, cemetery visits, and prayers for holy souls.",
+      content: "In this week's newsletter, we continue to remember all the faithful departed during this special month of November. Mass intentions for loved ones, cemetery blessing schedule, and opportunities for prayer and reflection included...",
       image: "/images/mid-mass-priest-and-community.jpg",
       category: "Newsletter",
       date: "2025-11-03",
       readTime: "6 min read",
       featured: false,
-      tags: ["Newsletter", "November", "Weekly", "All Saints"]
+      tags: ["Newsletter", "November", "Weekly", "Memorial"]
     },
     {
       id: 9,
       title: "Weekly Parish Newsletter - 27 October 2025",
-      excerpt: "Last week's newsletter with October recap, All Souls Day preparations, memorial Mass information, and parish announcements.",
-      content: "This week we prepare for All Souls Day and remember our faithful departed. Details of memorial Masses and cemetery blessings included...",
+      excerpt: "Last week's newsletter with All Saints Day Mass schedule, All Souls Day preparations, November memorial Mass intentions, and parish autumn events.",
+      content: "As we prepare to honor all saints and pray for all souls, this week's newsletter includes Mass schedules for All Saints Day (Nov 1st) and All Souls Day (Nov 2nd), information about submitting memorial Mass intentions, and our parish autumn social events...",
       image: "/images/open-bible-rosary.jpg",
       category: "Newsletter",
       date: "2025-10-27",
