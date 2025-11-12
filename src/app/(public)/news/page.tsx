@@ -105,6 +105,42 @@ export default function NewsPage() {
       readTime: "5 min read",
       featured: false,
       tags: ["Christmas", "Carols", "Community", "Celebration"]
+    },
+    {
+      id: 7,
+      title: "Parish Newsletter - January 2025 Edition",
+      excerpt: "Read our latest parish newsletter featuring upcoming events, Mass intentions, parish finances, and important community announcements for January.",
+      content: "Welcome to the January 2025 edition of our parish newsletter. This month we highlight our Jubilee preparations, upcoming sacramental programs, and community outreach initiatives...",
+      image: "/images/hands-up-praising.jpg",
+      category: "Newsletter",
+      date: "2025-01-01",
+      readTime: "8 min read",
+      featured: false,
+      tags: ["Newsletter", "January", "Updates", "Community"]
+    },
+    {
+      id: 8,
+      title: "December 2024 Newsletter - Advent & Christmas",
+      excerpt: "Our December newsletter celebrates the Advent season and Christmas preparations, including Mass schedules, carol services, and festive parish gatherings.",
+      content: "As we prepare our hearts for the birth of Christ, our December newsletter brings you all the details of our Advent and Christmas celebrations...",
+      image: "/images/mid-mass-priest-and-community.jpg",
+      category: "Newsletter",
+      date: "2024-12-01",
+      readTime: "7 min read",
+      featured: false,
+      tags: ["Newsletter", "December", "Advent", "Christmas"]
+    },
+    {
+      id: 9,
+      title: "November 2024 Newsletter - Month of Remembrance",
+      excerpt: "November's newsletter focuses on remembering our faithful departed, with information about memorial Masses, cemetery blessings, and All Souls Day services.",
+      content: "During this Month of Remembrance, we pray for all the faithful departed and invite you to submit Mass intentions for your loved ones...",
+      image: "/images/open-bible-rosary.jpg",
+      category: "Newsletter",
+      date: "2024-11-01",
+      readTime: "6 min read",
+      featured: false,
+      tags: ["Newsletter", "November", "Remembrance", "All Souls"]
     }
   ];
 
