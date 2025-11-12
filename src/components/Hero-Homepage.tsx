@@ -4,10 +4,10 @@ import Link from 'next/link';
 
 /**
  * HERO COMPONENT - HOMEPAGE VERSION
- * Full-screen cinematic hero section
+ * Full-screen cinematic hero section with banner accommodation
  *
  * Features:
- * - 100vh height (full viewport - industry standard)
+ * - 90vh height (leaves 10vh for banner below = 100vh total visible on load)
  * - Multi-layer overlays (navy + gold + dot pattern)
  * - Advanced typography with text shadows
  * - Scroll indicator with smooth scroll
@@ -53,7 +53,7 @@ export default function Hero({
   };
 
   return (
-    <section className="relative h-[100vh] w-screen overflow-hidden">
+    <section className="relative h-[90vh] w-screen overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0">
         <div

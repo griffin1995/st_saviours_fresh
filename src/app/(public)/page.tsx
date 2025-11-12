@@ -43,7 +43,7 @@ export default function HomePage() {
 
 	return (
 		<main>
-			{/* HERO SECTION - Full viewport (100vh) */}
+			{/* HERO SECTION - 90vh (works with 10vh banner below = 100vh total) */}
 			<Hero
 				backgroundImage='/images/inside-church-aisle.jpg'
 				title="Welcome to St Saviour's Catholic Church"
