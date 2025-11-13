@@ -5,13 +5,12 @@
 **Status:** Active Development
 **Project Lead:** Jack Griffin (Web Developer)
 **Content Coordinator:** Francesca
-**Strategy Lead:** Hugo Martinho
 
 ---
 
 ## 📋 Executive Summary
 
-This document consolidates all stakeholder feedback received during the pre-launch review period for the St Saviour's Parish website. The feedback has been organized into actionable development tasks, prioritized by urgency and impact, and mapped to a phased implementation roadmap.
+This document consolidates all council feedback received during the pre-launch review period for the St Saviour's Parish website. The feedback has been organized into actionable development tasks, prioritized by urgency and impact, and mapped to a phased implementation roadmap.
 
 ### Key Highlights
 
@@ -24,13 +23,13 @@ This document consolidates all stakeholder feedback received during the pre-laun
 
 ### Overall Sentiment
 
-✅ **Positive Reception:** "Absolutely love the site" - "Fantastic start"
-⚠️ **Areas for Improvement:** Mobile homepage first impression, content organization
-🎯 **Strategic Opportunity:** Expand from informational website to community engagement platform
+**Positive Reception:** "Absolutely love the site" - "Fantastic start"
+**Areas for Improvement:** Mobile homepage first impression, content organization
+**Strategic Opportunity:** Expand from informational website to community engagement platform
 
 ---
 
-## 🎯 Project Objectives
+## Project Objectives
 
 ### Primary Goals
 1. **Launch-Ready Website:** Resolve critical issues before November 19 go-live
@@ -42,10 +41,8 @@ This document consolidates all stakeholder feedback received during the pre-laun
 ### Success Metrics
 - Zero critical UX issues at launch
 - Mobile responsiveness score: 95%+
-- User satisfaction: 4.5/5 stars (via survey)
 - Content engagement: Track most-visited sections
-- Newsletter signups: Target 200 subscribers in first 3 months
-- Event registrations: 50+ per quarter (post-feature launch)
+- Newsletter signups: Target x subscribers in first 3 months
 
 ---
 
@@ -67,7 +64,7 @@ The homepage banner creates a poor first impression with multiple UX issues:
 
 **User Expectation vs. Reality:**
 - **Expected:** Click "Watch live mass here" → Go directly to stream
-- **Actual:** Click → Opens menu dropdown
+- **Actual:** Click → Opens menu dropdown, due to overlapping the burger menu.
 
 **Impact:**
 - First impression is critical (top of homepage)
@@ -76,37 +73,19 @@ The homepage banner creates a poor first impression with multiple UX issues:
 
 **Recommended Solutions:**
 
-**Option A: Direct Link Approach (Recommended)**
-```typescript
-// Change button behavior to direct link
-<Link href="/live-stream" className="live-mass-button">
-  <PlayCircle className="w-5 h-5" />
-  Watch Live Mass
-</Link>
-```
-
-**Option B: Honest Labeling**
-```typescript
-// Change label to match menu behavior
-<button onClick={toggleMenu} className="menu-button">
-  <Menu className="w-5 h-5" />
-  Mass Schedule & More
-</button>
-```
-
 **Design Improvements Required:**
+- Moved the banner underneath the 'Hero' section, but still above the fold.
+
 - Reduce banner height: 10vh → 8vh (more subtle)
 - Fix logo overlap: Add proper spacing/padding
 - Color adjustment: Consider using `gold-500` instead of brown/yellow
 - Simplify layout: Remove redundant elements
-- Add whitespace: Improve visual breathing room
 
 **Files to Modify:**
 - `src/components/LiveStreamBanner.tsx`
 - `src/components/Hero.tsx` (adjust height compensation)
 - `src/components/layout/Navigation.tsx` (scroll threshold adjustment)
 
-**Estimated Time:** 3-4 hours
 **Deadline:** Before November 19 launch
 
 ---
